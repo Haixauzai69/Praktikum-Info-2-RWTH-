@@ -122,6 +122,11 @@ void vAufgabe1a()
 	vAusgabe(vehicles);
 }
 
+void vAufgabe_2()
+{
+	// mach weiter
+}
+
 int main()
 {
 	vAufgabe1a();

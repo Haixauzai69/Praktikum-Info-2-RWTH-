@@ -48,7 +48,8 @@ double Fahrzeug::getGesamtStrecke() const
 
 void Fahrzeug::vSimulieren(double dTimeStep)
 {
-	 p_dGesamtStrecke += p_dMaxGeschwindigkeit*dTimeStep;
+	 double dCurrentSpeed = dGeschwindigkeit();
+	 p_dGesamtStrecke += dCurrentSpeed * dTimeStep;
 }
 
 void Fahrzeug::vKopf()
@@ -60,6 +61,7 @@ void Fahrzeug::vKopf()
 					<< std::setw(15) << "Gesamtstrecke"
 					<< std::setw(20) << "Gesamtverbrauch"
 					<< std::setw(20) << "Aktuelle Tankinhalt"
+					<< std::setw(20) << "Aktuelle Geschwindigkeit"
 					<< std::resetiosflags(std::ios::left) << std::endl;
 
 	std::cout << std::string(120, '-') << std::endl;
@@ -71,6 +73,13 @@ void Fahrzeug::vAusgabe() const
 	              << std::setw(5)  << p_iID
 	              << std::setw(30) << p_sName
 	              << std::setw(20) << p_dMaxGeschwindigkeit
-	              << std::setw(15) << p_dGesamtStrecke;
+	              << std::setw(15) << p_dGesamtStrecke
+				  << std::setw(20) << dGeschwindigkeit()
+				  << std::resetiosflags(std::ios::left) << std::endl;
+}
+
+double Fahrzeug::dGeschwindigkeit() const
+{
+	return p_dMaxGeschwindigkeit;
 }
 

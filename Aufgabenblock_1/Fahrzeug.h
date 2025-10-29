@@ -44,6 +44,7 @@ class Fahrzeug
 		}
 		static void vKopf();
 		virtual void vAusgabe() const;
+		virtual double dGeschwindigkeit() const;
 };
 
 #endif /* FAHRZEUG_H_ */
