@@ -174,6 +174,7 @@ void vAufgabe_2()
 
 	        // Output after each step
 	        std::cout << "\nAfter " << dTotalTime << " hours:\n";
+	        Fahrzeug::vKopf();
 	        for (auto& fzg : vehicles)
 	        {
 	            fzg->vAusgabe();  // polymorphic call
