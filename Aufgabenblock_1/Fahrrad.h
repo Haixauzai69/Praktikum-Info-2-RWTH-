@@ -16,11 +16,12 @@
 #include <vector>
 #include "Fahrzeug.h"
 
-class Bike : public Fahrzeug
+class Fahrrad : public Fahrzeug
 {
 	public:
-	Bike() = delete;
-	virtual ~Bike() = default;
+	Fahrrad() = delete;
+	Fahrrad(const std::string& name, double maxSpeed);
+	virtual ~Fahrrad() = default;
 	double dGeschwindigkeit() const override;
 };
 

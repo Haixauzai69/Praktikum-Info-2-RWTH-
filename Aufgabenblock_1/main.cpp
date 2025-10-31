@@ -11,8 +11,10 @@
 #include <iomanip>
 #include <ios>
 #include <memory>
+#include <cmath>
 #include "Fahrzeug.h"
 #include "PKW.h"
+#include "Fahrrad.h"
 
 //void vKopf()
 //{
@@ -89,47 +91,99 @@
 //	fahrrad.clear();
 //}
 
-void vAusgabe(std::vector<std::unique_ptr<Fahrzeug>>& vehicles)
-{
-    Fahrzeug::vKopf();
-    for (auto& v : vehicles)
-        v->vAusgabe();   // calls the correct override automatically
-}
+//void vAusgabe(std::vector<std::unique_ptr<Fahrzeug>>& vehicles)
+//{
+//    Fahrzeug::vKopf();
+//    for (auto& v : vehicles)
+//        v->vAusgabe();   // calls the correct override automatically
+//}
 
-void vAufgabe1a()
-{
-	std::unique_ptr<Car> car = std::make_unique<Car>(5, 55);
-	std::unique_ptr<Fahrzeug> bike = std::make_unique<Fahrzeug>("Bike", 20);
-	std::unique_ptr<Fahrzeug> tram = std::make_unique<Fahrzeug>("Tram", 100);
-
-	std::vector<std::unique_ptr<Fahrzeug>> vehicles;
-	vehicles.push_back(std::move(car));
-	vehicles.push_back(std::move(bike));
-	vehicles.push_back(std::move(tram));
-
-	vAusgabe(vehicles);
-
-	for (int t = 0; t < 8; ++t) // after 16 hours
-	{
-		  dGlobaleZeit++;
-		  for (auto& i : vehicles)
-		  {
-			  i->vSimulieren(0.5); // time step of one hour for each step
-		  } // this loop iteration is 0.5 hour step for 16 hours. simulation runs for 16 hours
-	}
-// time step and number of hour for simulation are adjustable. Time step of 0.5 for 16 hours will be a simulation of 8 hours
-	std::cout << " " << std::endl;
-	vAusgabe(vehicles);
-}
+//void vAufgabe1a()
+//{
+//	std::unique_ptr<Car> car = std::make_unique<Car>(5, 55);
+//	std::unique_ptr<Fahrzeug> bike = std::make_unique<Fahrzeug>("Bike", 20);
+//	std::unique_ptr<Fahrzeug> tram = std::make_unique<Fahrzeug>("Tram", 100);
+//
+//	std::vector<std::unique_ptr<Fahrzeug>> vehicles;
+//	vehicles.push_back(std::move(car));
+//	vehicles.push_back(std::move(bike));
+//	vehicles.push_back(std::move(tram));
+//
+//	vAusgabe(vehicles);
+//
+//	for (int t = 0; t < 8; ++t) // after 16 hours
+//	{
+//		  dGlobaleZeit++;
+//		  for (auto& i : vehicles)
+//		  {
+//			  i->vSimulieren(0.5); // time step of one hour for each step
+//		  } // this loop iteration is 0.5 hour step for 16 hours. simulation runs for 16 hours
+//	}
+//// time step and number of hour for simulation are adjustable. Time step of 0.5 for 16 hours will be a simulation of 8 hours
+//	std::cout << " " << std::endl;
+//	vAusgabe(vehicles);
+//}
 
 void vAufgabe_2()
 {
-	// mach weiter
+	    int numCars = 0;
+	    int numBikes = 0;
+	    std::cout << "Enter number of cars: ";
+	    std::cin >> numCars;
+	    std::cout << "Enter number of bikes: ";
+	    std::cin >> numBikes;
+
+	    std::vector<std::unique_ptr<Fahrzeug>> vehicles;
+
+	    // Create PKWs
+	    for (int i = 0; i < numCars; ++i)
+	    {
+	        std::string name = "Car_" + std::to_string(i + 1);
+	        double verbrauch = 5 + i;          // example consumption
+	        double tankvolumen = 55;           // default tank size
+	        vehicles.push_back(std::make_unique<Car>(verbrauch, tankvolumen));
+	    }
+
+	    // Create Fahrräder
+	    for (int i = 0; i < numBikes; ++i)
+	    {
+	        std::string name = "Bike_" + std::to_string(i + 1);
+	        double maxSpeed = 25 + 2 * i;
+	        vehicles.push_back(std::make_unique<Fahrrad>(name, maxSpeed));
+	    }
+
+	    // Simulation loop
+	    double dTimeStep = 0.5; // 0.5 hours
+	    double dTotalTime = 0.0;
+	    double epsilon = 1e-6;
+
+	    while (dTotalTime < 6.0) // simulate 6 hours
+	    {
+	        dGlobaleZeit += dTimeStep;
+	        dTotalTime += dTimeStep;
+
+	        for (auto& fzg : vehicles)
+	            fzg->vSimulieren(dTimeStep);
+
+	        // After exactly 3 hours: refuel cars
+	        if (std::fabs(dTotalTime - 3.0) < epsilon)
+	        {
+	            for (auto& fzg : vehicles)
+	                fzg->dTanken(); // only PKWs do something
+	        }
+
+	        // Output after each step
+	        std::cout << "\nAfter " << dTotalTime << " hours:\n";
+	        for (auto& fzg : vehicles)
+	        {
+	            fzg->vAusgabe();  // polymorphic call
+	        }
+	    }
 }
 
 int main()
 {
-	vAufgabe1a();
+	vAufgabe_2();
 	return 0;
 }
 

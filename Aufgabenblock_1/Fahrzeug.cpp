@@ -69,13 +69,14 @@ void Fahrzeug::vKopf()
 
 void Fahrzeug::vAusgabe() const
 {
+	Fahrzeug::vKopf();
 	std::cout << std::setiosflags(std::ios::left)
 	              << std::setw(5)  << p_iID
 	              << std::setw(30) << p_sName
 	              << std::setw(20) << p_dMaxGeschwindigkeit
 	              << std::setw(15) << p_dGesamtStrecke
 				  << std::setw(20) << dGeschwindigkeit()
-				  << std::resetiosflags(std::ios::left) << std::endl;
+				  << std::resetiosflags(std::ios::left);
 }
 
 double Fahrzeug::dGeschwindigkeit() const
