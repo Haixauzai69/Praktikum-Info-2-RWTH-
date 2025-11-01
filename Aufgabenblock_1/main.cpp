@@ -123,6 +123,11 @@
 //	std::cout << " " << std::endl;
 //	vAusgabe(vehicles);
 //}
+std::ostream& operator<<(std::ostream& out, const Fahrzeug& fahrzeug)
+{
+	fahrzeug.vAusgabe(out);
+	return out;
+}
 
 void vAufgabe_2()
 {
@@ -177,14 +182,52 @@ void vAufgabe_2()
 	        Fahrzeug::vKopf();
 	        for (auto& fzg : vehicles)
 	        {
-	            fzg->vAusgabe();  // polymorphic call
+	            std::cout << *fzg << std::endl;  // polymorphic call
 	        }
 	    }
 }
 
+void vAufgabe_3()
+{
+    std::cout << "\n===== Aufgabe 3: Operator Tests =====\n";
+
+    // 1️⃣ Create some vehicles
+    Fahrzeug car1("Audi", 150.0);
+    Fahrzeug car2("BMW", 130.0);
+
+    // 2️⃣ Simulate for different times
+    car1.vSimulieren(2.0);  // 2 hours
+    car2.vSimulieren(1.0);  // 1 hour
+
+    // 3️⃣ Test the output operator <<
+    std::cout << "\n--- Current Vehicle States ---\n";
+    Fahrzeug::vKopf();
+    std::cout << car1 << std::endl;
+    std::cout << car2 << std::endl;
+
+    // 4️⃣ Test operator<
+    if (car1 < car2)
+        std::cout << car1.getName() << " has driven less than " << car2.getName() << "\n";
+    else
+        std::cout << car1.getName() << " has driven more than or equal to " << car2.getName() << "\n";
+
+    // 5️⃣ Test copy constructor (should fail if you uncomment)
+    // Fahrzeug copy = car1; // ❌ error: copy constructor is deleted
+
+    // 6️⃣ Test assignment operator
+    Fahrzeug car3("Mercedes", 200.0);
+    std::cout << "\nBefore assignment:\n" << car3 << std::endl;
+    car3 = car1; // uses operator=
+    std::cout << "After assignment (car3 = car1):\n" << car3 << std::endl;
+
+    std::cout << "\n===== End of Aufgabe 3 =====\n";
+}
+
+
 int main()
 {
-	vAufgabe_2();
+//	vAufgabe_2();
+	vAufgabe_3();
 	return 0;
 }
 

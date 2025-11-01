@@ -21,7 +21,7 @@ class Car : public Fahrzeug
 	virtual ~Car() = default;
 	double dTanken (double dMenge = std::numeric_limits<double>::infinity()) override;
 	void vSimulieren(double dTimeStep) override;
-	void vAusgabe() const override;
+	void vAusgabe(std::ostream& ausgabe) const override;
 
 	protected:
 	double p_dVerbrauch; // liter pro 100km

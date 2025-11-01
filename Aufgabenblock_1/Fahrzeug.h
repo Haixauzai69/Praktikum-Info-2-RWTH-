@@ -28,7 +28,7 @@ class Fahrzeug
 		double p_dMaxGeschwindigkeit;
 
 	public:
-		Fahrzeug() = delete;
+		Fahrzeug(const Fahrzeug&) = delete;
 		Fahrzeug(const std::string name, double max_geschwindigkeit);
 		virtual ~Fahrzeug();
 
@@ -43,8 +43,10 @@ class Fahrzeug
 			return 0.0;
 		}
 		static void vKopf();
-		virtual void vAusgabe() const;
+		virtual void vAusgabe(std::ostream& ausgabe) const;
 		virtual double dGeschwindigkeit() const;
+		bool operator<(const Fahrzeug& other) const;
+		Fahrzeug& operator=(const Fahrzeug& other);
 };
 
 #endif /* FAHRZEUG_H_ */

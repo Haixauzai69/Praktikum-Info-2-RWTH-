@@ -67,12 +67,12 @@ void Car::vSimulieren(double dTimeStep) // how to make the car be fueled after b
 	}
 }
 
-void Car::vAusgabe() const
+void Car::vAusgabe(std::ostream& ausgabe) const
 {
 //	Fahrzeug::vAusgabe();
 	double dGesamtverbrauch = (p_dGesamtStrecke / 100.0) * p_dVerbrauch;
 
-	    std::cout << std::setiosflags(std::ios::left)
+	    ausgabe << std::setiosflags(std::ios::left)
 				  << std::setw(5)  << Fahrzeug::getID()
 				  << std::setw(15) << "Car_" << Fahrzeug::getID()
 				  << std::setw(15) << std::fixed << std::setprecision(2) << p_dMaxGeschwindigkeit

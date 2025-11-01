@@ -66,9 +66,9 @@ void Fahrzeug::vKopf()
 					<< std::string(120,'-') << std::endl;
 }
 
-void Fahrzeug::vAusgabe() const
+void Fahrzeug::vAusgabe(std::ostream& ausgabe) const
 {
-	std::cout << std::setiosflags(std::ios::left)
+	ausgabe << std::setiosflags(std::ios::left)
 	              << std::setw(5)  << p_iID
 	              << std::setw(15) << p_sName
 	              << std::setw(15) << std::fixed << std::setprecision(2) << p_dMaxGeschwindigkeit
@@ -82,5 +82,28 @@ void Fahrzeug::vAusgabe() const
 double Fahrzeug::dGeschwindigkeit() const
 {
 	return p_dMaxGeschwindigkeit;
+}
+
+bool Fahrzeug::operator<(const Fahrzeug& other) const
+{
+    return this->p_dGesamtStrecke < other.p_dGesamtStrecke;
+}
+
+Fahrzeug& Fahrzeug::operator=(const Fahrzeug& other)
+{
+    if (this != &other)
+    {
+        // Copy only “static” or initial attributes — not runtime values.
+        // ID should NOT be copied!
+        // The name might be allowed or not, depending on your design.
+
+        // Example: don’t copy ID or current total distance
+        // You can copy p_sName if it’s not const (if const, skip it)
+        this->p_dMaxGeschwindigkeit = other.p_dMaxGeschwindigkeit;
+        // Maybe reset some runtime stats here
+        this->p_dGesamtStrecke = 0.0;
+        this->p_dGesamtZeit = 0.0;
+    }
+    return *this;
 }
 
