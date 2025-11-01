@@ -223,11 +223,27 @@ void vAufgabe_3()
     std::cout << "\n===== End of Aufgabe 3 =====\n";
 }
 
+double dEpsilon = 0.001;
+
+void vAufgabe_Probe() {
+    Fahrzeug* pF1 = new Car(8, 55);
+    dGlobaleZeit = 0.0;
+    Fahrzeug::vKopf();
+    dGlobaleZeit = 3.0;
+    std::cout << std::endl << "Globalezeit = " << dGlobaleZeit << std::endl;
+    pF1->vSimulieren(1);
+    std::cout << *pF1 << std::endl;
+    delete pF1;
+    char c;
+    std::cin >> c;
+}
+
 
 int main()
 {
 //	vAufgabe_2();
-	vAufgabe_3();
+//	vAufgabe_3();
+	vAufgabe_Probe();
 	return 0;
 }
 
