@@ -226,7 +226,7 @@ void vAufgabe_3()
 double dEpsilon = 0.001;
 
 void vAufgabe_Probe() {
-    Fahrzeug* pF1 = new Car(8, 55);
+    Car* pF1 = new Car(8, 55);
     dGlobaleZeit = 0.0;
     Fahrzeug::vKopf();
     dGlobaleZeit = 3.0;

@@ -63,6 +63,7 @@ void Car::vSimulieren(double dTimeStep) // how to make the car be fueled after b
 	    double dStreckeBisLeer = (p_dTankinhalt / p_dVerbrauch) * 100.0; // km until empty
 	    double dZeitBisLeer = dStreckeBisLeer / p_dMaxGeschwindigkeit;   // hours until empty
 
+
 	    p_dGesamtStrecke += dStreckeBisLeer;
 	    p_dTankinhalt = 0.0;
 	    p_bEmpty = true;
