@@ -231,7 +231,7 @@ void vAufgabe_Probe() {
     Fahrzeug::vKopf();
     dGlobaleZeit = 3.0;
     std::cout << std::endl << "Globalezeit = " << dGlobaleZeit << std::endl;
-    pF1->vSimulieren(1);
+    pF1->vSimulieren(3.0);
     std::cout << *pF1 << std::endl;
     delete pF1;
     char c;

@@ -48,8 +48,8 @@ void Car::vSimulieren(double dTimeStep) // how to make the car be fueled after b
 		return;
 	}
 
-	double dVerbrauch = p_dVerbrauch * dTimeStep;
-	double dStrecke = p_dMaxGeschwindigkeit * dTimeStep;
+	double dStrecke = p_dMaxGeschwindigkeit * dTimeStep; // in km
+	double dVerbrauch = (dStrecke / 100.0) * p_dVerbrauch; // in liters
 
 	if (p_dTankinhalt > dVerbrauch)
 	{
@@ -59,12 +59,17 @@ void Car::vSimulieren(double dTimeStep) // how to make the car be fueled after b
 	}
 	else
 	{
-		double dZeitbisleer = p_dTankinhalt / p_dVerbrauch;
-		p_dGesamtStrecke += p_dMaxGeschwindigkeit * dZeitbisleer;
-		p_dTankinhalt = 0.0;
-		p_bEmpty = true;
-		std::cout << "Car ran out of fuel" << std::endl;
-	}
+	        // fuel runs out before end of time step
+	    double dStreckeBisLeer = (p_dTankinhalt / p_dVerbrauch) * 100.0; // km until empty
+	    double dZeitBisLeer = dStreckeBisLeer / p_dMaxGeschwindigkeit;   // hours until empty
+
+	    p_dGesamtStrecke += dStreckeBisLeer;
+	    p_dTankinhalt = 0.0;
+	    p_bEmpty = true;
+
+	   std::cout << "Car ran out of fuel after " << dZeitBisLeer << " hours ("
+	             << dStreckeBisLeer << " km).\n";
+	   }
 }
 
 void Car::vAusgabe(std::ostream& ausgabe) const
