@@ -37,7 +37,7 @@ void Train::vPrintProperties(std::ostream& ausgabe) const // any ostream defined
 	ausgabe << "Delay: " << p_fDelay << std::endl;
 }
 
-void Train::vGoTo(std::shared_ptr<Station> station) // remodify after solution
+void Train::vGoTo(std::shared_ptr<Station> station)
 {
 	if((p_pIsAt == nullptr) || (p_pIsAt->bIsNeighbor(station)))
 	{
