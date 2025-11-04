@@ -39,19 +39,14 @@ void Train::vPrintProperties(std::ostream& ausgabe) const // any ostream defined
 
 void Train::vGoTo(std::shared_ptr<Station> station) // remodify after solution
 {
-	if(p_pIsAt == nullptr)
-	{
-		p_pIsAt = station;
-		std::cout << "Zug ist in " << p_pIsAt->getName() << " gesetzt" << std::endl;
-	}
-	else if(p_pIsAt->bIsNeighbor(station) == false)
-	{
-		std::cout << "Zug kann nicht nach " << station->getName() << " fahren" << std::endl;
-	}
-	else
+	if((p_pIsAt == nullptr) || (p_pIsAt->bIsNeighbor(station)))
 	{
 		p_pIsAt = station;
 		std::cout << "Zug ist nach " << p_pIsAt->getName() << " gefahren" << std::endl;
+	}
+	else
+	{
+		std::cout << "Zug kann nicht dahin fahren" << std::endl;
 	}
 }
 

@@ -11,6 +11,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <iterator>
 #include "Train.h"
 
 class Station
@@ -55,18 +56,14 @@ void Station::vPrintNeighbors() const
 bool Station::bIsNeighbor(std::shared_ptr<Station> request) const // remodify after solution
 {
 	// search for the given station within the vector. if found, returns true
-	for (auto i : p_pNeighbors)
+	for (auto it : p_pNeighbors)
 	{
-		if (i == request)
+		if (p_pNeighbors[it] == request)
 		{
-			return true;
+			return 1;
 			break;
 		}
-		else
-		{
-			std::cout << request->getName() << " is not a nearby station" << std::endl;
-			return false;
-		}
+		return 0;
 	}
 }
 
