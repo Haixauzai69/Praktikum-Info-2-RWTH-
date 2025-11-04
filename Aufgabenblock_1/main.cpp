@@ -216,41 +216,41 @@ void vAufgabe_3()
 //    std::cin >> c;
 //}
 
-double dEpsilon = 0.001;
-
-void vAufgabe_AB1() {
-
-    int l = 0; // Laufindex für gezielte AUsgabe
-    vector<int> ausgabe{15};
-    double dTakt = 0.3;
-
-    std::vector<unique_ptr<Fahrzeug>> vecFahrzeuge;
-    vecFahrzeuge.push_back(make_unique<Car>(10.7, 55.0));
-    vecFahrzeuge.push_back(make_unique<Fahrrad>("BMX", 21.4));
-    for (dGlobaleZeit = 0; dGlobaleZeit < 6; dGlobaleZeit += dTakt)
-    {
-        auto itL = find(ausgabe.begin(), ausgabe.end(), l);
-        if (itL != ausgabe.end()) {
-            std::cout << std::endl << l <<  " Globalezeit = " << dGlobaleZeit << std::endl;
-            Fahrzeug::vKopf();
-        }
-
-        for (int i = 0; i < vecFahrzeuge.size(); i++)
-        {
-            vecFahrzeuge[i]->vSimulieren(0.3);
-            if (fabs(dGlobaleZeit - 3.0) < dTakt/2)
-            {
-                vecFahrzeuge[i]->dTanken(55.0);
-            }
-            if (itL != ausgabe.end()) {
-                std::cout << *vecFahrzeuge[i] << endl;
-            }
-        }
-        l++;
-    }
-    char c;
-    std::cin >> c;
-}
+//double dEpsilon = 0.001;
+//
+//void vAufgabe_AB1() {
+//
+//    int l = 0; // Laufindex für gezielte AUsgabe
+//    vector<int> ausgabe{15};
+//    double dTakt = 0.3;
+//
+//    std::vector<unique_ptr<Fahrzeug>> vecFahrzeuge;
+//    vecFahrzeuge.push_back(make_unique<Car>(10.7, 55.0));
+//    vecFahrzeuge.push_back(make_unique<Fahrrad>("BMX", 21.4));
+//    for (dGlobaleZeit = 0; dGlobaleZeit < 6; dGlobaleZeit += dTakt)
+//    {
+//        auto itL = find(ausgabe.begin(), ausgabe.end(), l);
+//        if (itL != ausgabe.end()) {
+//            std::cout << std::endl << l <<  " Globalezeit = " << dGlobaleZeit << std::endl;
+//            Fahrzeug::vKopf();
+//        }
+//
+//        for (int i = 0; i < vecFahrzeuge.size(); i++)
+//        {
+//            vecFahrzeuge[i]->vSimulieren(0.3);
+//            if (fabs(dGlobaleZeit - 3.0) < dTakt/2)
+//            {
+//                vecFahrzeuge[i]->dTanken(55.0);
+//            }
+//            if (itL != ausgabe.end()) {
+//                std::cout << *vecFahrzeuge[i] << endl;
+//            }
+//        }
+//        l++;
+//    }
+//    char c;
+//    std::cin >> c;
+//}
 
 
 int main()
@@ -260,7 +260,7 @@ int main()
 //	vAufgabe_2();
 //	vAufgabe_3();
 //	vAufgabe_Probe();
-	vAufgabe_AB1();
+//	vAufgabe_AB1();
 	return 0;
 }
 

@@ -37,21 +37,21 @@ void Train::vPrintProperties(std::ostream& ausgabe) const // any ostream defined
 	ausgabe << "Delay: " << p_fDelay << std::endl;
 }
 
-void Train::vGoTo(std::shared_ptr<Station> station)
+void Train::vGoTo(std::shared_ptr<Station> station) // remodify after solution
 {
 	if(p_pIsAt == nullptr)
 	{
 		p_pIsAt = station;
 		std::cout << "Zug ist in " << p_pIsAt->getName() << " gesetzt" << std::endl;
 	}
-	else if((p_pIsAt->getDestination())->getName() == station->getName())
+	else if(p_pIsAt->bIsNeighbor(station) == false)
 	{
-		p_pIsAt = station;
-		std::cout << "Zug ist nach " << p_pIsAt->getName() << " gefahren" << std::endl;
+		std::cout << "Zug kann nicht nach " << station->getName() << " fahren" << std::endl;
 	}
 	else
 	{
-		std::cout << "Zug kann nicht nach " << station->getName() << " fahren" << std::endl;
+		p_pIsAt = station;
+		std::cout << "Zug ist nach " << p_pIsAt->getName() << " gefahren" << std::endl;
 	}
 }
 

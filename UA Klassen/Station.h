@@ -10,20 +10,22 @@
 #include <iostream>
 #include <memory>
 #include <string>
+#include <vector>
 #include "Train.h"
 
 class Station
 {
 	private:
 	const std::string p_sName;
-	std::shared_ptr<Station> p_pDestination;
+	std::vector<std::shared_ptr<Station>> p_pNeighbors;
 
 	public:
 	Station(const std::string name);
 
-	void vSetDestination(std::shared_ptr<Station> destination);
-	std::shared_ptr<Station> getDestination() const;
 	std::string getName() const;
+	void vAddNeighbor(std::shared_ptr<Station> station);
+	void vPrintNeighbors() const;
+	bool bIsNeighbor(std::shared_ptr<Station> request) const;
 };
 
 Station::Station(const std::string name) : p_sName(name)
@@ -35,14 +37,37 @@ std::string Station::getName() const
 	return p_sName;
 }
 
-std::shared_ptr<Station> Station::getDestination() const
+void Station::vAddNeighbor(std::shared_ptr<Station> station)
 {
-	return p_pDestination;
+	// syntax: Koln.vAddNeighbor(Dusseldorf);
+	p_pNeighbors.push_back(station);
 }
 
-void Station::vSetDestination(std::shared_ptr<Station> destination)
+void Station::vPrintNeighbors() const
 {
-	p_pDestination = destination;
+	// syntax: koln.vPrintNeighbors();
+	for (auto i : p_pNeighbors)
+	{
+		std::cout << i->getName() << std::endl;
+	}
+}
+
+bool Station::bIsNeighbor(std::shared_ptr<Station> request) const // remodify after solution
+{
+	// search for the given station within the vector. if found, returns true
+	for (auto i : p_pNeighbors)
+	{
+		if (i == request)
+		{
+			return true;
+			break;
+		}
+		else
+		{
+			std::cout << request->getName() << " is not a nearby station" << std::endl;
+			return false;
+		}
+	}
 }
 
 #endif /* STATION_H_ */
