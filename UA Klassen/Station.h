@@ -53,12 +53,12 @@ void Station::vPrintNeighbors() const
 	}
 }
 
-bool Station::bIsNeighbor(std::shared_ptr<Station> request) const // remodify after solution
+bool Station::bIsNeighbor(std::shared_ptr<Station> request) const
 {
 	// search for the given station within the vector. if found, returns true
 	for (auto it : p_pNeighbors)
 	{
-		if (p_pNeighbors[it] == request)
+		if (it == request)
 		{
 			return 1;
 			break;
