@@ -23,6 +23,9 @@ class Fahrrad : public Fahrzeug
 	Fahrrad(const std::string& name, double maxSpeed);
 	virtual ~Fahrrad() = default;
 	double dGeschwindigkeit() const override;
+//	void vSimulieren(double dTimeStep) override;
+//	double dTanken(double dMenge = std::numeric_limits<double>::infinity()) override;
+//	void vAusgabe(std::ostream& ausgabe) const override;
 };
 
 

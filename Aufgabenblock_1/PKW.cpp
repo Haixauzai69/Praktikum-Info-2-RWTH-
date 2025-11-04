@@ -14,7 +14,7 @@
 #include <ios>
 #include <algorithm>
 
-Car::Car(double verbrauch, double tankvolumen) : Fahrzeug("Auto", 150.0)
+Car::Car(double verbrauch, double tankvolumen) : Fahrzeug("Auto", 217) // must change
 {
 	p_dVerbrauch = verbrauch;
 	p_dTankvolumen = tankvolumen;
@@ -75,17 +75,16 @@ void Car::vSimulieren(double dTimeStep) // how to make the car be fueled after b
 
 void Car::vAusgabe(std::ostream& ausgabe) const
 {
-//	Fahrzeug::vAusgabe();
 	double dGesamtverbrauch = (p_dGesamtStrecke / 100.0) * p_dVerbrauch;
 
 	    ausgabe << std::setiosflags(std::ios::left)
 				  << std::setw(5)  << Fahrzeug::getID()
-				  << std::setw(15) << "Car_" << Fahrzeug::getID()
-				  << std::setw(15) << std::fixed << std::setprecision(2) << p_dMaxGeschwindigkeit
-				  << std::setw(15) << std::fixed << std::setprecision(2) << p_dGesamtStrecke
-				  << std::setw(15) << std::fixed << std::setprecision(2) << dGesamtverbrauch
-				  << std::setw(15) << std::fixed << std::setprecision(2) << p_dTankinhalt
-				  << std::setw(15) << std::fixed << std::setprecision(2) << dGeschwindigkeit()
+				  << std::setw(10) << "Car_" << Fahrzeug::getID()
+				  << std::setw(25) << std::fixed << std::setprecision(2) << p_dMaxGeschwindigkeit
+				  << std::setw(25) << std::fixed << std::setprecision(2) << p_dGesamtStrecke
+				  << std::setw(25) << std::fixed << std::setprecision(2) << dGesamtverbrauch
+				  << std::setw(25) << std::fixed << std::setprecision(2) << p_dTankinhalt
+				  << std::setw(25) << std::fixed << std::setprecision(2) << dGeschwindigkeit()
 				  << std::resetiosflags(std::ios::left) << std::endl;
 }
 

@@ -56,26 +56,26 @@ void Fahrzeug::vKopf()
 {
 	std::cout << std::setiosflags(std::ios::left)
 					<< std::setw(5) << "ID"
-					<< std::setw(15) << "Name"
-					<< std::setw(15) << "MaxGeschwindigkeit"
-					<< std::setw(15) << "Gesamtstrecke"
-					<< std::setw(15) << "Gesamtverbrauch"
-					<< std::setw(15) << "Aktuelle Tankinhalt"
-					<< std::setw(15) << "Aktuelle Geschwindigkeit"
+					<< std::setw(10) << "Name"
+					<< std::setw(25) << "MaxGeschwindigkeit"
+					<< std::setw(25) << "Gesamtstrecke"
+					<< std::setw(25) << "Gesamtverbrauch"
+					<< std::setw(25) << "Aktuelle Tankinhalt"
+					<< std::setw(25) << "Aktuelle Geschwindigkeit"
 					<< std::resetiosflags(std::ios::left) << std::endl
-					<< std::string(120,'-') << std::endl;
+					<< std::string(140,'-') << std::endl;
 }
 
 void Fahrzeug::vAusgabe(std::ostream& ausgabe) const
 {
 	ausgabe << std::setiosflags(std::ios::left)
 	              << std::setw(5)  << p_iID
-	              << std::setw(15) << p_sName
-	              << std::setw(15) << std::fixed << std::setprecision(2) << p_dMaxGeschwindigkeit
-	              << std::setw(15) << std::fixed << std::setprecision(2) << p_dGesamtStrecke
-				  << std::setw(15) << "-"
-				  << std::setw(15) << "-"
-				  << std::setw(15) << std::fixed << std::setprecision(2) << dGeschwindigkeit()
+	              << std::setw(10) << p_sName
+	              << std::setw(25) << std::fixed << std::setprecision(2) << p_dMaxGeschwindigkeit
+	              << std::setw(25) << std::fixed << std::setprecision(2) << p_dGesamtStrecke
+				  << std::setw(25) << "-"
+				  << std::setw(25) << "-"
+				  << std::setw(25) << std::fixed << std::setprecision(2) << dGeschwindigkeit()
 				  << std::resetiosflags(std::ios::left) << std::endl;
 }
 
