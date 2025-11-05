@@ -61,10 +61,9 @@ bool Station::bIsNeighbor(std::shared_ptr<Station> request) const
 		if (it == request)
 		{
 			return 1;
-			break;
 		}
-		return 0;
 	}
+	return 0;
 }
 
 #endif /* STATION_H_ */

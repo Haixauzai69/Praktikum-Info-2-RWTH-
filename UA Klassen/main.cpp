@@ -7,6 +7,7 @@
 #include <iostream>
 #include <string>
 #include <memory>
+#include <vector>
 #include "Train.h"
 #include "PassengerTrain.h"
 #include "FreightTrain.h"
@@ -51,7 +52,7 @@ int main()
 
 	// Strecke nur in eine Richtung
 	koeln->vAddNeighbor(frankfurt);
-	koeln->vAddNeighbor(hamburg);
+//	koeln->vAddNeighbor(hamburg);
 
 	frankfurt->vAddNeighbor(koeln);
 	frankfurt->vAddNeighbor(berlin);
@@ -80,8 +81,8 @@ int main()
 	std::cout<< "\n\n\nZuege fahren lassen: \n\n";
 	aTrain->vGoTo(berlin);
 	aTrain->vGoTo(hamburg);
-	aTrain->vGoTo(koeln); // why still Fehlermeldung here??
-	aTrain->vGoTo(hamburg); // Fehlermeldung: keine Verbindung
+	aTrain->vGoTo(koeln);
+	aTrain->vGoTo(hamburg); 	// Fehlermeldung: keine Verbindung
 	return 0;
 }
 
