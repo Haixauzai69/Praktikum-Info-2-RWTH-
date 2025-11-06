@@ -47,6 +47,7 @@ void Station::vAddNeighbor(std::shared_ptr<Station> station)
 void Station::vPrintNeighbors() const
 {
 	// syntax: koln.vPrintNeighbors();
+	std::cout << "These are nearby stations of " << p_sName << std::endl;
 	for (auto i : p_pNeighbors)
 	{
 		std::cout << i->getName() << std::endl;

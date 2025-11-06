@@ -18,14 +18,14 @@ class FreightTrain : public Train
 		FreightTrain(float charge_quantity , std::string charge_type);
 		virtual ~FreightTrain() = default;
 
-		void vPrintProperties(std::ostream& ausgabe) const;
+		void vPrintProperties(std::ostream& ausgabe) const override;
 		float fLoadCharge(float amountIn, float amountOut);
 	private:
 		float p_fChargequantity = 0.0;
 		std::string p_sChargeType = "empty";
 };
 
-FreightTrain::FreightTrain(float charge_quantity , std::string charge_type)
+FreightTrain::FreightTrain(float charge_quantity , std::string charge_type) : Train()
 {
 	p_fChargequantity = charge_quantity;
 	p_sChargeType = charge_type;
