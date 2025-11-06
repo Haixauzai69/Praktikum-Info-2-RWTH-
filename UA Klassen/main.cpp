@@ -12,13 +12,16 @@
 #include "PassengerTrain.h"
 #include "FreightTrain.h"
 #include "Station.h"
+#include <exception>
+#include "TrainException.h"
+#include <stdlib.h>
+#include <stdexcept>
 
 std::ostream& operator<<(std::ostream& out, const Train& train)
 {
 	train.vPrintProperties(out);
 	return out;
 }
-
 
 int main()
 {
@@ -78,11 +81,26 @@ int main()
 	muenchen->vPrintNeighbors();
 	std::cout << std::endl;
 
-	std::cout<< "\n\n\nZuege fahren lassen: \n\n";
-	aTrain->vGoTo(berlin);
-	aTrain->vGoTo(hamburg);
-	aTrain->vGoTo(koeln);
-	aTrain->vGoTo(hamburg); 	// Fehlermeldung: keine Verbindung
+
+	try
+	{
+		std::cout<< "\n\n\nZuege fahren lassen: \n\n";
+		aTrain->vGoTo(berlin);
+		aTrain->vGoTo(hamburg);
+		aTrain->vGoTo(koeln);
+		aTrain->vGoTo(hamburg); 	// Fehlermeldung: keine Verbindung
+	}
+
+	catch(TrainException &fehler)
+	{
+		fehler.vExplain();
+	}
+
+//	std::cout<< "\n\n\nZuege fahren lassen: \n\n";
+//	aTrain->vGoTo(berlin);
+//	aTrain->vGoTo(hamburg);
+//	aTrain->vGoTo(koeln);
+//	aTrain->vGoTo(hamburg); 	// Fehlermeldung: window will throw the problem itself
 	return 0;
 }
 

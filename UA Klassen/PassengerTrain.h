@@ -20,13 +20,13 @@ class PassengerTrain : public Train
 		PassengerTrain(int passengers);
 		virtual ~PassengerTrain() = default;
 
-		void vPrintProperties(std::ostream& ausgabe) const override;
+		void vPrintProperties(std::ostream& ausgabe) const;
 		float fStation(int passengersIn, int passengersOut);
 	private:
 		int p_iPassengerCounter = 0;
 };
 
-PassengerTrain::PassengerTrain(int passengers) : Train()
+PassengerTrain::PassengerTrain(int passengers)
 {
 	p_iPassengerCounter = passengers;
 	std::cout << "Nicht-Standardkonstruktor" << std::endl;

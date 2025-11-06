@@ -12,6 +12,7 @@
 #include <string>
 #include <memory>
 #include "Station.h"
+#include "TrainException.h"
 
 class Train
 {
@@ -29,6 +30,7 @@ class Train
 
 		void vGoTo(std::shared_ptr<Station> station);
 		virtual void vPrintProperties(std::ostream& ausgabe) const;
+		std::shared_ptr<Station> getIsAt();
 };
 
 void Train::vPrintProperties(std::ostream& ausgabe) const // any ostream defined as "ausgabe". it could be cout, printf, etc. call by value cause we need direct change in there
@@ -46,9 +48,14 @@ void Train::vGoTo(std::shared_ptr<Station> station)
 	}
 	else
 	{
+		throw TrainException(station);
 		std::cout << "Zug kann nicht dahin fahren" << std::endl;
 	}
 }
 
+std::shared_ptr<Station> Train::getIsAt()
+{
+	return p_pIsAt;
+}
 
 #endif /* TRAIN_H_ */

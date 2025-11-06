@@ -22,9 +22,10 @@ class Station
 
 	public:
 	Station(const std::string name);
+	virtual ~Station() = default;
 
 	std::string getName() const;
-	void vAddNeighbor(std::shared_ptr<Station> station);
+	void vAddNeighbor(std::shared_ptr<Station> neighbor);
 	void vPrintNeighbors() const;
 	bool bIsNeighbor(std::shared_ptr<Station> request) const;
 };
@@ -38,10 +39,10 @@ std::string Station::getName() const
 	return p_sName;
 }
 
-void Station::vAddNeighbor(std::shared_ptr<Station> station)
+void Station::vAddNeighbor(std::shared_ptr<Station> neighbor)
 {
 	// syntax: Koln.vAddNeighbor(Dusseldorf);
-	p_pNeighbors.push_back(station);
+	p_pNeighbors.push_back(neighbor);
 }
 
 void Station::vPrintNeighbors() const
