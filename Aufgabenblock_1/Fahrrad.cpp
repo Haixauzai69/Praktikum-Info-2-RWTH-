@@ -29,8 +29,8 @@ double Fahrrad::dGeschwindigkeit() const
 
 //void Fahrrad::vSimulieren(double dTimeStep)
 //{
-//	 double dCurrentSpeed = dGeschwindigkeit();
-//	 p_dGesamtStrecke += dCurrentSpeed * dTimeStep;
+//	double dCurrentSpeed = dGeschwindigkeit();
+//	p_dGesamtStrecke += dCurrentSpeed * dTimeStep;
 //}
 //
 //double dTanken(double dMenge = std::numeric_limits<double>::infinity())
