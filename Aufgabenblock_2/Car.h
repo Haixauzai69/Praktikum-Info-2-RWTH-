@@ -5,8 +5,8 @@
  *      Author: HaiPH
  */
 
-#ifndef PKW_H_
-#define PKW_H_
+#ifndef CAR_H_
+#define CAR_H_
 
 #include <iostream>
 #include <string>
@@ -32,4 +32,4 @@ class Car : public Fahrzeug
 
 
 
-#endif /* PKW_H_ */
+#endif /* CAR_H_ */

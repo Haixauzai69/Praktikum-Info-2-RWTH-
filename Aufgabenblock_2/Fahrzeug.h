@@ -12,23 +12,18 @@
 #include <string>
 #include <limits>
 #include <vector>
+#include "Simulationsobjekt.h"
 
 extern double dGlobaleZeit;
 
-class Fahrzeug
+class Fahrzeug : public Simulationsobjekt
 {
-	private:
-		std::string p_sName;
-		static inline int p_iMaxID = 0;
-		const int p_iID = p_iMaxID++;
-
-	protected:
+		protected:
 		double p_dGesamtStrecke = 0;
 		double p_dGesamtZeit = 0;
 		double p_dMaxGeschwindigkeit;
 
 	public:
-		Fahrzeug(const Fahrzeug&) = delete;
 		Fahrzeug(const std::string name, double max_geschwindigkeit);
 		virtual ~Fahrzeug();
 

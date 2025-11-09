@@ -13,8 +13,8 @@
 #include <algorithm>
 #include <memory>
 #include <cmath>
+#include "Car.h"
 #include "Fahrzeug.h"
-#include "PKW.h"
 #include "Fahrrad.h"
 
 std::ostream& operator<<(std::ostream& out, const Fahrzeug& fahrzeug)

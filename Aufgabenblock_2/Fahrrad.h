@@ -19,7 +19,6 @@
 class Fahrrad : public Fahrzeug
 {
 	public:
-	Fahrrad() = delete;
 	Fahrrad(const std::string& name, double maxSpeed);
 	virtual ~Fahrrad() = default;
 	double dGeschwindigkeit() const override;
