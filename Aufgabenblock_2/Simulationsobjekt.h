@@ -24,8 +24,11 @@ class Simulationsobjekt
 	Simulationsobjekt(const Simulationsobjekt&) = delete;
 	virtual ~Simulationsobjekt() = default;
 	bool operator==(const Simulationsobjekt& vergleich);
-	virtual void vSimulieren() = 0;
-	virtual void vAusgabe() const;
+	virtual void vSimulieren();
+	virtual void vAusgabe() = 0;
+	void vSetName(std::string something);
+	std::string sGetName();
+	int iGetID();
 };
 
 

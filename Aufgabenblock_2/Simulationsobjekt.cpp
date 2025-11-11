@@ -17,9 +17,19 @@ bool Simulationsobjekt::operator==(const Simulationsobjekt& vergleich)
 	return false;
 }
 
-void Simulationsobjekt::vAusgabe() const
+void Simulationsobjekt::vSetName(std::string something)
 {
+	p_sName = something;
+}
 
+std::string Simulationsobjekt::sGetName()
+{
+	return p_sName;
+}
+
+int Simulationsobjekt::iGetID()
+{
+	return p_iID;
 }
 
 

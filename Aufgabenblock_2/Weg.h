@@ -14,13 +14,23 @@
 #include <list>
 #include "Fahrzeug.h"
 #include <limits>
+#include "Tempolimit.h"
 
 class Weg : public Simulationsobjekt
 {
 	private:
 	const double p_dLaenge;
-	const int p_eTempolimit; // later will turn into enum of something
+	const enum Tempolimit p_eTempolimit;
 	std::list<std::unique_ptr<Fahrzeug>> p_pFahrzeuge;
+
+	public:
+	Weg() = default;
+	Weg(std::string name, double laenge, enum Tempolimit tempolimit);
+	virtual ~Weg() = default;
+	double getTempolimit();
+	void vSimulieren() const override;
+	void vKopf() const;
+	void vAusgabe() const;
 };
 
 
