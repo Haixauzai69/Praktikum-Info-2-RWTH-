@@ -40,5 +40,5 @@ double Fahrrad::dGeschwindigkeit() const
 
  void vAusgabe(std::ostream& ausgabe) const
 {
-	 ausgabe << Fahrzeug::vAusgabe(ausgabe);
+
 }

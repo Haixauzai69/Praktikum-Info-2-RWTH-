@@ -10,6 +10,8 @@
 #include <iostream>
 #include <string>
 
+extern double dGlobaleZeit;
+
 class Simulationsobjekt
 {
 	private:
@@ -21,7 +23,7 @@ class Simulationsobjekt
 	double p_dLokaleZeit;
 
 	public:
-	Simulationsobjekt() = default;
+	Simulationsobjekt();
 	Simulationsobjekt(const Simulationsobjekt&) = delete;
 	virtual ~Simulationsobjekt() = default;
 	std::string sGetName();
@@ -33,7 +35,7 @@ class Simulationsobjekt
 
 };
 // upcoming tasks: keep working on vAusgabe, update fahrzeug, car,
-//fahrrad especially vSimulieren, overload the operator<<
+//fahrrad especially vSimulieren
 
 
 #endif /* SIMULATIONSOBJEKT_H_ */

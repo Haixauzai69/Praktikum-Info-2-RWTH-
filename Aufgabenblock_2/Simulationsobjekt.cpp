@@ -10,6 +10,8 @@
 #include <ios>
 #include "Simulationsobjekt.h"
 
+double dGlobaleZeit = 0.0;
+
 std::string Simulationsobjekt::sGetName()
 {
 	return p_sName;
@@ -37,8 +39,8 @@ void Simulationsobjekt::vSetName(std::string something)
 void Simulationsobjekt::vAusgabe(std::ostream& ausgabe) const
 {
 	ausgabe << std::setiosflags(std::ios::left)
-	              << std::setw(5)  << iGetID()
-	              << std::setw(10) << sGetName();
+	              << std::setw(5)  << p_iID
+	              << std::setw(10) << p_sName;
 }
 
 

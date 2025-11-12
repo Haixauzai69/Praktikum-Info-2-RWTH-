@@ -12,12 +12,10 @@
 #include <ios>
 #include "Fahrzeug.h"
 
-double dGlobaleZeit = 0.0;
-
 Fahrzeug::~Fahrzeug()
 {
-	std::cout << "Name des gelöschten: " << p_sName << std::endl;
-	std::cout << "ID des gelöschten: " << p_iID << std::endl;
+	std::cout << "Name des gelöschten: " << Simulationsobjekt::sGetName() << std::endl;
+	std::cout << "ID des gelöschten: " << Simulationsobjekt::iGetID() << std::endl;
 }
 
 Fahrzeug::Fahrzeug(const std::string name, double max_geschwindigkeit)

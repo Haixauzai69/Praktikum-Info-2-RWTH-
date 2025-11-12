@@ -24,7 +24,7 @@ class Fahrrad : public Fahrzeug
 	double dGeschwindigkeit() const override;
 //	void vSimulieren(double dTimeStep) override;
 //	double dTanken(double dMenge = std::numeric_limits<double>::infinity()) override;
-	void vAusgabe(std::ostream& ausgabe) const override;
+	void vAusgabe(std::ostream& ausgabe) const;
 };
 
 

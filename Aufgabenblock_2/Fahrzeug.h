@@ -14,8 +14,6 @@
 #include <vector>
 #include "Simulationsobjekt.h"
 
-extern double dGlobaleZeit;
-
 class Fahrzeug : public Simulationsobjekt
 {
 		protected:
