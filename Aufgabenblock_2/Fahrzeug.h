@@ -13,6 +13,7 @@
 #include <limits>
 #include <vector>
 #include "Simulationsobjekt.h"
+#include "Verhalten.h"
 
 class Fahrzeug : public Simulationsobjekt
 {
@@ -20,6 +21,7 @@ class Fahrzeug : public Simulationsobjekt
 		double p_dGesamtStrecke = 0;
 		double p_dGesamtZeit = 0;
 		double p_dMaxGeschwindigkeit;
+		std::shared_ptr<Verhalten> p_pVerhalten;
 
 	public:
 		Fahrzeug(const std::string name, double max_geschwindigkeit);
