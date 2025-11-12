@@ -20,7 +20,7 @@ class Simulationsobjekt
 	const int p_iID = p_iMaxID++;
 
 	protected:
-	double p_dLokaleZeit;
+	double p_dLokaleZeit = 0.0;
 
 	public:
 	Simulationsobjekt() = default;
@@ -34,8 +34,7 @@ class Simulationsobjekt
 	void vSetName(std::string something);
 
 };
-// upcoming tasks: keep working on vAusgabe, update fahrzeug, car,
-//fahrrad especially vSimulieren
+// upcoming tasks: keep working on vSimulieren
 
 
 #endif /* SIMULATIONSOBJEKT_H_ */

@@ -28,6 +28,11 @@ enum Tempolimit Weg::getTempolimit()
 	return p_eTempolimit; // problematic because function returns double, but tempolimit is int
 }
 
+void Weg::vAddFahrzeug(std::unique_ptr<Fahrzeug> vehicle)
+{
+	p_pFahrzeuge.push_back(vehicle);
+}
+
 void Weg::vSimulieren(double dTimeStep) const
 {
 	// init a list of unique pointers fahrzeuge

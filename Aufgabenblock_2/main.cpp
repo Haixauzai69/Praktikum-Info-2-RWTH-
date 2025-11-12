@@ -9,13 +9,17 @@
 #include <string>
 #include <vector>
 #include <iomanip>
+#include <list>
 #include <ios>
 #include <algorithm>
 #include <memory>
 #include <cmath>
+#include "Simulationsobjekt.h"
+#include "Tempolimit.h"
 #include "Car.h"
 #include "Fahrzeug.h"
 #include "Fahrrad.h"
+#include "Weg.h"
 
 std::ostream& operator<<(std::ostream& out, const Simulationsobjekt& obj)
 {
@@ -252,6 +256,13 @@ void vAufgabe_3()
 //    std::cin >> c;
 //}
 
+void vAufgabe4() // testing << operator to print out a street
+{
+	Weg* boxgraben = new Weg("Boxgraben", 24, Tempolimit::Innerorts);
+	boxgraben->vAddFahrzeug(std::make_unique<Car>(8, 55));
+	std::cout << boxgraben << std::endl;
+}
+
 
 int main()
 {
@@ -262,6 +273,7 @@ int main()
 //	vAufgabe_Probe();
 //	vAufgabe_AB1();
 	std::cout << "Sucess" << std::endl;
+	vAufgabe4();
 	return 0;
 }
 

@@ -26,6 +26,7 @@ class Weg : public Simulationsobjekt
 	public:
 	Weg(std::string name, double laenge, enum Tempolimit tempolimit);
 	virtual ~Weg() = default;
+	void vAddFahrzeug(std::unique_ptr<Fahrzeug> vehicle);
 	enum Tempolimit getTempolimit();
 	void vSimulieren(double dTimeStep) const;
 	void vKopf() const;
