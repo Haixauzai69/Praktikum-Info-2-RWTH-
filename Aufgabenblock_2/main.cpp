@@ -261,6 +261,7 @@ int main()
 //	vAufgabe_3();
 //	vAufgabe_Probe();
 //	vAufgabe_AB1();
+	std::cout << "Sucess" << std::endl;
 	return 0;
 }
 

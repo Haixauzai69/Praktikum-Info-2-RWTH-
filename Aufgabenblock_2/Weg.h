@@ -26,7 +26,7 @@ class Weg : public Simulationsobjekt
 	public:
 	Weg(std::string name, double laenge, enum Tempolimit tempolimit);
 	virtual ~Weg() = default;
-	double getTempolimit();
+	enum Tempolimit getTempolimit();
 	void vSimulieren(double dTimeStep) const;
 	void vKopf() const;
 	void vAusgabe(std::ostream& ausgabe) const override;

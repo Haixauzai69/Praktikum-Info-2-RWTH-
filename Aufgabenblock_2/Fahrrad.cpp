@@ -38,3 +38,14 @@ double Fahrrad::dGeschwindigkeit() const
 //	return 0.0;
 //}
 
+void Fahrrad::vAusgabe(std::ostream& ausgabe) const
+{
+	Simulationsobjekt::vAusgabe(ausgabe);
+	ausgabe << std::setw(25) << std::fixed << std::setprecision(2) << Fahrzeug::getMaxGeschwindigkeit()
+		    << std::setw(25) << std::fixed << std::setprecision(2) << Fahrzeug::getGesamtStrecke()
+			<< std::setw(25) << "-"
+			<< std::setw(25) << "-"
+			<< std::setw(25) << std::fixed << std::setprecision(2) << dGeschwindigkeit()
+			<< std::resetiosflags(std::ios::left) << std::endl;
+}
+

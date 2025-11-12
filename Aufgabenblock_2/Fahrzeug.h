@@ -16,7 +16,7 @@
 
 class Fahrzeug : public Simulationsobjekt
 {
-		protected:
+	protected:
 		double p_dGesamtStrecke = 0;
 		double p_dGesamtZeit = 0;
 		double p_dMaxGeschwindigkeit;
@@ -38,6 +38,8 @@ class Fahrzeug : public Simulationsobjekt
 		virtual double dGeschwindigkeit() const;
 		bool operator<(const Fahrzeug& other) const;
 		Fahrzeug& operator=(const Fahrzeug& other);
+
+//		getter max geschwindigkeit, gesamtstrecke for fahrrad
 };
 
 #endif /* FAHRZEUG_H_ */

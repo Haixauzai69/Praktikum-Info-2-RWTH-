@@ -16,7 +16,7 @@
 #include "Fahrzeug.h"
 #include "Car.h"
 
-Weg::Weg(std::string name, double laenge, Tempolimit tempolimit)
+Weg::Weg(std::string name, double laenge, enum Tempolimit tempolimit)
 {
 	Simulationsobjekt::vSetName(name); // nice
 	p_dLaenge = laenge;
@@ -56,7 +56,7 @@ void Weg::vAusgabe(std::ostream& ausgabe) const
 	ausgabe << std::setw(25) << p_dLaenge
 	<< std::setw(30);
 	std::cout << std::setiosflags(std::ios::right);
-	for (auto i : p_pFahrzeuge)
+	for (auto& i : p_pFahrzeuge)
 	{
 		std::cout << i->sGetName() << " ";
 	}
