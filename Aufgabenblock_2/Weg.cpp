@@ -16,11 +16,12 @@
 #include "Fahrzeug.h"
 #include "Car.h"
 
-Weg::Weg(std::string name, double laenge, enum Tempolimit tempolimit)
+Weg::Weg(std::string name, double laenge, enum Tempolimit tempolimit, std::unique_ptr<Fahrzeug> fahrzeug)
 {
 	Simulationsobjekt::vSetName(name); // nice
 	p_dLaenge = laenge;
 	p_eTempolimit = tempolimit;
+	p_pFahrzeuge.push_back(std::move(fahrzeug));
 }
 
 enum Tempolimit Weg::getTempolimit()
@@ -30,10 +31,10 @@ enum Tempolimit Weg::getTempolimit()
 
 void Weg::vAddFahrzeug(std::unique_ptr<Fahrzeug> vehicle)
 {
-	p_pFahrzeuge.push_back(vehicle);
+	p_pFahrzeuge.push_back(std::move(vehicle));
 }
 
-void Weg::vSimulieren(double dTimeStep) const
+void Weg::vSimulieren(double dTimeStep)
 {
 	// init a list of unique pointers fahrzeuge
 	// for (auto i : fahrzeuge)
@@ -58,8 +59,8 @@ void Weg::vKopf() const
 void Weg::vAusgabe(std::ostream& ausgabe) const
 {
 	Simulationsobjekt::vAusgabe(ausgabe);
-	ausgabe << std::setw(25) << p_dLaenge
-	<< std::setw(30);
+	ausgabe << std::setw(20) << p_dLaenge
+	<< std::setw(9);
 	std::cout << std::setiosflags(std::ios::right);
 	for (auto& i : p_pFahrzeuge)
 	{

@@ -34,7 +34,6 @@ class Simulationsobjekt
 	void vSetName(std::string something);
 
 };
-// upcoming tasks: keep working on vSimulieren
 
 
 #endif /* SIMULATIONSOBJEKT_H_ */

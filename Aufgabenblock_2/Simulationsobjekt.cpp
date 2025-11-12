@@ -40,7 +40,7 @@ void Simulationsobjekt::vAusgabe(std::ostream& ausgabe) const
 {
 	ausgabe << std::setiosflags(std::ios::left)
 	              << std::setw(5)  << p_iID
-	              << std::setw(10) << p_sName;
+	              << std::setw(25) << p_sName;
 }
 
 
