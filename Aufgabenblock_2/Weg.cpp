@@ -54,8 +54,7 @@ void Weg::vKopf() const
 		<< std::string(100,'-') << std::endl;
 }
 
-void Weg::vAusgabe() const // upcoming tasks: keep working on vAusgabe, update fahrzeug, car,
-							//fahrrad especially vSimulieren, overload the operator<<
+void Weg::vAusgabe() const
 {
 	std::cout << std::setiosflags(std::ios::left)
 			<< std::setw(5) << Simulationsobjekt::sGetName()
