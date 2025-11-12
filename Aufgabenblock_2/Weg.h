@@ -18,9 +18,9 @@
 
 class Weg : public Simulationsobjekt
 {
-	private:
-	const double p_dLaenge;
-	const enum Tempolimit p_eTempolimit;
+	protected:
+	double p_dLaenge;
+	enum Tempolimit p_eTempolimit;
 	std::list<std::unique_ptr<Fahrzeug>> p_pFahrzeuge;
 
 	public:
@@ -28,9 +28,9 @@ class Weg : public Simulationsobjekt
 	Weg(std::string name, double laenge, enum Tempolimit tempolimit);
 	virtual ~Weg() = default;
 	double getTempolimit();
-	void vSimulieren() const override;
+	void vSimulieren(double dTimeStep) const override;
 	void vKopf() const;
-	void vAusgabe() const;
+	void vAusgabe(std::ostream& ausgabe) const override;
 };
 
 

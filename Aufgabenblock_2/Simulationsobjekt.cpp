@@ -6,7 +6,19 @@
  */
 #include <iostream>
 #include <string>
+#include <iomanip>
+#include <ios>
 #include "Simulationsobjekt.h"
+
+std::string Simulationsobjekt::sGetName()
+{
+	return p_sName;
+}
+
+int Simulationsobjekt::iGetID()
+{
+	return p_iID;
+}
 
 bool Simulationsobjekt::operator==(const Simulationsobjekt& vergleich)
 {
@@ -22,14 +34,13 @@ void Simulationsobjekt::vSetName(std::string something)
 	p_sName = something;
 }
 
-std::string Simulationsobjekt::sGetName()
+void Simulationsobjekt::vAusgabe(std::ostream& ausgabe) const
 {
-	return p_sName;
+	ausgabe << std::setiosflags(std::ios::left)
+	              << std::setw(5)  << iGetID()
+	              << std::setw(10) << sGetName();
 }
 
-int Simulationsobjekt::iGetID()
-{
-	return p_iID;
-}
+
 
 

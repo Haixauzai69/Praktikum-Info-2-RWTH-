@@ -22,7 +22,7 @@ Fahrzeug::~Fahrzeug()
 
 Fahrzeug::Fahrzeug(const std::string name, double max_geschwindigkeit)
 {
-	p_sName = vSetName(name);
+	vSetName(name);
 	p_dMaxGeschwindigkeit = (max_geschwindigkeit < 0) ? 0 : max_geschwindigkeit;
 }
 
@@ -40,33 +40,6 @@ void Fahrzeug::vSimulieren(double dTimeStep)
 {
 	 double dCurrentSpeed = dGeschwindigkeit();
 	 p_dGesamtStrecke += dCurrentSpeed * dTimeStep;
-}
-
-void Fahrzeug::vKopf()
-{
-	std::cout << std::setiosflags(std::ios::left)
-					<< std::setw(5) << "ID"
-					<< std::setw(10) << "Name"
-					<< std::setw(25) << "MaxGeschwindigkeit"
-					<< std::setw(25) << "Gesamtstrecke"
-					<< std::setw(25) << "Gesamtverbrauch"
-					<< std::setw(25) << "Aktuelle Tankinhalt"
-					<< std::setw(25) << "Aktuelle Geschwindigkeit"
-					<< std::resetiosflags(std::ios::left) << std::endl
-					<< std::string(140,'-') << std::endl;
-}
-
-void Fahrzeug::vAusgabe(std::ostream& ausgabe) const
-{
-	ausgabe << std::setiosflags(std::ios::left)
-	              << std::setw(5)  << Simulationsobjekt::iGetID()
-	              << std::setw(10) << Simulationsobjekt::sGetName()
-	              << std::setw(25) << std::fixed << std::setprecision(2) << p_dMaxGeschwindigkeit
-	              << std::setw(25) << std::fixed << std::setprecision(2) << p_dGesamtStrecke
-				  << std::setw(25) << "-"
-				  << std::setw(25) << "-"
-				  << std::setw(25) << std::fixed << std::setprecision(2) << dGeschwindigkeit()
-				  << std::resetiosflags(std::ios::left) << std::endl;
 }
 
 double Fahrzeug::dGeschwindigkeit() const
@@ -89,4 +62,32 @@ Fahrzeug& Fahrzeug::operator=(const Fahrzeug& other)
     }
     return *this;
 }
+
+void Fahrzeug::vKopf()
+{
+	std::cout << std::setiosflags(std::ios::left)
+					<< std::setw(5) << "ID"
+					<< std::setw(10) << "Name"
+					<< std::setw(25) << "MaxGeschwindigkeit"
+					<< std::setw(25) << "Gesamtstrecke"
+					<< std::setw(25) << "Gesamtverbrauch"
+					<< std::setw(25) << "Aktuelle Tankinhalt"
+					<< std::setw(25) << "Aktuelle Geschwindigkeit"
+					<< std::resetiosflags(std::ios::left) << std::endl
+					<< std::string(140,'-') << std::endl;
+}
+
+void Fahrzeug::vAusgabe(std::ostream& ausgabe) const
+{
+	ausgabe
+				  << Simulationsobjekt::vAusgabe(ausgabe)
+	              << std::setw(25) << std::fixed << std::setprecision(2) << p_dMaxGeschwindigkeit
+	              << std::setw(25) << std::fixed << std::setprecision(2) << p_dGesamtStrecke
+				  << std::setw(25) << "-"
+				  << std::setw(25) << "-"
+				  << std::setw(25) << std::fixed << std::setprecision(2) << dGeschwindigkeit()
+				  << std::resetiosflags(std::ios::left) << std::endl;
+}
+
+
 

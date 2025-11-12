@@ -79,14 +79,13 @@ void Car::vAusgabe(std::ostream& ausgabe) const
 {
 	double dGesamtverbrauch = (p_dGesamtStrecke / 100.0) * p_dVerbrauch;
 
-	    ausgabe << std::setiosflags(std::ios::left)
-				  << std::setw(5)  << Simulationsobjekt::iGetID()
-				  << std::setw(10) << "Car_" << Simulationsobjekt::iGetID()
-				  << std::setw(25) << std::fixed << std::setprecision(2) << p_dMaxGeschwindigkeit
-				  << std::setw(25) << std::fixed << std::setprecision(2) << p_dGesamtStrecke
-				  << std::setw(25) << std::fixed << std::setprecision(2) << dGesamtverbrauch
-				  << std::setw(25) << std::fixed << std::setprecision(2) << p_dTankinhalt
-				  << std::setw(25) << std::fixed << std::setprecision(2) << dGeschwindigkeit()
-				  << std::resetiosflags(std::ios::left) << std::endl;
+	ausgabe
+			<< std::setw(25) << Simulationsobjekt::vAusgabe(ausgabe)
+			<< std::setw(25) << std::fixed << std::setprecision(2) << p_dMaxGeschwindigkeit
+			<< std::setw(25) << std::fixed << std::setprecision(2) << p_dGesamtStrecke
+			<< std::setw(25) << std::fixed << std::setprecision(2) << dGesamtverbrauch
+			<< std::setw(25) << std::fixed << std::setprecision(2) << p_dTankinhalt
+			<< std::setw(25) << std::fixed << std::setprecision(2) << dGeschwindigkeit()
+			<< std::resetiosflags(std::ios::left) << std::endl;
 }
 

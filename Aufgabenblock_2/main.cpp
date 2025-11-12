@@ -17,9 +17,9 @@
 #include "Fahrzeug.h"
 #include "Fahrrad.h"
 
-std::ostream& operator<<(std::ostream& out, const Fahrzeug& fahrzeug)
+std::ostream& operator<<(std::ostream& out, const Simulationsobjekt& obj)
 {
-	fahrzeug.vAusgabe(out);
+	obj.vAusgabe(out);
 	return out;
 }
 
@@ -186,9 +186,9 @@ void vAufgabe_3()
 
     // 4️ Test operator<
     if (car1 < car2)
-        std::cout << car1.sGetName() << " has driven less than " << car2.getName() << "\n";
+        std::cout << car1.sGetName() << " has driven less than " << car2.sGetName() << "\n";
     else
-        std::cout << car1.sGetName() << " has driven more than or equal to " << car2.getName() << "\n";
+        std::cout << car1.sGetName() << " has driven more than or equal to " << car2.sGetName() << "\n";
 
 
 

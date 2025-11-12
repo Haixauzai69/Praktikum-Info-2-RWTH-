@@ -16,7 +16,7 @@
 #include "Fahrzeug.h"
 #include "Car.h"
 
-Weg::Weg(std::string name, double laenge, enum Tempolimit tempolimit)
+Weg::Weg(std::string name, double laenge, Tempolimit tempolimit)
 {
 	Simulationsobjekt::vSetName(name); // nice
 	p_dLaenge = laenge;
@@ -28,7 +28,7 @@ double Weg::getTempolimit()
 	return p_eTempolimit; // problematic because function returns double, but tempolimit is int
 }
 
-void Weg::vSimulieren() const
+void Weg::vSimulieren(double dTimeStep) const
 {
 	// init a list of unique pointers fahrzeuge
 	// for (auto i : fahrzeuge)
@@ -54,17 +54,17 @@ void Weg::vKopf() const
 		<< std::string(100,'-') << std::endl;
 }
 
-void Weg::vAusgabe() const
+void Weg::vAusgabe(std::ostream& ausgabe) const
 {
-	std::cout << std::setiosflags(std::ios::left)
-			<< std::setw(5) << Simulationsobjekt::sGetName()
-			<< std::setw(25) << Simulationsobjekt::iGetID()
-			<< std::setw(25) << p_dLaenge
-			<< std::setw(25) << // list fahrzeuge
-			do (i->sGetName())
-			while (auto i < p_pFahrzeuge)
-			<< std::resetiosflags(std::ios::left) << std::endl
-			<< std::string(100,'-') << std::endl;
+	ausgabe
+	<< std::setw(25) << Simulationsobjekt::vAusgabe(ausgabe)
+	<< std::setw(25) << p_dLaenge
+	<< std::setw(30);
+	std::cout << std::setiosflags(std::ios::right);
+	for (auto i : p_pFahrzeuge)
+	{
+		std::cout << i->sGetName() << " ";
+	}
 }
 
 

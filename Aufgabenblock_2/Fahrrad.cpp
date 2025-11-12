@@ -38,15 +38,7 @@ double Fahrrad::dGeschwindigkeit() const
 //	return 0.0;
 //}
 
-// void vAusgabe(std::ostream& ausgabe) const
-//{
-//	ausgabe << std::setiosflags(std::ios::left)
-//		              << std::setw(5)  << p_iID
-//		              << std::setw(15) << p_sName
-//		              << std::setw(15) << std::fixed << std::setprecision(2) << p_dMaxGeschwindigkeit
-//		              << std::setw(15) << std::fixed << std::setprecision(2) << p_dGesamtStrecke
-//					  << std::setw(15) << "-"
-//					  << std::setw(15) << "-"
-//					  << std::setw(15) << std::fixed << std::setprecision(2) << dGeschwindigkeit()
-//					  << std::resetiosflags(std::ios::left) << std::endl;
-//}
+ void vAusgabe(std::ostream& ausgabe) const
+{
+	 ausgabe << Fahrzeug::vAusgabe(ausgabe);
+}
