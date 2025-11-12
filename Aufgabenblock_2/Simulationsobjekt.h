@@ -33,7 +33,8 @@ class Simulationsobjekt
 	std::string sGetName();
 	int iGetID();
 };
-
+// upcoming tasks: keep working on vAusgabe, update fahrzeug, car,
+//fahrrad especially vSimulieren, overload the operator<<
 
 
 #endif /* SIMULATIONSOBJEKT_H_ */
