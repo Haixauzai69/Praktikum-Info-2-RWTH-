@@ -10,6 +10,7 @@
 #include <iostream>
 #include <string>
 #include "Fahrzeug.h"
+#include "Simulationsobjekt.h"
 #include <limits>
 #include <iomanip>
 #include <ios>
@@ -79,8 +80,8 @@ void Car::vAusgabe(std::ostream& ausgabe) const
 	double dGesamtverbrauch = (p_dGesamtStrecke / 100.0) * p_dVerbrauch;
 
 	    ausgabe << std::setiosflags(std::ios::left)
-				  << std::setw(5)  << Fahrzeug::getID()
-				  << std::setw(10) << "Car_" << Fahrzeug::getID()
+				  << std::setw(5)  << Simulationsobjekt::iGetID()
+				  << std::setw(10) << "Car_" << Simulationsobjekt::iGetID()
 				  << std::setw(25) << std::fixed << std::setprecision(2) << p_dMaxGeschwindigkeit
 				  << std::setw(25) << std::fixed << std::setprecision(2) << p_dGesamtStrecke
 				  << std::setw(25) << std::fixed << std::setprecision(2) << dGesamtverbrauch

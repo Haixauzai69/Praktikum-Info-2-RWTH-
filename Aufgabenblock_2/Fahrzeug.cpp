@@ -22,18 +22,8 @@ Fahrzeug::~Fahrzeug()
 
 Fahrzeug::Fahrzeug(const std::string name, double max_geschwindigkeit)
 {
-	p_sName = name;
+	p_sName = vSetName(name);
 	p_dMaxGeschwindigkeit = (max_geschwindigkeit < 0) ? 0 : max_geschwindigkeit;
-}
-
-std::string Fahrzeug::getName() const
-{
-	return p_sName;
-}
-
-int Fahrzeug::getID() const
-{
-	return p_iID;
 }
 
 double Fahrzeug::getMaxGeschwindigkeit() const
@@ -69,8 +59,8 @@ void Fahrzeug::vKopf()
 void Fahrzeug::vAusgabe(std::ostream& ausgabe) const
 {
 	ausgabe << std::setiosflags(std::ios::left)
-	              << std::setw(5)  << p_iID
-	              << std::setw(10) << p_sName
+	              << std::setw(5)  << Simulationsobjekt::iGetID()
+	              << std::setw(10) << Simulationsobjekt::sGetName()
 	              << std::setw(25) << std::fixed << std::setprecision(2) << p_dMaxGeschwindigkeit
 	              << std::setw(25) << std::fixed << std::setprecision(2) << p_dGesamtStrecke
 				  << std::setw(25) << "-"

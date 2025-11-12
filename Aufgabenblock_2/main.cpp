@@ -186,9 +186,9 @@ void vAufgabe_3()
 
     // 4️ Test operator<
     if (car1 < car2)
-        std::cout << car1.getName() << " has driven less than " << car2.getName() << "\n";
+        std::cout << car1.sGetName() << " has driven less than " << car2.getName() << "\n";
     else
-        std::cout << car1.getName() << " has driven more than or equal to " << car2.getName() << "\n";
+        std::cout << car1.sGetName() << " has driven more than or equal to " << car2.getName() << "\n";
 
 
 

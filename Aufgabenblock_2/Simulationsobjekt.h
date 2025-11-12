@@ -21,11 +21,14 @@ class Simulationsobjekt
 	double p_dLokaleZeit;
 
 	public:
+	Simulationsobjekt() = delete;
 	Simulationsobjekt(const Simulationsobjekt&) = delete;
 	virtual ~Simulationsobjekt() = default;
+
 	bool operator==(const Simulationsobjekt& vergleich);
-	virtual void vSimulieren();
-	virtual void vAusgabe() = 0;
+
+	virtual void vSimulieren(double dTimeStep) = 0;
+	virtual void vAusgabe(std::ostream& ausgabe) const = 0;
 	void vSetName(std::string something);
 	std::string sGetName();
 	int iGetID();

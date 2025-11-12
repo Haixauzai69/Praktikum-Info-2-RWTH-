@@ -62,6 +62,8 @@ void Weg::vAusgabe() const // upcoming tasks: keep working on vAusgabe, update f
 			<< std::setw(25) << Simulationsobjekt::iGetID()
 			<< std::setw(25) << p_dLaenge
 			<< std::setw(25) << // list fahrzeuge
+			do (i->sGetName())
+			while (auto i < p_pFahrzeuge)
 			<< std::resetiosflags(std::ios::left) << std::endl
 			<< std::string(100,'-') << std::endl;
 }

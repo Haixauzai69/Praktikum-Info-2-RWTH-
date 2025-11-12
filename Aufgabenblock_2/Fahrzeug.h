@@ -27,8 +27,6 @@ class Fahrzeug : public Simulationsobjekt
 		Fahrzeug(const std::string name, double max_geschwindigkeit);
 		virtual ~Fahrzeug();
 
-		std::string getName() const;
-		int getID() const;
 		double getMaxGeschwindigkeit() const;
 		double getGesamtStrecke() const;
 
