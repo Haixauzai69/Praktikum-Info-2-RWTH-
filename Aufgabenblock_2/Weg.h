@@ -24,11 +24,10 @@ class Weg : public Simulationsobjekt
 	std::list<std::unique_ptr<Fahrzeug>> p_pFahrzeuge;
 
 	public:
-	Weg() = default; // @suppress("Class members should be properly initialized")
 	Weg(std::string name, double laenge, enum Tempolimit tempolimit);
 	virtual ~Weg() = default;
 	double getTempolimit();
-	void vSimulieren(double dTimeStep) const override;
+	void vSimulieren(double dTimeStep) const;
 	void vKopf() const;
 	void vAusgabe(std::ostream& ausgabe) const override;
 };

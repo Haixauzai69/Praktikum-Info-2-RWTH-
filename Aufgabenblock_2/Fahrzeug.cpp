@@ -77,9 +77,8 @@ void Fahrzeug::vKopf()
 
 void Fahrzeug::vAusgabe(std::ostream& ausgabe) const
 {
-	ausgabe
-				  << Simulationsobjekt::vAusgabe(ausgabe)
-	              << std::setw(25) << std::fixed << std::setprecision(2) << p_dMaxGeschwindigkeit
+	Simulationsobjekt::vAusgabe(ausgabe);
+	      ausgabe << std::setw(25) << std::fixed << std::setprecision(2) << p_dMaxGeschwindigkeit
 	              << std::setw(25) << std::fixed << std::setprecision(2) << p_dGesamtStrecke
 				  << std::setw(25) << "-"
 				  << std::setw(25) << "-"

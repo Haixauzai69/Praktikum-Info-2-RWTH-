@@ -23,7 +23,7 @@ Weg::Weg(std::string name, double laenge, Tempolimit tempolimit)
 	p_eTempolimit = tempolimit;
 }
 
-double Weg::getTempolimit()
+enum Tempolimit Weg::getTempolimit()
 {
 	return p_eTempolimit; // problematic because function returns double, but tempolimit is int
 }
@@ -33,11 +33,7 @@ void Weg::vSimulieren(double dTimeStep) const
 	// init a list of unique pointers fahrzeuge
 	// for (auto i : fahrzeuge)
 	// Fahrzeug::vsimulieren for all
-
-	std::list<std::unique_ptr<Fahrzeug>> fahrzeuge;
-	std::unique_ptr<Fahrzeug> car1 = std::make_unique<Car>(8, 55);
-	fahrzeuge.push_back(car1);
-	for (auto i : fahrzeuge)
+	for (auto& i : p_pFahrzeuge)
 	{
 		i->vSimulieren(0.5);
 	}
@@ -56,9 +52,8 @@ void Weg::vKopf() const
 
 void Weg::vAusgabe(std::ostream& ausgabe) const
 {
-	ausgabe
-	<< std::setw(25) << Simulationsobjekt::vAusgabe(ausgabe)
-	<< std::setw(25) << p_dLaenge
+	Simulationsobjekt::vAusgabe(ausgabe);
+	ausgabe << std::setw(25) << p_dLaenge
 	<< std::setw(30);
 	std::cout << std::setiosflags(std::ios::right);
 	for (auto i : p_pFahrzeuge)

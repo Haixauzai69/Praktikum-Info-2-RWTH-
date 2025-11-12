@@ -38,7 +38,3 @@ double Fahrrad::dGeschwindigkeit() const
 //	return 0.0;
 //}
 
- void vAusgabe(std::ostream& ausgabe) const
-{
-
-}

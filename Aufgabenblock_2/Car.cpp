@@ -79,9 +79,8 @@ void Car::vAusgabe(std::ostream& ausgabe) const
 {
 	double dGesamtverbrauch = (p_dGesamtStrecke / 100.0) * p_dVerbrauch;
 
-	ausgabe
-			<< std::setw(25) << Simulationsobjekt::vAusgabe(ausgabe) // printing void
-			<< std::setw(25) << std::fixed << std::setprecision(2) << p_dMaxGeschwindigkeit
+			Simulationsobjekt::vAusgabe(ausgabe); // printing id and name
+	ausgabe << std::setw(25) << std::fixed << std::setprecision(2) << p_dMaxGeschwindigkeit
 			<< std::setw(25) << std::fixed << std::setprecision(2) << p_dGesamtStrecke
 			<< std::setw(25) << std::fixed << std::setprecision(2) << dGesamtverbrauch
 			<< std::setw(25) << std::fixed << std::setprecision(2) << p_dTankinhalt
