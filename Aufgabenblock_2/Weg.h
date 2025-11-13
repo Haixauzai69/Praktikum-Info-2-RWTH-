@@ -26,13 +26,16 @@ class Weg : public Simulationsobjekt
 	public:
 	Weg() = delete;
 	Weg(const Weg&) = delete;
-	Weg(std::string name, double laenge, enum Tempolimit tempolimit, std::unique_ptr<Fahrzeug> fahrzeug);
+	Weg(std::string name, double laenge, enum Tempolimit tempolimit);
 	virtual ~Weg() = default;
 	void vAddFahrzeug(std::unique_ptr<Fahrzeug> vehicle);
 	enum Tempolimit getTempolimit();
 	void vSimulieren(double dTimeStep) override;
 	void vKopf() const;
 	void vAusgabe(std::ostream& ausgabe) const override;
+
+	double dStrecke(Fahrzeug& aFzg, double dZeitIntervall);
+	void vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug);
 };
 
 

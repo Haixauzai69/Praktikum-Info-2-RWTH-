@@ -22,6 +22,7 @@ class Fahrzeug : public Simulationsobjekt
 		double p_dGesamtZeit = 0;
 		double p_dMaxGeschwindigkeit;
 		std::shared_ptr<Verhalten> p_pVerhalten;
+		double p_dAbschnittStrecke = 0; // strecke on one street
 
 	public:
 		Fahrzeug(const std::string name, double max_geschwindigkeit);
@@ -40,6 +41,8 @@ class Fahrzeug : public Simulationsobjekt
 		virtual double dGeschwindigkeit() const;
 		bool operator<(const Fahrzeug& other) const;
 		Fahrzeug& operator=(const Fahrzeug& other);
+
+		void vNeueStrecke(Weg&);
 };
 
 #endif /* FAHRZEUG_H_ */

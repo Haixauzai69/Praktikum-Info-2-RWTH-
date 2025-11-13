@@ -34,6 +34,7 @@ class Simulationsobjekt
 	void vSetName(std::string something);
 
 };
+// next task: update vSimulieren for Fahrzeug, Car and Fahrrad
 
 
 #endif /* SIMULATIONSOBJEKT_H_ */

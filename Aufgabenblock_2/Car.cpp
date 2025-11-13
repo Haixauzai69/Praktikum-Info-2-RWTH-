@@ -6,7 +6,6 @@
  */
 
 #include "Car.h"
-
 #include <iostream>
 #include <string>
 #include "Fahrzeug.h"
@@ -42,7 +41,7 @@ double Car::dTanken(double dMenge)
 	return p_dTankinhalt - vorher;
 }
 
-void Car::vSimulieren(double dTimeStep) // how to make the car be fueled after being empty
+void Car::vSimulieren(double dTimeStep) // erase dTimeStep
 {
 	if (p_bEmpty == true)
 	{

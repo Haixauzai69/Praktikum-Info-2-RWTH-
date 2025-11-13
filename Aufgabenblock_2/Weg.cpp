@@ -16,12 +16,11 @@
 #include "Fahrzeug.h"
 #include "Car.h"
 
-Weg::Weg(std::string name, double laenge, enum Tempolimit tempolimit, std::unique_ptr<Fahrzeug> fahrzeug)
+Weg::Weg(std::string name, double laenge, enum Tempolimit tempolimit)
 {
 	Simulationsobjekt::vSetName(name); // nice
 	p_dLaenge = laenge;
 	p_eTempolimit = tempolimit;
-	p_pFahrzeuge.push_back(std::move(fahrzeug));
 }
 
 enum Tempolimit Weg::getTempolimit()
@@ -68,5 +67,31 @@ void Weg::vAusgabe(std::ostream& ausgabe) const
 	}
 }
 
+double Weg::dStrecke(Fahrzeug& aFzg, double dZeitIntervall)
+{
+	if (aFzg.dGeschwindigkeit() > 50)
+	{
+		std::cout << "Strafe weil zu schnell" << std::endl;
+	}
 
+	double strecke = 0;
+
+	while(strecke < p_dLaenge)
+	{
+		strecke += aFzg.dGeschwindigkeit()*dZeitIntervall;
+		if (strecke >= p_dLaenge)
+		{
+			strecke = p_dLaenge;
+			std::cout << "Fahrzeug erreicht das Ende des Weges" << std::endl;
+		}
+		aFzg.p_dAbschnittStrecke += strecke;
+		return strecke;
+	}
+}
+
+void Weg::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug)
+{
+	p_pFahrzeuge.push_back(std::move(fahrzeug));
+	std::cout << fahrzeug->sGetName() << " befindet sich auf " << Weg::sGetName() << std::endl;
+}
 

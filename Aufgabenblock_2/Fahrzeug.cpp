@@ -7,6 +7,7 @@
 #include <iostream>
 #include <memory>
 #include <string>
+#include <list>
 #include <vector>
 #include <iomanip>
 #include <ios>
@@ -84,6 +85,12 @@ void Fahrzeug::vAusgabe(std::ostream& ausgabe) const
 				  << std::setw(25) << "-"
 				  << std::setw(25) << std::fixed << std::setprecision(2) << dGeschwindigkeit()
 				  << std::resetiosflags(std::ios::left) << std::endl;
+}
+
+void Fahrzeug::vNeueStrecke(Weg&)
+{
+	std::shared_ptr<Verhalten> verhalten = std::make_shared<Verhalten>(Weg&);
+	p_pVerhalten = verhalten;
 }
 
 
