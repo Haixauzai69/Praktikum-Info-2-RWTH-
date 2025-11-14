@@ -67,6 +67,17 @@ void Weg::vAusgabe(std::ostream& ausgabe) const
 	}
 }
 
+void Weg::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug)
+{
+	p_pFahrzeuge.push_back(std::move(fahrzeug));
+	std::cout << fahrzeug->sGetName() << " befindet sich auf " << Weg::sGetName() << std::endl;
+}
+
+double Weg::dGetLaenge()
+{
+	return p_dLaenge;
+}
+
 double Weg::dStrecke(Fahrzeug& aFzg, double dZeitIntervall)
 {
 	if (aFzg.dGeschwindigkeit() > 50)
@@ -79,19 +90,10 @@ double Weg::dStrecke(Fahrzeug& aFzg, double dZeitIntervall)
 	while(strecke < p_dLaenge)
 	{
 		strecke += aFzg.dGeschwindigkeit()*dZeitIntervall;
-		if (strecke >= p_dLaenge)
-		{
-			strecke = p_dLaenge;
-			std::cout << "Fahrzeug erreicht das Ende des Weges" << std::endl;
-		}
-		aFzg.p_dAbschnittStrecke += strecke;
-		return strecke;
+		aFzg.p_dAbschnittStrecke += strecke; // get abschnittstrecke
 	}
-}
-
-void Weg::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug)
-{
-	p_pFahrzeuge.push_back(std::move(fahrzeug));
-	std::cout << fahrzeug->sGetName() << " befindet sich auf " << Weg::sGetName() << std::endl;
+	std::cout << "Das Fahrzeug erreicht das Ende des Weges" << std::endl;
+	strecke = p_dLaenge;
+	return strecke;
 }
 

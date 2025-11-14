@@ -13,5 +13,10 @@
 #include "Fahrzeug.h"
 #include "Verhalten.h"
 
+Verhalten::Verhalten(Weg& weg, std::string zustand)
+{
+	std::cout << "new verhalten is defined lmao" << std::endl;
+	fahren = zustand;
+}
 
 

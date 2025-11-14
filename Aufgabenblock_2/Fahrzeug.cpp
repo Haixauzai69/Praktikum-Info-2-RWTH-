@@ -87,10 +87,12 @@ void Fahrzeug::vAusgabe(std::ostream& ausgabe) const
 				  << std::resetiosflags(std::ios::left) << std::endl;
 }
 
-void Fahrzeug::vNeueStrecke(Weg&)
+void Fahrzeug::vNeueStrecke(Weg& weg) // always create a street before a vehicle can move on it
 {
-	std::shared_ptr<Verhalten> verhalten = std::make_shared<Verhalten>(Weg&);
-	p_pVerhalten = verhalten;
+	std::shared_ptr<Verhalten> fahren = std::make_shared<Verhalten>(weg, "Fahren");
+	p_pVerhalten = fahren;
+
+	weg.vAnnahme(this);
 }
 
 
