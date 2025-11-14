@@ -30,6 +30,7 @@ class Fahrzeug : public Simulationsobjekt
 
 		double getMaxGeschwindigkeit() const;
 		double getGesamtStrecke() const;
+		double getStreckenabschn();
 
 		virtual void vSimulieren(double dTimeStep);
 		virtual double dTanken(double dMenge = std::numeric_limits<double>::infinity())

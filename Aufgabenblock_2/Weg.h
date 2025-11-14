@@ -36,7 +36,7 @@ class Weg : public Simulationsobjekt
 	void vSimulieren(double dTimeStep) override;
 	void vKopf() const;
 	void vAusgabe(std::ostream& ausgabe) const override;
-	void vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug);
+	void vAnnahme(Fahrzeug& fahrzeug);
 };
 
 

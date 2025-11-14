@@ -95,5 +95,9 @@ void Fahrzeug::vNeueStrecke(Weg& weg) // always create a street before a vehicle
 	weg.vAnnahme(this);
 }
 
+double Fahrzeug::getStreckenabschn()
+{
+	return p_dAbschnittStrecke;
+}
 
 
