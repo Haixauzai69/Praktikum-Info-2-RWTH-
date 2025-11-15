@@ -12,9 +12,10 @@
 #include <memory>
 #include "Simulationsobjekt.h"
 #include <list>
-#include "Fahrzeug.h"
 #include <limits>
 #include "Tempolimit.h"
+
+class Fahrzeug;
 
 class Weg : public Simulationsobjekt
 {
@@ -25,10 +26,10 @@ class Weg : public Simulationsobjekt
 
 	public:
 	Weg() = delete;
-	Weg(const Weg&) = delete;
+	Weg(Weg& weg) = delete;
 	Weg(std::string name, double laenge, enum Tempolimit tempolimit);
 	virtual ~Weg() = default;
-	void vAddFahrzeug(std::unique_ptr<Fahrzeug> vehicle);
+
 	enum Tempolimit getTempolimit();
 	double dGetLaenge();
 	double dStrecke(Fahrzeug& aFzg, double dZeitIntervall);
@@ -36,7 +37,7 @@ class Weg : public Simulationsobjekt
 	void vSimulieren(double dTimeStep) override;
 	void vKopf() const;
 	void vAusgabe(std::ostream& ausgabe) const override;
-	void vAnnahme(Fahrzeug& fahrzeug);
+	void vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug);
 };
 
 

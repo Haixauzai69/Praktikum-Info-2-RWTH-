@@ -91,13 +91,16 @@ void Fahrzeug::vNeueStrecke(Weg& weg) // always create a street before a vehicle
 {
 	std::shared_ptr<Verhalten> fahren = std::make_shared<Verhalten>(weg, "Fahren");
 	p_pVerhalten = fahren;
-
-	weg.vAnnahme(this);
 }
 
 double Fahrzeug::getStreckenabschn()
 {
 	return p_dAbschnittStrecke;
+}
+
+void Fahrzeug::vAddStrecke(double strecke)
+{
+	p_dAbschnittStrecke += strecke;
 }
 
 

@@ -262,12 +262,16 @@ void vAufgabe4() // testing << operator to print out a street
 	std::unique_ptr<Weg> boxgraben = std::make_unique<Weg>("Boxgraben", 24, Tempolimit::Innerorts, std::move(car1));
 
 	std::unique_ptr<Fahrzeug> car2 = std::make_unique<Fahrzeug>("Audi", 240);
-	boxgraben->vAddFahrzeug(std::move(car2));
+	boxgraben->vAnnahme(std::move(car2));
 	boxgraben->vKopf();
 	std::cout << *boxgraben << std::endl;
 	std::cout << std::endl;
 }
 
+void vAufgabe_5() // create a street and 3 fahrzeuge on it
+{
+
+}
 
 int main()
 {

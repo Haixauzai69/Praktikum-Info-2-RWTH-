@@ -28,11 +28,6 @@ enum Tempolimit Weg::getTempolimit()
 	return p_eTempolimit; // problematic because function returns double, but tempolimit is int
 }
 
-void Weg::vAddFahrzeug(std::unique_ptr<Fahrzeug> vehicle)
-{
-	p_pFahrzeuge.push_back(std::move(vehicle));
-}
-
 void Weg::vSimulieren(double dTimeStep)
 {
 	// init a list of unique pointers fahrzeuge
@@ -67,10 +62,13 @@ void Weg::vAusgabe(std::ostream& ausgabe) const
 	}
 }
 
-void Weg::vAnnahme(Fahrzeug& fahrzeug)
+void Weg::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug)
 {
-	p_pFahrzeuge.push_back(std::move(fahrzeug));
 	std::cout << fahrzeug->sGetName() << " befindet sich auf " << Weg::sGetName() << std::endl;
+
+	fahrzeug->vNeueStrecke(*this);
+
+	p_pFahrzeuge.push_back(std::move(fahrzeug));
 }
 
 double Weg::dGetLaenge()
@@ -90,7 +88,7 @@ double Weg::dStrecke(Fahrzeug& aFzg, double dZeitIntervall)
 	while(strecke < p_dLaenge)
 	{
 		strecke += aFzg.dGeschwindigkeit()*dZeitIntervall;
-		aFzg.getStreckenabschn() += strecke;
+		aFzg.vAddStrecke(strecke);
 	}
 	std::cout << "Das Fahrzeug erreicht das Ende des Weges" << std::endl;
 	strecke = p_dLaenge;
