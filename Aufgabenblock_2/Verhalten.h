@@ -22,6 +22,8 @@ class Verhalten
 	Verhalten(Weg& weg, std::string zustand);
 	virtual ~Verhalten() = default;
 
+	double dStrecke(Fahrzeug& aFzg, double dZeitIntervall)
+
 	private:
 	std::string parken = "Parken";
 	std::string fahren = "Fahren";

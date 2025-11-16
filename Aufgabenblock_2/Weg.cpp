@@ -30,11 +30,11 @@ enum Tempolimit Weg::getTempolimit()
 
 void Weg::vSimulieren(double dTimeStep)
 {
-	// init a list of unique pointers fahrzeuge
-	// for (auto i : fahrzeuge)
-	// Fahrzeug::vsimulieren for all
+//	 call Fahrzeug::neueStrecke
+
 	for (auto& i : p_pFahrzeuge)
 	{
+		i->vNeueStrecke(this);
 		i->vSimulieren(0.5);
 	}
 }

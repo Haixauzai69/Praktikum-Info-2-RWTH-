@@ -15,6 +15,8 @@
 #include "Simulationsobjekt.h"
 #include "Verhalten.h"
 
+class Weg;
+
 class Fahrzeug : public Simulationsobjekt
 {
 	protected:

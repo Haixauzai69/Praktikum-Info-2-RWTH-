@@ -19,4 +19,23 @@ Verhalten::Verhalten(Weg& weg, std::string zustand)
 	fahren = zustand;
 }
 
+double Verhalten::dStrecke(Fahrzeug& aFzg, double dZeitIntervall)
+{
+	if (aFzg.dGeschwindigkeit() > 50)
+	{
+		std::cout << "Strafe weil zu schnell" << std::endl;
+	}
+
+	double strecke = 0;
+
+	while(strecke < p_dLaenge)
+	{
+		strecke += aFzg.dGeschwindigkeit()*dZeitIntervall;
+		aFzg.vAddStrecke(strecke);
+	}
+	std::cout << "Das Fahrzeug erreicht das Ende des Weges" << std::endl;
+	strecke = p_dLaenge;
+	return strecke;
+}
+
 

@@ -270,7 +270,21 @@ void vAufgabe4() // testing << operator to print out a street
 
 void vAufgabe_5() // create a street and 3 fahrzeuge on it
 {
+	Weg* theaterstr = new Weg("Theaterstr.", 50, Tempolimit::Innerorts);
 
+	std::unique_ptr<Fahrzeug> car1 = std::make_unique<Fahrzeug>("BMW", 300);
+	std::unique_ptr<Fahrzeug> bike1 = std::make_unique<Fahrzeug>("Mountain bike", 30);
+	std::unique_ptr<Fahrzeug> tram16 = std::make_unique<Fahrzeug>("Tram 16", 70);
+
+	theaterstr->vAnnahme(car1);
+	theaterstr->vAnnahme(bike1);
+	theaterstr->vAnnahme(tram16);
+
+	std::cout << *theaterstr << std::endl;
+
+	theaterstr->vSimulieren(3.0);
+
+	std::cout << *theaterstr << std::endl;
 }
 
 int main()
@@ -281,8 +295,10 @@ int main()
 //	vAufgabe_3();
 //	vAufgabe_Probe();
 //	vAufgabe_AB1();
+//	vAufgabe4();
+
 	std::cout << "Sucess" << std::endl;
-	vAufgabe4();
+//	vAufgabe_5();
 	return 0;
 }
 

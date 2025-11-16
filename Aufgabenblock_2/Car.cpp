@@ -41,8 +41,29 @@ double Car::dTanken(double dMenge)
 	return p_dTankinhalt - vorher;
 }
 
-void Car::vSimulieren(double dTimeStep) // erase dTimeStep
+void Car::vSimulieren(double dTimeStep) // next task: adding Weg::dStrecke into vSimulieren for fahrzeuge, car and fahrrad
 {
+
+//	double Weg::dStrecke(Fahrzeug& aFzg, double dZeitIntervall)
+//	{
+//		if (aFzg.dGeschwindigkeit() > 50)
+//		{
+//			std::cout << "Strafe weil zu schnell" << std::endl;
+//		}
+//
+//		double strecke = 0;
+//
+//		while(strecke < p_dLaenge)
+//		{
+//			strecke += aFzg.dGeschwindigkeit()*dZeitIntervall;
+//			aFzg.vAddStrecke(strecke);
+//		}
+//		std::cout << "Das Fahrzeug erreicht das Ende des Weges" << std::endl;
+//		strecke = p_dLaenge;
+//		return strecke;
+//	}
+
+
 	if (p_bEmpty == true)
 	{
 		std::cout << "Car is out of fuel" << std::endl;
