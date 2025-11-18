@@ -13,10 +13,9 @@
 #include "Fahrzeug.h"
 #include "Verhalten.h"
 
-Verhalten::Verhalten(Weg& weg, std::string zustand)
+Verhalten::Verhalten(Weg& weg) : p_rWeg(weg)
 {
 	std::cout << "new verhalten is defined lmao" << std::endl;
-	fahren = zustand;
 }
 
 double Verhalten::dStrecke(Fahrzeug& aFzg, double dZeitIntervall)
@@ -26,15 +25,15 @@ double Verhalten::dStrecke(Fahrzeug& aFzg, double dZeitIntervall)
 		std::cout << "Strafe weil zu schnell" << std::endl;
 	}
 
-	double strecke = 0;
+	double rest = p_rWeg.dGetLaenge() - aFzg.getStreckenabschn();
 
-	while(strecke < p_dLaenge)
+	double strecke = (aFzg.dGeschwindigkeit())*dZeitIntervall;
+
+	if (strecke > rest)
 	{
-		strecke += aFzg.dGeschwindigkeit()*dZeitIntervall;
-		aFzg.vAddStrecke(strecke);
+		std::cout << "Das Fahrzeug erreicht das Ende des Weges" << std::endl;
+		strecke = rest;
 	}
-	std::cout << "Das Fahrzeug erreicht das Ende des Weges" << std::endl;
-	strecke = p_dLaenge;
 	return strecke;
 }
 

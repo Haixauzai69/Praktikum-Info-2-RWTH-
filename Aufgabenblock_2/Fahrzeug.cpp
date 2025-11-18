@@ -37,38 +37,11 @@ double Fahrzeug::getGesamtStrecke() const
 
 void Fahrzeug::vSimulieren(double dTimeStep) // next task: adding Weg::dStrecke into vSimulieren for fahrzeuge, car and fahrrad
 {
+	double dS = p_pVerhalten->dStrecke(*this, dTimeStep);
 
-//	double Weg::dStrecke(Fahrzeug& aFzg, double dZeitIntervall)
-//	{
-//		if (aFzg.dGeschwindigkeit() > 50)
-//		{
-//			std::cout << "Strafe weil zu schnell" << std::endl;
-//		}
-//
-//		double strecke = 0;
-//
-//		while(strecke < p_dLaenge)
-//		{
-//			strecke += aFzg.dGeschwindigkeit()*dZeitIntervall;
-//			aFzg.vAddStrecke(strecke);
-//		}
-//		std::cout << "Das Fahrzeug erreicht das Ende des Weges" << std::endl;
-//		strecke = p_dLaenge;
-//		return strecke;
-//	}
-
-//	void Weg::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug)
-//	{
-//		std::cout << fahrzeug->sGetName() << " befindet sich auf " << Weg::sGetName() << std::endl;
-//
-//		fahrzeug->vNeueStrecke(*this);
-//
-//		p_pFahrzeuge.push_back(std::move(fahrzeug));
-//	}
-
-	 p_dAbschnittStrecke += Weg::dStrecke(this*, dTimeStep);
-
-	 p_dGesamtStrecke += p_dAbschnittStrecke;
+	p_dAbschnittStrecke += dS;
+	p_dGesamtStrecke += dS;
+}
 
 double Fahrzeug::dGeschwindigkeit() const
 {
@@ -118,8 +91,7 @@ void Fahrzeug::vAusgabe(std::ostream& ausgabe) const
 
 void Fahrzeug::vNeueStrecke(Weg& weg) // always create a street before a vehicle can move on it
 {
-	std::shared_ptr<Verhalten> fahren = std::make_shared<Verhalten>(weg, "Fahren");
-	p_pVerhalten = fahren;
+	p_pVerhalten = std::make_shared<Verhalten>(weg);
 }
 
 double Fahrzeug::getStreckenabschn()

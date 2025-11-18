@@ -45,4 +45,3 @@ void Simulationsobjekt::vAusgabe(std::ostream& ausgabe) const
 
 
 
-

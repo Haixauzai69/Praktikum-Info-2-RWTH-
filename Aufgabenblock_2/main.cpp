@@ -259,7 +259,7 @@ void vAufgabe_3()
 void vAufgabe4() // testing << operator to print out a street
 {
 	std::unique_ptr<Fahrzeug> car1 = std::make_unique<Fahrzeug>("BMW", 210);
-	std::unique_ptr<Weg> boxgraben = std::make_unique<Weg>("Boxgraben", 24, Tempolimit::Innerorts, std::move(car1));
+	std::unique_ptr<Weg> boxgraben = std::make_unique<Weg>("Boxgraben", 24, Tempolimit::Innerorts);
 
 	std::unique_ptr<Fahrzeug> car2 = std::make_unique<Fahrzeug>("Audi", 240);
 	boxgraben->vAnnahme(std::move(car2));
@@ -270,20 +270,22 @@ void vAufgabe4() // testing << operator to print out a street
 
 void vAufgabe_5() // create a street and 3 fahrzeuge on it
 {
-	Weg* theaterstr = new Weg("Theaterstr.", 50, Tempolimit::Innerorts);
+	auto theaterstr = std::make_unique<Weg>("Theaterstr.", 50, Tempolimit::Innerorts);
 
 	std::unique_ptr<Fahrzeug> car1 = std::make_unique<Fahrzeug>("BMW", 300);
 	std::unique_ptr<Fahrzeug> bike1 = std::make_unique<Fahrzeug>("Mountain bike", 30);
 	std::unique_ptr<Fahrzeug> tram16 = std::make_unique<Fahrzeug>("Tram 16", 70);
 
-	theaterstr->vAnnahme(car1);
-	theaterstr->vAnnahme(bike1);
-	theaterstr->vAnnahme(tram16);
+	theaterstr->vAnnahme(std::move(car1));
+	theaterstr->vAnnahme(std::move(bike1));
+	theaterstr->vAnnahme(std::move(tram16));
 
+	theaterstr->vKopf();
 	std::cout << *theaterstr << std::endl;
 
 	theaterstr->vSimulieren(3.0);
 
+	theaterstr->vKopf();
 	std::cout << *theaterstr << std::endl;
 }
 
@@ -298,7 +300,7 @@ int main()
 //	vAufgabe4();
 
 	std::cout << "Sucess" << std::endl;
-//	vAufgabe_5();
+	vAufgabe_5();
 	return 0;
 }
 

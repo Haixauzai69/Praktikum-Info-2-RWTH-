@@ -19,14 +19,13 @@ class Verhalten
 {
 	public:
 	Verhalten() = delete; // entweder parken oder bewegen
-	Verhalten(Weg& weg, std::string zustand);
+	Verhalten(Weg& weg);
 	virtual ~Verhalten() = default;
 
-	double dStrecke(Fahrzeug& aFzg, double dZeitIntervall)
+	double dStrecke(Fahrzeug& aFzg, double dZeitIntervall);
 
 	private:
-	std::string parken = "Parken";
-	std::string fahren = "Fahren";
+	Weg& p_rWeg;
 
 //	protected: fahrzeug
 //			double p_dGesamtStrecke = 0;

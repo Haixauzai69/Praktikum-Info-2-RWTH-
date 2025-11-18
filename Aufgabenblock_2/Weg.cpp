@@ -34,8 +34,7 @@ void Weg::vSimulieren(double dTimeStep)
 
 	for (auto& i : p_pFahrzeuge)
 	{
-		i->vNeueStrecke(this);
-		i->vSimulieren(0.5);
+		i->vSimulieren(dTimeStep);
 	}
 }
 
@@ -69,6 +68,8 @@ void Weg::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug)
 	fahrzeug->vNeueStrecke(*this);
 
 	p_pFahrzeuge.push_back(std::move(fahrzeug));
+
+//	std::cout << fahrzeug->sGetName() << " befindet sich auf " << Weg::sGetName() << std::endl;
 }
 
 double Weg::dGetLaenge()
