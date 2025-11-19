@@ -272,8 +272,8 @@ void vAufgabe_5() // create a street and 3 fahrzeuge on it
 {
 	auto theaterstr = std::make_unique<Weg>("Theaterstr.", 50, Tempolimit::Innerorts);
 
-	std::unique_ptr<Fahrzeug> car1 = std::make_unique<Fahrzeug>("BMW", 300);
-	std::unique_ptr<Fahrzeug> bike1 = std::make_unique<Fahrzeug>("Mountain bike", 30);
+	std::unique_ptr<Car> car1 = std::make_unique<Car>(8, 55);
+	std::unique_ptr<Fahrrad> bike1 = std::make_unique<Fahrrad>("Mountain bike", 30);
 	std::unique_ptr<Fahrzeug> tram16 = std::make_unique<Fahrzeug>("Tram 16", 70);
 
 	theaterstr->vAnnahme(std::move(car1));
