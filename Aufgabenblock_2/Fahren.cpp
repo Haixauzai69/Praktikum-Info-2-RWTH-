@@ -31,7 +31,7 @@ double Fahren::dStrecke(Fahrzeug& aFzg, double dZeitIntervall)
 
 	if (strecke > rest)
 	{
-		std::cout << "Das Fahrzeug erreicht das Ende des Weges" << std::endl;
+		std::cout << "Das Fahrzeug erreicht das Ende des Weges" << std::endl; //streckenende
 		strecke = rest;
 	}
 	return strecke;

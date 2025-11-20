@@ -25,7 +25,7 @@ double Parken::dStrecke(Fahrzeug& aFzg, double dZeitIntervall)
 	{
 		return 0.0;
 	}
-	std::cout << "Startpunkt erreicht" << std::endl;
+	std::cout << "Startpunkt erreicht" << std::endl; // losfahren
 
 	return (aFzg.dGeschwindigkeit())*dZeitIntervall;
 }
