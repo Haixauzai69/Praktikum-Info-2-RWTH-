@@ -12,6 +12,7 @@
 #include <string>
 #include <limits>
 #include "Fahrzeug.h"
+#include "Tempolimit.h"
 
 class Car : public Fahrzeug
 {
@@ -22,12 +23,12 @@ class Car : public Fahrzeug
 	double dTanken (double dMenge = std::numeric_limits<double>::infinity()) override;
 	void vSimulieren(double dTimeStep) override;
 	void vAusgabe(std::ostream& ausgabe) const override;
+	double dGeschwindigkeit() const override;
 
 	protected:
 	double p_dVerbrauch; // liter pro 100km
 	double p_dTankvolumen;
-	double p_dTankinhalt;  // liter
-	bool p_bEmpty = false;
+	double p_dTankinhalt = 0;  // liter
 };
 
 

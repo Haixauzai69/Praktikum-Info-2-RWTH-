@@ -33,45 +33,48 @@ double Car::dTanken(double dMenge)
 	{
 		p_dTankinhalt = std::min(p_dTankvolumen, p_dTankinhalt + dMenge);
 	}
-
-	if (p_dTankinhalt > 0)
-	{
-		p_bEmpty = false;
-	}
 	return p_dTankinhalt - vorher;
 }
 
-void Car::vSimulieren(double dTimeStep) // next task: adding Weg::dStrecke into vSimulieren for fahrzeuge, car and fahrrad
+void Car::vSimulieren(double dTimeStep) // next task: adding Fahren::dStrecke into vSimulieren for fahrzeuge, car and fahrrad
 {
-	if (p_bEmpty == true)
+	double dS = p_pVerhalten->dStrecke(*this, dTimeStep);
+
+	dGlobaleZeit += dTimeStep;
+
+	if (p_dTankinhalt <= 0.0)
 	{
 		std::cout << "Car is out of fuel" << std::endl;
 		return;
 	}
 
-	double dStrecke = p_dMaxGeschwindigkeit * dTimeStep; // in km
-	double dVerbrauch = (dStrecke / 100.0) * p_dVerbrauch; // in liters
+	double dVerbrauch = (dS / 100.0) * p_dVerbrauch; // pro 100 Km in liters
 
 	if (p_dTankinhalt > dVerbrauch)
 	{
-		// enough fuel
-		p_dTankinhalt -= dVerbrauch;
-		p_dGesamtStrecke += dStrecke;
+		p_dAbschnittStrecke += dS;
+		p_dGesamtStrecke += dS;
 	}
 	else
 	{
-	        // fuel runs out before end of time step
 	    double dStreckeBisLeer = (p_dTankinhalt / p_dVerbrauch) * 100.0; // km until empty
 	    double dZeitBisLeer = dStreckeBisLeer / p_dMaxGeschwindigkeit;   // hours until empty
 
-
 	    p_dGesamtStrecke += dStreckeBisLeer;
 	    p_dTankinhalt = 0.0;
-	    p_bEmpty = true;
 
-	   std::cout << "Car ran out of fuel after " << dZeitBisLeer << " hours ("
-	             << dStreckeBisLeer << " km).\n";
-	   }
+	    std::cout << "Car ran out of fuel after " << dZeitBisLeer << " hours ("
+	              << dStreckeBisLeer << " km)." << std::endl;
+	}
+}
+
+double Car::dGeschwindigkeit() const
+{
+	if (this->getMaxGeschwindigkeit() > static_cast<double>(Tempolimit::Innerorts))
+	{
+		std::cout << "Strafe wegen zu schnellem Fahren" << std::endl;
+	}
+	return 49.0;
 }
 
 void Car::vAusgabe(std::ostream& ausgabe) const

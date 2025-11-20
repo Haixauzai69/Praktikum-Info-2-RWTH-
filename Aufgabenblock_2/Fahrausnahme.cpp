@@ -14,7 +14,7 @@
 #include "Fahrzeug.h"
 #include "Fahrausnahme.h"
 
-Fahrausnahme::Fahrausnahme(Weg& street, Fahrzeug& fahrzeug) : p_rStreet(street) , p_rFahrzeug(fahrzeug)
+Fahrausnahme::Fahrausnahme(Weg& weg, Fahrzeug& fahrzeug) : p_rWeg(weg) , p_rFahrzeug(fahrzeug)
 {
 	std::cout << "Fahrausnahme erstellt" << std::endl;
 }

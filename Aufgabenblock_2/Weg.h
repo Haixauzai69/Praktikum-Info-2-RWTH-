@@ -32,7 +32,7 @@ class Weg : public Simulationsobjekt
 
 	enum Tempolimit getTempolimit();
 	double dGetLaenge();
-	double dStrecke(Fahrzeug& aFzg, double dZeitIntervall);
+//	double dStrecke(Fahrzeug& aFzg, double dZeitIntervall);
 
 	void vSimulieren(double dTimeStep) override;
 	void vKopf() const;

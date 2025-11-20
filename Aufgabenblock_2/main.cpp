@@ -12,6 +12,9 @@
 #include <list>
 #include <ios>
 #include <algorithm>
+#include <stdlib.h>
+#include <stdexcept>
+#include <exception>
 #include <memory>
 #include <cmath>
 #include "Simulationsobjekt.h"
@@ -20,6 +23,9 @@
 #include "Fahrzeug.h"
 #include "Fahrrad.h"
 #include "Weg.h"
+#include "Fahrausnahme.h"
+#include "Losfahren.h"
+#include "Streckenende.h"
 
 std::ostream& operator<<(std::ostream& out, const Simulationsobjekt& obj)
 {
@@ -172,37 +178,27 @@ void vAufgabe_2()
 
 void vAufgabe_3()
 {
-    std::cout << "\n===== Aufgabe 3: Operator Tests =====\n";
-
-    // 1️ Create some vehicles
     Fahrzeug car1("Audi", 150.0);
     Fahrzeug car2("BMW", 130.0);
 
-    // 2️ Simulate for different times
     car1.vSimulieren(2.0);  // 2 hours
     car2.vSimulieren(1.0);  // 1 hour
 
-    // 3️ Test the output operator <<
     std::cout << "\n--- Current Vehicle States ---\n";
     Fahrzeug::vKopf();
     std::cout << car1 << std::endl;
     std::cout << car2 << std::endl;
 
-    // 4️ Test operator<
     if (car1 < car2)
         std::cout << car1.sGetName() << " has driven less than " << car2.sGetName() << "\n";
     else
         std::cout << car1.sGetName() << " has driven more than or equal to " << car2.sGetName() << "\n";
 
 
-
-    // 6️ Test assignment operator
     Fahrzeug car3("Mercedes", 200.0);
     std::cout << "\nBefore assignment:\n" << car3 << std::endl;
-    car3 = car1; // uses operator=
+    car3 = car1;
     std::cout << "After assignment (car3 = car1):\n" << car3 << std::endl;
-
-    std::cout << "\n===== End of Aufgabe 3 =====\n";
 }
 
 //double dEpsilon = 0.001;
@@ -268,7 +264,7 @@ void vAufgabe4() // testing << operator to print out a street
 	std::cout << std::endl;
 }
 
-void vAufgabe_5() // create a street and 3 fahrzeuge on it
+void vAufgabe_5()
 {
 	auto theaterstr = std::make_unique<Weg>("Theaterstr.", 50, Tempolimit::Innerorts);
 
@@ -283,10 +279,23 @@ void vAufgabe_5() // create a street and 3 fahrzeuge on it
 	theaterstr->vKopf();
 	std::cout << *theaterstr << std::endl;
 
-	theaterstr->vSimulieren(2.0);
+	try
+	{
+		theaterstr->vSimulieren(2.0);
+	}
+
+	catch(Fahrausnahme& error)
+	{
+		error.vBearbeiten();
+	}
 
 	theaterstr->vKopf();
 	std::cout << *theaterstr << std::endl;
+}
+
+void vAufgabe_6()
+{
+
 }
 
 int main()
@@ -298,9 +307,9 @@ int main()
 //	vAufgabe_Probe();
 //	vAufgabe_AB1();
 //	vAufgabe4();
+//	vAufgabe_5();
 
 	std::cout << "Sucess" << std::endl;
-	vAufgabe_5();
 	return 0;
 }
 

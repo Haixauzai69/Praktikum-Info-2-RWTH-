@@ -13,6 +13,8 @@
 #include "Fahrzeug.h"
 #include "Verhalten.h"
 #include "Parken.h"
+#include "Fahrausnahme.h"
+#include "Losfahren.h"
 
 Parken::Parken(Weg& weg, double dStartZeit) : Verhalten(weg)
 {
@@ -25,9 +27,8 @@ double Parken::dStrecke(Fahrzeug& aFzg, double dZeitIntervall)
 	{
 		return 0.0;
 	}
-	std::cout << "Startpunkt erreicht" << std::endl; // losfahren
-
-	return (aFzg.dGeschwindigkeit())*dZeitIntervall;
+	std::cout << "Startpunkt erreicht" << std::endl;
+	throw Losfahren(p_rWeg, aFzg);
 }
 
 

@@ -12,6 +12,10 @@
 #include "Fahrzeug.h"
 #include "Verhalten.h"
 #include "Fahren.h"
+#include <stdlib.h>
+#include <stdexcept>
+#include <exception>
+#include "Streckenende.h"
 
 Fahren::Fahren(Weg& weg) : Verhalten(weg)
 {
@@ -20,19 +24,15 @@ Fahren::Fahren(Weg& weg) : Verhalten(weg)
 
 double Fahren::dStrecke(Fahrzeug& aFzg, double dZeitIntervall)
 {
-	if (aFzg.dGeschwindigkeit() > 50)
-	{
-		std::cout << "Strafe weil zu schnell" << std::endl;
-	}
-
 	double rest = p_rWeg.dGetLaenge() - aFzg.getStreckenabschn();
 
 	double strecke = (aFzg.dGeschwindigkeit())*dZeitIntervall;
 
 	if (strecke > rest)
 	{
-		std::cout << "Das Fahrzeug erreicht das Ende des Weges" << std::endl; //streckenende
+		std::cout << "Das Fahrzeug erreicht das Ende des Weges" << std::endl;
 		strecke = rest;
+		throw Streckenende(p_rWeg, aFzg);
 	}
 	return strecke;
 }

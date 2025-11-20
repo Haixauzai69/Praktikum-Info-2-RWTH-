@@ -32,9 +32,8 @@ class Simulationsobjekt
 	virtual void vSimulieren(double dTimeStep) = 0;
 	virtual void vAusgabe(std::ostream& ausgabe) const;
 	void vSetName(std::string something);
-
 };
-// next task: adding Weg::dStrecke into vSimulieren for fahrzeuge, car and fahrrad
+
 
 
 #endif /* SIMULATIONSOBJEKT_H_ */

@@ -17,10 +17,14 @@
 #include "Fahrzeug.h"
 #include "Fahrausnahme.h"
 
-
 class Streckenende : public Fahrausnahme
 {
+	public:
+	Streckenende() = delete;
+	Streckenende(Weg& weg, Fahrzeug& fahrzeug);
+	virtual ~Streckenende() = default;
 
+	virtual void vBearbeiten() override;
 };
 
 

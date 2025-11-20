@@ -17,10 +17,14 @@
 #include "Fahrzeug.h"
 #include "Fahrausnahme.h"
 
-
 class Losfahren : public Fahrausnahme
 {
+	public:
+	Losfahren() = delete;
+	Losfahren(Weg& weg, Fahrzeug& fahrzeug);
+	virtual ~Losfahren() = default;
 
+	virtual void vBearbeiten() override;
 };
 
 

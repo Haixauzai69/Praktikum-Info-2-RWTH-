@@ -18,13 +18,13 @@
 
 class Fahrausnahme : public std::exception
 {
-	private:
-	Weg& p_rStreet;
+	protected:
+	Weg& p_rWeg;
 	Fahrzeug& p_rFahrzeug;
 
 	public:
-	Fahrausnahme() = default;
-	Fahrausnahme(Weg& street, Fahrzeug& fahrzeug);
+	Fahrausnahme() = delete;
+	Fahrausnahme(Weg& weg, Fahrzeug& fahrzeug);
 	virtual ~Fahrausnahme() = default;
 
 	virtual void vBearbeiten() = 0;

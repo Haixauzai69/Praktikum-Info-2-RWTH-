@@ -35,12 +35,13 @@ double Fahrzeug::getGesamtStrecke() const
 	return p_dGesamtStrecke;
 }
 
-void Fahrzeug::vSimulieren(double dTimeStep) // next task: adding Weg::dStrecke into vSimulieren for fahrzeuge, car and fahrrad
+void Fahrzeug::vSimulieren(double dTimeStep)
 {
 	double dS = p_pVerhalten->dStrecke(*this, dTimeStep);
 
 	p_dAbschnittStrecke += dS;
 	p_dGesamtStrecke += dS;
+	dGlobaleZeit += dTimeStep;
 }
 
 double Fahrzeug::dGeschwindigkeit() const
