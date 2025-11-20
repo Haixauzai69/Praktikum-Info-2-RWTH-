@@ -24,6 +24,8 @@ void Losfahren::vBearbeiten()
 {
 	std::cout << "Parkendes Fahrzeug fährt ab" << std::endl;
 	std::cout << "Fahrzeug: " << p_rFahrzeug.sGetName() << " Strasse: " << p_rWeg.sGetName() << std::endl;
+
+	p_rFahrzeug.vNeueStrecke(p_rWeg);
 }
 
 

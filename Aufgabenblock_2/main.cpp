@@ -295,14 +295,14 @@ void vAufgabe_5()
 
 void vAufgabe_6() // 2 strassen, eins mit tempolimit und 2 fahrzeuge, eins parkt und eins faehrt
 {
-	auto junkerstrasse = std::make_unique<Weg>("Junkerstrasse", 30, Tempolimit::Innerorts);
+	auto junkerstrasse = std::make_unique<Weg>("Junkerstrasse", 10, Tempolimit::Innerorts);
 	auto a44 = std::make_unique<Weg>("A44", 200, Tempolimit::Autobahn);
 
 	std::unique_ptr<Car> car1 = std::make_unique<Car>(8, 55);
 	std::unique_ptr<Fahrrad> bike1 = std::make_unique<Fahrrad>("Mountain bike", 30);
 	std::unique_ptr<Car> car2 = std::make_unique<Car>(6.5, 50);
 
-	junkerstrasse->vAnnahme(std::move(car1), 5.0); // startzeit hinzufügen bedeutet parken
+	junkerstrasse->vAnnahme(std::move(car1), 2.0); // startzeit hinzufügen bedeutet parken
 	junkerstrasse->vAnnahme(std::move(bike1));
 
 	a44->vAnnahme(std::move(car2));
@@ -316,7 +316,7 @@ void vAufgabe_6() // 2 strassen, eins mit tempolimit und 2 fahrzeuge, eins parkt
 	try
 	{
 		a44->vSimulieren(0.5);
-		junkerstrasse->vSimulieren(2.0);
+		junkerstrasse->vSimulieren(5.0);
 	}
 
 	catch(Fahrausnahme& error)
