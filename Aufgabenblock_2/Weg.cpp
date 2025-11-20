@@ -54,10 +54,10 @@ void Weg::vAusgabe(std::ostream& ausgabe) const
 	Simulationsobjekt::vAusgabe(ausgabe);
 	ausgabe << std::setw(20) << p_dLaenge
 	<< std::setw(9);
-	std::cout << std::setiosflags(std::ios::right);
+	std::cout << std::setiosflags(std::ios::right) << std::setw(20);
 	for (auto& i : p_pFahrzeuge)
 	{
-		std::cout << i->sGetName() << " ";
+		std::cout << i->sGetName() << ", ";
 	}
 }
 
@@ -68,8 +68,15 @@ void Weg::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug)
 	fahrzeug->vNeueStrecke(*this);
 
 	p_pFahrzeuge.push_back(std::move(fahrzeug));
+}
 
-//	std::cout << fahrzeug->sGetName() << " befindet sich auf " << Weg::sGetName() << std::endl;
+void Weg::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug, double start)
+{
+	std::cout << fahrzeug->sGetName() << " parkt auf " << Weg::sGetName() << std::endl;
+
+	fahrzeug->vNeueStrecke(*this, start);
+
+	p_pFahrzeuge.push_back(std::move(fahrzeug));
 }
 
 double Weg::dGetLaenge()

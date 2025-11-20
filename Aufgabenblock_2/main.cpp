@@ -276,14 +276,14 @@ void vAufgabe_5() // create a street and 3 fahrzeuge on it
 	std::unique_ptr<Fahrrad> bike1 = std::make_unique<Fahrrad>("Mountain bike", 30);
 	std::unique_ptr<Fahrzeug> tram16 = std::make_unique<Fahrzeug>("Tram 16", 70);
 
-	theaterstr->vAnnahme(std::move(car1));
+	theaterstr->vAnnahme(std::move(car1), 5.0); // startzeit hinzufügen bedeutet parken
 	theaterstr->vAnnahme(std::move(bike1));
 	theaterstr->vAnnahme(std::move(tram16));
 
 	theaterstr->vKopf();
 	std::cout << *theaterstr << std::endl;
 
-	theaterstr->vSimulieren(3.0);
+	theaterstr->vSimulieren(2.0);
 
 	theaterstr->vKopf();
 	std::cout << *theaterstr << std::endl;

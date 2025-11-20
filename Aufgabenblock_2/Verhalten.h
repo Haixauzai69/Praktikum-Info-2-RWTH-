@@ -18,30 +18,14 @@
 class Verhalten
 {
 	public:
-	Verhalten() = delete; // entweder parken oder bewegen
+	Verhalten() = delete;
 	Verhalten(Weg& weg);
 	virtual ~Verhalten() = default;
 
-	double dStrecke(Fahrzeug& aFzg, double dZeitIntervall);
+	virtual double dStrecke(Fahrzeug& aFzg, double dZeitIntervall) = 0;
 
-	private:
+	protected:
 	Weg& p_rWeg;
-
-//	protected: fahrzeug
-//			double p_dGesamtStrecke = 0;
-//			double p_dGesamtZeit = 0;
-//			double p_dMaxGeschwindigkeit;
-//			std::shared_ptr<Verhalten> p_pVerhalten;
-//			double p_dAbschnittStrecke = 0; // strecke on one street
-//	Fahrzeug(const std::string name, double max_geschwindigkeit);
-//
-//	void Fahrzeug::vNeueStrecke(Weg&)
-//	{
-//		std::shared_ptr<Verhalten> fahren = std::make_shared<Verhalten>(karlsgraben&);
-//		p_pVerhalten = fahren;
-//	}
-//
-
 };
 
 

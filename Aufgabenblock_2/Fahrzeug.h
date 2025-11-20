@@ -14,6 +14,8 @@
 #include <vector>
 #include "Simulationsobjekt.h"
 #include "Verhalten.h"
+#include "Fahren.h"
+#include "Parken.h"
 
 class Weg;
 
@@ -47,7 +49,8 @@ class Fahrzeug : public Simulationsobjekt
 		bool operator<(const Fahrzeug& other) const;
 		Fahrzeug& operator=(const Fahrzeug& other);
 
-		void vNeueStrecke(Weg&);
+		void vNeueStrecke(Weg& weg); // fahren
+		void vNeueStrecke(Weg& weg, double start); // parken
 };
 
 #endif /* FAHRZEUG_H_ */
