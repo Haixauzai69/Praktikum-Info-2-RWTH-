@@ -26,6 +26,7 @@
 #include "Fahrausnahme.h"
 #include "Losfahren.h"
 #include "Streckenende.h"
+#include "SimuClient.h"
 
 std::ostream& operator<<(std::ostream& out, const Simulationsobjekt& obj)
 {
@@ -293,9 +294,9 @@ void vAufgabe_5()
 	std::cout << *theaterstr << std::endl;
 }
 
-void vAufgabe_6() // 2 strassen, eins mit tempolimit und 2 fahrzeuge, eins parkt und eins faehrt
+void vAufgabe_6()
 {
-	auto junkerstrasse = std::make_unique<Weg>("Junkerstrasse", 10, Tempolimit::Innerorts);
+	auto junkerstrasse = std::make_unique<Weg>("Junkerstrasse", 500, Tempolimit::Innerorts);
 	auto a44 = std::make_unique<Weg>("A44", 200, Tempolimit::Autobahn);
 
 	std::unique_ptr<Car> car1 = std::make_unique<Car>(8, 55);
@@ -325,6 +326,32 @@ void vAufgabe_6() // 2 strassen, eins mit tempolimit und 2 fahrzeuge, eins parkt
 	}
 }
 
+void vTest()
+{
+    int koordinaten[4] = {100, 250, 700, 250};
+
+    bInitialisiereGrafik(800, 500);
+
+//  vSleep(500);
+
+    bZeichneKreuzung(100, 250);
+    bZeichneKreuzung(700, 250);
+
+//  vSleep(300);
+
+    bool ok = bZeichneStrasse("W1", "W2", 500, 2, koordinaten);
+    std::cout << "Draw result = " << ok << std::endl;
+
+    // Add a vehicle so the road must render:
+    bZeichnePKW("Auto1", "W1", 0.0, 40.0, 20.0);
+
+    vSetzeZeit(5.0);
+
+    vSleep(6000);
+    vBeendeGrafik();
+}
+
+
 int main()
 {
 //	vAufgabe1();
@@ -335,7 +362,8 @@ int main()
 //	vAufgabe_AB1();
 //	vAufgabe4();
 //	vAufgabe_5();
-	vAufgabe_6();
+//	vAufgabe_6();
+	vTest();
 	std::cout << "Sucess" << std::endl;
 	return 0;
 }

@@ -24,6 +24,7 @@ class Car : public Fahrzeug
 	void vSimulieren(double dTimeStep) override;
 	void vAusgabe(std::ostream& ausgabe) const override;
 	double dGeschwindigkeit() const override;
+	double dGetTank();
 
 	protected:
 	double p_dVerbrauch; // liter pro 100km

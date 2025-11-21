@@ -90,3 +90,8 @@ void Car::vAusgabe(std::ostream& ausgabe) const
 			<< std::resetiosflags(std::ios::left) << std::endl;
 }
 
+double Car::dGetTank()
+{
+	return p_dTankinhalt;
+}
+
