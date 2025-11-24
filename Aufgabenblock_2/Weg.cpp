@@ -74,7 +74,7 @@ void Weg::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug, double start)
 
 	fahrzeug->vNeueStrecke(*this, start);
 
-	p_pFahrzeuge.push_back(std::move(fahrzeug));
+	p_pFahrzeuge.push_front(std::move(fahrzeug));
 }
 
 double Weg::dGetLaenge() const
