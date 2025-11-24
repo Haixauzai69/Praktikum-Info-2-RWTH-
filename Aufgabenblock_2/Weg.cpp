@@ -87,3 +87,10 @@ const std::list<std::unique_ptr<Fahrzeug>>& Weg::getFahrzeuge() const
 	return p_pFahrzeuge;
 }
 
+std::unique_ptr<Fahrzeug> Weg::pAbgabe(const Fahrzeug&)
+{
+//	std::list<std::unique_ptr<Fahrzeug>> p_pFahrzeuge;
+//	search this list for parking fahrzeug using == operator
+//	at the startpoint, delete the parking fahrzeug by saving in local variable and then immediately store as fahren
+}
+

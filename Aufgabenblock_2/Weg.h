@@ -40,6 +40,8 @@ class Weg : public Simulationsobjekt
 	void vAusgabe(std::ostream& ausgabe) const override;
 	void vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug);
 	void vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug, double start);
+
+	std::unique_ptr<Fahrzeug> pAbgabe(const Fahrzeug&);
 };
 
 
