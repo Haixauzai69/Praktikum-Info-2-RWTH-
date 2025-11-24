@@ -49,3 +49,9 @@ void Fahrrad::vAusgabe(std::ostream& ausgabe) const
 			<< std::resetiosflags(std::ios::left) << std::endl;
 }
 
+void Fahrrad::vZeichen(const Weg& weg)
+{
+	double relPos = p_dAbschnittStrecke / weg.dGetLaenge();
+	bZeichneFahrrad(this->sGetName(), weg.sGetName(), relPos, dGeschwindigkeit());
+}
+

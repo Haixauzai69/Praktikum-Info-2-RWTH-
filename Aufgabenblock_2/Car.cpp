@@ -60,7 +60,7 @@ void Car::vSimulieren(double dTimeStep) // next task: adding Fahren::dStrecke in
 	    double dStreckeBisLeer = (p_dTankinhalt / p_dVerbrauch) * 100.0; // km until empty
 	    double dZeitBisLeer = dStreckeBisLeer / p_dMaxGeschwindigkeit;   // hours until empty
 
-	    p_dGesamtStrecke += dStreckeBisLeer;
+	    p_dAbschnittStrecke += dStreckeBisLeer;
 	    p_dTankinhalt = 0.0;
 
 	    std::cout << "Car ran out of fuel after " << dZeitBisLeer << " hours ("
@@ -93,5 +93,11 @@ void Car::vAusgabe(std::ostream& ausgabe) const
 double Car::dGetTank()
 {
 	return p_dTankinhalt;
+}
+
+void Car::vZeichen(const Weg& weg)
+{
+	double relPos = p_dAbschnittStrecke / weg.dGetLaenge();
+	bZeichnePKW(this->sGetName(), weg.sGetName(), relPos, dGeschwindigkeit(), p_dTankinhalt);
 }
 

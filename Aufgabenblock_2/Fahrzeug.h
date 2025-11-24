@@ -51,6 +51,8 @@ class Fahrzeug : public Simulationsobjekt
 
 		void vNeueStrecke(Weg& weg); // fahren
 		void vNeueStrecke(Weg& weg, double start); // parken
+
+		virtual void vZeichen(const Weg& weg);
 };
 
 #endif /* FAHRZEUG_H_ */

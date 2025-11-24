@@ -13,6 +13,7 @@
 #include <limits>
 #include "Fahrzeug.h"
 #include "Tempolimit.h"
+#include "SimuClient.h"
 
 class Car : public Fahrzeug
 {
@@ -25,6 +26,8 @@ class Car : public Fahrzeug
 	void vAusgabe(std::ostream& ausgabe) const override;
 	double dGeschwindigkeit() const override;
 	double dGetTank();
+
+	void vZeichen(const Weg& weg) override;
 
 	protected:
 	double p_dVerbrauch; // liter pro 100km

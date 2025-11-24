@@ -31,7 +31,7 @@ class Weg : public Simulationsobjekt
 	virtual ~Weg() = default;
 
 	enum Tempolimit getTempolimit();
-	double dGetLaenge();
+	double dGetLaenge() const;
 //	double dStrecke(Fahrzeug& aFzg, double dZeitIntervall);
 
 	void vSimulieren(double dTimeStep) override;

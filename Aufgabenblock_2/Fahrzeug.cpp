@@ -110,4 +110,9 @@ void Fahrzeug::vAddStrecke(double strecke)
 	p_dAbschnittStrecke += strecke;
 }
 
+void Fahrzeug::vZeichen(const Weg& weg)
+{
+
+}
+
 

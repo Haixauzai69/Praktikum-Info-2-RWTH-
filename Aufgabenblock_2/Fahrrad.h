@@ -15,6 +15,7 @@
 #include <algorithm>
 #include <vector>
 #include "Fahrzeug.h"
+#include "SimuClient.h"
 
 class Fahrrad : public Fahrzeug
 {
@@ -25,6 +26,8 @@ class Fahrrad : public Fahrzeug
 //	void vSimulieren(double dTimeStep) override;
 //	double dTanken(double dMenge = std::numeric_limits<double>::infinity()) override;
 	void vAusgabe(std::ostream& ausgabe) const override;
+
+	void vZeichen(const Weg& weg) override;
 };
 
 

@@ -297,33 +297,42 @@ void vAufgabe_5()
 void vAufgabe_6()
 {
 	auto junkerstrasse = std::make_unique<Weg>("Junkerstrasse", 500, Tempolimit::Innerorts);
-	auto a44 = std::make_unique<Weg>("A44", 200, Tempolimit::Autobahn);
 
 	std::unique_ptr<Car> car1 = std::make_unique<Car>(8, 55);
 	std::unique_ptr<Fahrrad> bike1 = std::make_unique<Fahrrad>("Mountain bike", 30);
-	std::unique_ptr<Car> car2 = std::make_unique<Car>(6.5, 50);
+
+    int koordinaten[4] = {100, 250, 700, 250};
+
+    bInitialisiereGrafik(800, 500);
+
+    vSleep(500);
+
+    bZeichneStrasse("Junkerhin", "Junkerruck", 500, 2, koordinaten);
 
 	junkerstrasse->vAnnahme(std::move(car1), 2.0); // startzeit hinzufügen bedeutet parken
 	junkerstrasse->vAnnahme(std::move(bike1));
 
-	a44->vAnnahme(std::move(car2));
-
 	junkerstrasse->vKopf();
 	std::cout << *junkerstrasse << std::endl;
 
-	a44->vKopf();
-	std::cout << *a44 << std::endl;
-
 	try
 	{
-		a44->vSimulieren(0.5);
 		junkerstrasse->vSimulieren(5.0);
+		for (auto i : *junkerstrasse.p_pFahrzeuge)
+		{
+			i->vZeichen(*junkerstrasse); // add fahrzeuge getter that returns list fahrzeuge for weg
+		}
 	}
 
 	catch(Fahrausnahme& error)
 	{
 		error.vBearbeiten();
 	}
+
+	vSetzeZeit(5.0);
+
+	vSleep(6000);
+	vBeendeGrafik();
 }
 
 void vTest()
@@ -332,12 +341,7 @@ void vTest()
 
     bInitialisiereGrafik(800, 500);
 
-//  vSleep(500);
-
-    bZeichneKreuzung(100, 250);
-    bZeichneKreuzung(700, 250);
-
-//  vSleep(300);
+    vSleep(500);
 
     bool ok = bZeichneStrasse("W1", "W2", 500, 2, koordinaten);
     std::cout << "Draw result = " << ok << std::endl;
@@ -362,8 +366,8 @@ int main()
 //	vAufgabe_AB1();
 //	vAufgabe4();
 //	vAufgabe_5();
-//	vAufgabe_6();
-	vTest();
+	vAufgabe_6();
+//	vTest();
 	std::cout << "Sucess" << std::endl;
 	return 0;
 }

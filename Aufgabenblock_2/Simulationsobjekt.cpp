@@ -12,7 +12,7 @@
 
 double dGlobaleZeit = 0.0;
 
-std::string Simulationsobjekt::sGetName()
+std::string Simulationsobjekt::sGetName() const
 {
 	return p_sName;
 }
