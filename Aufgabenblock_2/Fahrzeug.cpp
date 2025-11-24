@@ -93,11 +93,13 @@ void Fahrzeug::vAusgabe(std::ostream& ausgabe) const
 void Fahrzeug::vNeueStrecke(Weg& weg) // always create a street before a vehicle can move on it
 {
 	p_pVerhalten = std::make_shared<Fahren>(weg);
+	p_dAbschnittStrecke = 0.0;
 }
 
 void Fahrzeug::vNeueStrecke(Weg& weg, double start)
 {
 	p_pVerhalten = std::make_shared<Parken>(weg, start);
+	p_dAbschnittStrecke = 0.0;
 }
 
 double Fahrzeug::getStreckenabschn()

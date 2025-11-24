@@ -30,8 +30,6 @@ enum Tempolimit Weg::getTempolimit()
 
 void Weg::vSimulieren(double dTimeStep)
 {
-//	 call Fahrzeug::neueStrecke
-
 	for (auto& i : p_pFahrzeuge)
 	{
 		i->vSimulieren(dTimeStep);
@@ -82,5 +80,10 @@ void Weg::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug, double start)
 double Weg::dGetLaenge() const
 {
 	return p_dLaenge;
+}
+
+const std::list<std::unique_ptr<Fahrzeug>>& Weg::getFahrzeuge() const
+{
+	return p_pFahrzeuge;
 }
 

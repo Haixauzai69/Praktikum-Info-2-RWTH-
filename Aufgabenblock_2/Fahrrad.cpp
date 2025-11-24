@@ -52,6 +52,6 @@ void Fahrrad::vAusgabe(std::ostream& ausgabe) const
 void Fahrrad::vZeichen(const Weg& weg)
 {
 	double relPos = p_dAbschnittStrecke / weg.dGetLaenge();
-	bZeichneFahrrad(this->sGetName(), weg.sGetName(), relPos, dGeschwindigkeit());
+	bZeichneFahrrad(this->sGetName(), weg.sGetName() + "_hin", relPos, dGeschwindigkeit());
 }
 

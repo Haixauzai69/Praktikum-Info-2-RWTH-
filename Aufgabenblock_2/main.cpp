@@ -296,10 +296,10 @@ void vAufgabe_5()
 
 void vAufgabe_6()
 {
-	auto junkerstrasse = std::make_unique<Weg>("Junkerstrasse", 500, Tempolimit::Innerorts);
+	auto junkerstrasse = std::make_unique<Weg>("Weg1", 500, Tempolimit::Innerorts);
 
 	std::unique_ptr<Car> car1 = std::make_unique<Car>(8, 55);
-	std::unique_ptr<Fahrrad> bike1 = std::make_unique<Fahrrad>("Mountain bike", 30);
+	std::unique_ptr<Fahrrad> bike1 = std::make_unique<Fahrrad>("Mountain_bike", 30);
 
     int koordinaten[4] = {100, 250, 700, 250};
 
@@ -307,31 +307,28 @@ void vAufgabe_6()
 
     vSleep(500);
 
-    bZeichneStrasse("Junkerhin", "Junkerruck", 500, 2, koordinaten);
+    bZeichneStrasse(junkerstrasse->sGetName() + "_hin", junkerstrasse->sGetName() + "_rueck", junkerstrasse->dGetLaenge(), 2, koordinaten);
 
-	junkerstrasse->vAnnahme(std::move(car1), 2.0); // startzeit hinzufügen bedeutet parken
+	junkerstrasse->vAnnahme(std::move(car1), 4.0); // startzeit hinzufügen bedeutet parken
 	junkerstrasse->vAnnahme(std::move(bike1));
 
-	junkerstrasse->vKopf();
-	std::cout << *junkerstrasse << std::endl;
-
-	try
+	for(int i = 0; i < 10 ; i++)
 	{
-		junkerstrasse->vSimulieren(5.0);
-		for (auto i : *junkerstrasse.p_pFahrzeuge)
+		try
 		{
-			i->vZeichen(*junkerstrasse); // add fahrzeuge getter that returns list fahrzeuge for weg
+			junkerstrasse->vSimulieren(1.0);
 		}
+		catch(Fahrausnahme& error)
+		{
+		    error.vBearbeiten();
+		}
+		vSetzeZeit(dGlobaleZeit);
+		for (auto& i : junkerstrasse->getFahrzeuge())
+		{
+		     i->vZeichen(*junkerstrasse);
+		}
+		vSleep(600);
 	}
-
-	catch(Fahrausnahme& error)
-	{
-		error.vBearbeiten();
-	}
-
-	vSetzeZeit(5.0);
-
-	vSleep(6000);
 	vBeendeGrafik();
 }
 

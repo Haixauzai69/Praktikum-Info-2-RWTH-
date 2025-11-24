@@ -33,6 +33,7 @@ class Weg : public Simulationsobjekt
 	enum Tempolimit getTempolimit();
 	double dGetLaenge() const;
 //	double dStrecke(Fahrzeug& aFzg, double dZeitIntervall);
+	const std::list<std::unique_ptr<Fahrzeug>>& getFahrzeuge() const;
 
 	void vSimulieren(double dTimeStep) override;
 	void vKopf() const;
