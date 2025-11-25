@@ -1,6 +1,7 @@
 #pragma once
 
 #include "vertagt_aktion.h"
+#include <memory>
 #include <list>
 
 namespace vertagt
@@ -18,7 +19,7 @@ namespace vertagt
 		using const_iterator = typename std::list<T>::const_iterator;
 
 		// Konstruktoren
-		VListe() = ...; // Benötigt man einen Standardkonstruktor?
+		VListe() = default; // Benötigt man einen Standardkonstruktor? maybe?
 		// Destruktor
 		~VListe()
 		{
@@ -28,7 +29,7 @@ namespace vertagt
 
 		void clear()
 		{
-			...
+			p_aktionen.clear();
 		}
 
 		// Lesefunktionen
@@ -38,7 +39,7 @@ namespace vertagt
 		}
 		const_iterator end() const
 		{
-			...
+			return p_objekte.end();
 		}
 		iterator begin()
 		{
@@ -46,30 +47,30 @@ namespace vertagt
 		}
 		iterator end()
 		{
-			...
+			return p_objekte.end();
 		}
 		bool empty() const
 		{
-			...
+			return p_objekte.empty();
 		}
 
 		// Schreibfunktionen
 		void push_back(T obj)
 		{
 			// Aktionselement für PushBack auf Liste erzeugen
-			p_aktionen.push_back(...);
+			p_aktionen.push_back(std::make_unique<VPushBack<T>>(p_objekte, std::move(obj)));
 		}
 
 		void push_front(T obj)
 		{
 			// Aktionselement für PushBack auf Liste erzeugen
-			...
+			p_aktionen.push_back(std::make_unique<VPushFront<T>>(p_objekte, std::move(obj)));
 		}
 
 		void erase(iterator it)
 		{
 			// Aktionselement für PushBack auf Liste erzeugen (hier Iterator statt Objekt !)
-			...
+			p_aktionen.push_back(std::make_unique<VErase<T>>(p_objekte, it));
 		}
 
 		// Änderungen auf Objektliste übertragen
@@ -79,10 +80,10 @@ namespace vertagt
 			for (auto& pAktion : p_aktionen)
 			{
 				// Aktion ausführen
-				...
+				pAktion->vAusfuehren();
 			}
 			// Aktionsliste löschen
-			...
+			p_aktionen.clear();
 		}
 	};
 } // namespace vertagt

@@ -35,6 +35,7 @@ void Weg::vSimulieren(double dTimeStep)
 	{
 		i->vSimulieren(dTimeStep);
 	}
+//	p_pFahrzeuge.vAktualisieren();
 }
 
 void Weg::vKopf() const
