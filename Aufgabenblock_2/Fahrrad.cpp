@@ -22,9 +22,20 @@ Fahrrad::Fahrrad(const std::string& name, double maxSpeed) : Fahrzeug(name, maxS
 }
 double Fahrrad::dGeschwindigkeit() const
 {
-	double reduction_factor = std::pow(0.9, p_dGesamtStrecke / 20.0);
-	double currentSpeed = p_dMaxGeschwindigkeit*reduction_factor;
-	return std::max(12.0, currentSpeed);
+	int streckenteil = p_dGesamtStrecke / 20.0;
+
+	double speed = p_dMaxGeschwindigkeit;
+
+	for (int i = 1; i < streckenteil; i++)
+	{
+		speed *= 0.9;
+	}
+
+	if (speed < 12.0)
+	{
+		speed = 12.0;
+	}
+	return speed;
 }
 
 //void Fahrrad::vSimulieren(double dTimeStep)

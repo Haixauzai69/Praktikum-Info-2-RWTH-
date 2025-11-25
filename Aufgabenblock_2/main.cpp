@@ -386,6 +386,29 @@ void vAufgabe_6a() // to test the new vListe by generating random numbers
 	std::cout << std::endl;
 }
 
+void weird()
+{
+	std::list<int> list(2,3);
+	int i = 0;
+	list.push_back(1);
+	list.remove(1);
+
+	for (auto it = list.begin(); it != list.end() ; it++)
+	{
+		list.push_front(i++);
+	}
+
+	list.push_back(2);
+	list.remove(1);
+	auto itl = list.end();
+	list.erase(--itl);
+
+	for (auto it = list.begin(); it != list.end() ; it++)
+	{
+		std::cout << *it << std::endl;
+	}
+}
+
 
 int main()
 {
@@ -397,9 +420,10 @@ int main()
 //	vAufgabe_AB1();
 //	vAufgabe4();
 //	vAufgabe_5();
-	vAufgabe_6();
+//	vAufgabe_6();
 //	vTest();
 //	vAufgabe_6a();
+	weird();
 	std::cout << "Sucess" << std::endl;
 	return 0;
 }
