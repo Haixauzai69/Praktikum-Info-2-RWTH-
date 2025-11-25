@@ -15,6 +15,7 @@
 #include <limits>
 #include "Tempolimit.h"
 #include "vertagt_liste.h"
+#include "vertagt_aktion.h"
 
 class Fahrzeug;
 
@@ -23,8 +24,8 @@ class Weg : public Simulationsobjekt
 	protected:
 	double p_dLaenge;
 	enum Tempolimit p_eTempolimit;
-	std::list<std::unique_ptr<Fahrzeug>> p_pFahrzeuge;
-//	vertagt::VListe<std::unique_ptr<Fahrzeug>> p_pFahrzeuge;
+//	std::list<std::unique_ptr<Fahrzeug>> p_pFahrzeuge;
+	vertagt::VListe<std::unique_ptr<Fahrzeug>> p_pFahrzeuge;
 
 	public:
 	Weg() = delete;
@@ -34,7 +35,7 @@ class Weg : public Simulationsobjekt
 
 	enum Tempolimit getTempolimit();
 	double dGetLaenge() const;
-	const std::list<std::unique_ptr<Fahrzeug>>& getFahrzeuge() const;
+	const vertagt::VListe<std::unique_ptr<Fahrzeug>>& getFahrzeuge() const;
 
 	void vSimulieren(double dTimeStep) override;
 	void vKopf() const;

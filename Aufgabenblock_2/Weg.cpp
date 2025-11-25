@@ -35,7 +35,7 @@ void Weg::vSimulieren(double dTimeStep)
 	{
 		i->vSimulieren(dTimeStep);
 	}
-//	p_pFahrzeuge.vAktualisieren();
+	p_pFahrzeuge.vAktualisieren();
 }
 
 void Weg::vKopf() const
@@ -84,7 +84,7 @@ double Weg::dGetLaenge() const
 	return p_dLaenge;
 }
 
-const std::list<std::unique_ptr<Fahrzeug>>& Weg::getFahrzeuge() const
+const vertagt::VListe<std::unique_ptr<Fahrzeug>>& Weg::getFahrzeuge() const
 {
 	return p_pFahrzeuge;
 }
@@ -97,6 +97,7 @@ std::unique_ptr<Fahrzeug> Weg::pAbgabe(const Fahrzeug& fahrzeug)
 		{
 			std::unique_ptr<Fahrzeug> save = std::move(*i);
 			p_pFahrzeuge.erase(i);
+			p_pFahrzeuge.vAktualisieren();
 			return save;
 		}
 	}

@@ -312,6 +312,7 @@ void vAufgabe_6()
 		}
 		vSleep(600);
 	}
+	vSleep(10000);
 	vBeendeGrafik();
 }
 
@@ -331,7 +332,7 @@ void vTest()
 
     vSetzeZeit(5.0);
 
-    vSleep(6000);
+    vSleep(10000);
     vBeendeGrafik();
 }
 
@@ -396,9 +397,9 @@ int main()
 //	vAufgabe_AB1();
 //	vAufgabe4();
 //	vAufgabe_5();
-//	vAufgabe_6();
+	vAufgabe_6();
 //	vTest();
-	vAufgabe_6a();
+//	vAufgabe_6a();
 	std::cout << "Sucess" << std::endl;
 	return 0;
 }
