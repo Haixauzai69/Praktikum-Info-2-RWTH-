@@ -17,7 +17,7 @@
 #include "Fahrzeug.h"
 #include "Car.h"
 
-Weg::Weg(std::string name, double laenge, enum Tempolimit tempolimit)
+Weg::Weg(std::string name, double laenge, Tempolimit tempolimit)
 {
 	Simulationsobjekt::vSetName(name); // nice
 	p_dLaenge = laenge;
