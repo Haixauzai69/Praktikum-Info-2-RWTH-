@@ -12,7 +12,7 @@ namespace vertagt
 		std::list<T>& p_pListe;  // Zeiger auf Liste der Objekte
 
 	public:
-	    VAktion() = default; // Benötigt man einen Standardkonstruktor?
+//	    VAktion() = default; // Benötigt man einen Standardkonstruktor?
 		VAktion(std::list<T>& ptListe) : p_pListe(ptListe){}
 		virtual ~VAktion() = default;
 		virtual void vAusfuehren() = 0;
@@ -26,7 +26,7 @@ namespace vertagt
 		T p_objekt;
 
 	public:
-	    VPushBack() = default;
+//	    VPushBack() = default;
 		VPushBack(std::list<T>& liste, T obj) : VAktion<T>(liste), p_objekt(std::move(obj))	{}
 		virtual ~VPushBack() = default;
 		void vAusfuehren() override

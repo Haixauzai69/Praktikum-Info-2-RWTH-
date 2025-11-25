@@ -17,6 +17,7 @@
 #include <exception>
 #include <memory>
 #include <cmath>
+#include <random>
 #include "Simulationsobjekt.h"
 #include "Tempolimit.h"
 #include "Car.h"
@@ -350,6 +351,11 @@ void vTest()
 
     vSleep(6000);
     vBeendeGrafik();
+}
+
+void vAufgabe_6a() // to test the new vListe by generating random numbers
+{
+
 }
 
 
