@@ -28,6 +28,8 @@
 #include "Losfahren.h"
 #include "Streckenende.h"
 #include "SimuClient.h"
+#include "vertagt_liste.h"
+#include "vertagt_aktion.h"
 
 std::ostream& operator<<(std::ostream& out, const Simulationsobjekt& obj)
 {
@@ -44,7 +46,7 @@ void vAufgabe1()
 	fahrzeuge.push_back(std::move(bmw));
 	fahrzeuge.push_back(std::move(audi));
 
-	std::shared_ptr<Fahrzeug> bike1 = std::make_shared<Fahrzeug>("Mountain Bike", 20.0);
+	std::shared_ptr<Fahrzeug> bike1 = std::make_shared<Fahrzeug>("Mountain_Bike", 20.0);
 
 	std::cout << bike1.use_count() << std::endl;
 
@@ -64,24 +66,6 @@ void vAufgabe1()
 
 	fahrzeuge.clear();
 	fahrrad.clear();
-
-//	Fahrzeug::vAusgabe(fahrzeuge, fahrrad);
-//
-//	for (int t = 0; t < 15; ++t)
-//	{
-//	    dGlobaleZeit++;
-//
-//	    for (auto& i : fahrzeuge)
-//	        i->vSimulieren();
-//
-//	    for (auto& i : fahrrad)
-//	        i->vSimulieren();
-//	}
-//
-//	vAusgabe(fahrzeuge, fahrrad);
-//
-//	fahrzeuge.clear();
-//	fahrrad.clear();
 }
 
 void vAufgabe1a()
@@ -95,7 +79,6 @@ void vAufgabe1a()
 	vehicles.push_back(std::move(bike));
 	vehicles.push_back(std::move(tram));
 
-//	vAusgabe(vehicles);
 	Fahrzeug::vKopf();
 	for (auto& fzg : vehicles)
 		{
@@ -112,7 +95,7 @@ void vAufgabe1a()
 	}
 // time step and number of hour for simulation are adjustable. Time step of 0.5 for 16 hours will be a simulation of 8 hours
 	std::cout << " " << std::endl;
-//	vAusgabe(vehicles);
+
 	Fahrzeug::vKopf();
 	for (auto& fzg : vehicles)
 		{
@@ -250,8 +233,6 @@ void vAufgabe_3()
 //        }
 //        l++;
 //    }
-//    char c;
-//    std::cin >> c;
 //}
 
 void vAufgabe4() // testing << operator to print out a street
@@ -355,7 +336,9 @@ void vTest()
 
 void vAufgabe_6a() // to test the new vListe by generating random numbers
 {
-
+	static std::mt19937 device(seed);
+	std::uniform_int_distribution<int> dist(1, 10);
+	int zuf = dist(device);
 }
 
 
