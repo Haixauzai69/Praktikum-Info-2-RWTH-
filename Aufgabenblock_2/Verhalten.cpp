@@ -15,7 +15,7 @@
 
 Verhalten::Verhalten(Weg& weg) : p_rWeg(weg)
 {
-	std::cout << "new verhalten is defined lmao" << std::endl;
+	std::cout << "new verhalten is defined" << std::endl;
 }
 
 

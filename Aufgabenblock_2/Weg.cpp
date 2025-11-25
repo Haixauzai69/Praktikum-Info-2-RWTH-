@@ -10,6 +10,7 @@
 #include <iomanip>
 #include <ios>
 #include <list>
+#include <iterator>
 #include "Weg.h"
 #include "Tempolimit.h"
 #include "Simulationsobjekt.h"
@@ -87,10 +88,18 @@ const std::list<std::unique_ptr<Fahrzeug>>& Weg::getFahrzeuge() const
 	return p_pFahrzeuge;
 }
 
-std::unique_ptr<Fahrzeug> Weg::pAbgabe(const Fahrzeug&)
+std::unique_ptr<Fahrzeug> Weg::pAbgabe(const Fahrzeug& fahrzeug)
 {
-//	std::list<std::unique_ptr<Fahrzeug>> p_pFahrzeuge;
-//	search this list for parking fahrzeug using == operator
-//	at the startpoint, delete the parking fahrzeug by saving in local variable and then immediately store as fahren
+	for(auto i = p_pFahrzeuge.begin(); i != p_pFahrzeuge.end(); ++i)
+	{
+		if (**i == fahrzeug)
+		{
+			std::unique_ptr<Fahrzeug> save = std::move(*i);
+			p_pFahrzeuge.erase(i);
+			return save;
+		}
+	}
+	std::cout << "Weg::pAbgabe returns nullptr" << std::endl;
+	return nullptr;
 }
 

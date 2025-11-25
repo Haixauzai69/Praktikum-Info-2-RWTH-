@@ -312,7 +312,7 @@ void vAufgabe_6()
 	junkerstrasse->vAnnahme(std::move(car1), 4.0); // startzeit hinzufügen bedeutet parken
 	junkerstrasse->vAnnahme(std::move(bike1));
 
-	for(int i = 0; i < 10 ; i++)
+	for(int i = 0; i < 20 ; i++)
 	{
 		try
 		{

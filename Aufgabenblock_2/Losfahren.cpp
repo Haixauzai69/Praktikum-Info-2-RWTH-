@@ -25,7 +25,13 @@ void Losfahren::vBearbeiten()
 	std::cout << "Parkendes Fahrzeug fährt ab" << std::endl;
 	std::cout << "Fahrzeug: " << p_rFahrzeug.sGetName() << " Strasse: " << p_rWeg.sGetName() << std::endl;
 
-	p_rFahrzeug.vNeueStrecke(p_rWeg);
+	std::unique_ptr<Fahrzeug> lokal = p_rWeg.pAbgabe(p_rFahrzeug);
+	if(lokal == nullptr)
+	{
+		std::cout << "Losfahren working with nullptr" << std::endl;
+	}
+	p_rWeg.vAnnahme(std::move(lokal));
+//	p_rFahrzeug.vNeueStrecke(p_rWeg);
 }
 
 

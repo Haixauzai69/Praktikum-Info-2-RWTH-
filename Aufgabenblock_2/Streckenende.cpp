@@ -24,6 +24,12 @@ void Streckenende::vBearbeiten()
 {
 	std::cout << "Fahrzeug erreicht das Ende des Weges (Exception) " << std::endl;
 	std::cout << "Fahrzeug: " << p_rFahrzeug.sGetName() << " Strasse: " << p_rWeg.sGetName() << std::endl;
+
+	std::unique_ptr<Fahrzeug> lokal = p_rWeg.pAbgabe(p_rFahrzeug);
+	if(lokal == nullptr)
+	{
+		std::cout << "Streckenende working with nullptr" << std::endl;
+	}
 }
 
 
