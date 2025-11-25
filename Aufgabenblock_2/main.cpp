@@ -299,7 +299,7 @@ void vAufgabe_6()
 	{
 		try
 		{
-			junkerstrasse->vSimulieren(0.3);
+			junkerstrasse->vSimulieren(0.4);
 		}
 		catch(Fahrausnahme& error)
 		{
@@ -409,7 +409,6 @@ void weird()
 	}
 }
 
-
 int main()
 {
 //	vAufgabe1();
@@ -420,10 +419,9 @@ int main()
 //	vAufgabe_AB1();
 //	vAufgabe4();
 //	vAufgabe_5();
-//	vAufgabe_6();
+	vAufgabe_6();
 //	vTest();
 //	vAufgabe_6a();
-	weird();
 	std::cout << "Sucess" << std::endl;
 	return 0;
 }
