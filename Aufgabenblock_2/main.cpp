@@ -13,6 +13,7 @@
 #include <ios>
 #include <algorithm>
 #include <stdlib.h>
+#include <iterator>
 #include <stdexcept>
 #include <exception>
 #include <memory>
@@ -336,9 +337,52 @@ void vTest()
 
 void vAufgabe_6a() // to test the new vListe by generating random numbers
 {
-	static std::mt19937 device(seed);
+	static std::mt19937 device(0);
 	std::uniform_int_distribution<int> dist(1, 10);
-	int zuf = dist(device);
+
+	vertagt::VListe<int> liste;
+
+	for (int i = 0; i < 10; i++)
+	{
+		liste.push_back(dist(device));
+	}
+
+	liste.vAktualisieren(); // if i make this line disappear, the push back will not happen yet and can only be queued
+
+	std::cout << "Random list" << std::endl;
+	for (vertagt::VListe<int>::iterator i = liste.begin() ; i != liste.end() ; ++i)
+	{
+		std::cout << *i << " ";
+	}
+
+	std::cout << std::endl;
+
+	for (vertagt::VListe<int>::iterator i = liste.begin() ; i != liste.end() ; ++i)
+	{
+		if (*i > 5)
+		{
+			liste.erase(i);
+		}
+	}
+
+//	liste.vAktualisieren(); if this line appears the erase process will begin immediately and the numbers will be erased
+
+	std::cout << "Random list after erase" << std::endl;
+	for (vertagt::VListe<int>::iterator i = liste.begin() ; i != liste.end() ; ++i)
+		{
+			std::cout << *i << " ";
+		}
+
+	std::cout << std::endl;
+
+	liste.vAktualisieren(); // all the actions can only be called when this calls
+
+	std::cout << "Random list after vAktualisieren" << std::endl;
+	for (vertagt::VListe<int>::iterator i = liste.begin() ; i != liste.end() ; ++i)
+		{
+			std::cout << *i << " ";
+		}
+	std::cout << std::endl;
 }
 
 
@@ -352,8 +396,9 @@ int main()
 //	vAufgabe_AB1();
 //	vAufgabe4();
 //	vAufgabe_5();
-	vAufgabe_6();
+//	vAufgabe_6();
 //	vTest();
+	vAufgabe_6a();
 	std::cout << "Sucess" << std::endl;
 	return 0;
 }
