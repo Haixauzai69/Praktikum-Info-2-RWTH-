@@ -173,7 +173,7 @@ void vAufgabe_3()
     std::cout << *car1 << std::endl;
     std::cout << *car2 << std::endl;
 
-    if (car1 < car2)
+    if (*car1 < *car2)
         std::cout << car1->sGetName() << " has driven less than " << car2->sGetName() << std::endl;
     else
         std::cout << car1->sGetName() << " has driven more than or equal to " << car2->sGetName() << std::endl;
