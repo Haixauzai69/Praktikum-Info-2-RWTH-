@@ -19,7 +19,7 @@
 
 Weg::Weg(std::string name, double laenge, Tempolimit tempolimit)
 {
-	Simulationsobjekt::vSetName(name); // nice
+	Simulationsobjekt::vSetName(name);
 	p_dLaenge = laenge;
 	p_eTempolimit = tempolimit;
 }

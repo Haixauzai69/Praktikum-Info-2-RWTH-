@@ -83,24 +83,24 @@ void vAufgabe1a()
 	Fahrzeug::vKopf();
 	for (auto& fzg : vehicles)
 		{
-		     std::cout << *fzg << std::endl;  // polymorphic call
+		     std::cout << *fzg << std::endl;
 		}
 
-	for (int t = 0; t < 2; ++t) // after 1 hour
+	for (int t = 0; t < 2; ++t)
 	{
 		  dGlobaleZeit++;
 		  for (auto& i : vehicles)
 		  {
-			  i->vSimulieren(0.5); // time step of one hour for each step
-		  } // this loop iteration is 0.5 hour step for 1 hours. simulation runs for 1 hours
+			  i->vSimulieren(0.5);
+		  }
 	}
-// time step and number of hour for simulation are adjustable. Time step of 0.5 for 16 hours will be a simulation of 8 hours
+
 	std::cout << " " << std::endl;
 
 	Fahrzeug::vKopf();
 	for (auto& fzg : vehicles)
 		{
-			    std::cout << *fzg << std::endl;  // polymorphic call
+			    std::cout << *fzg << std::endl;
 		}
 }
 
@@ -115,16 +115,14 @@ void vAufgabe_2()
 
 	    std::vector<std::unique_ptr<Fahrzeug>> vehicles;
 
-	    // Create PKWs
 	    for (int i = 0; i < numCars; ++i)
 	    {
 	        std::string name = "Car_" + std::to_string(i + 1);
-	        double verbrauch = 5 + i;          // example consumption
-	        double tankvolumen = 55;           // default tank size
+	        double verbrauch = 5 + i;
+	        double tankvolumen = 55;
 	        vehicles.push_back(std::make_unique<Car>(verbrauch, tankvolumen));
 	    }
 
-	    // Create Fahrräder
 	    for (int i = 0; i < numBikes; ++i)
 	    {
 	        std::string name = "Bike_" + std::to_string(i + 1);
@@ -133,11 +131,11 @@ void vAufgabe_2()
 	    }
 
 	    // Simulation loop
-	    double dTimeStep = 0.5; // 0.5 hours
+	    double dTimeStep = 0.5;
 	    double dTotalTime = 0.0;
 	    double epsilon = 1e-6;
 
-	    while (dTotalTime < 6.0) // simulate 6 hours
+	    while (dTotalTime < 6.0)
 	    {
 	        dGlobaleZeit += dTimeStep;
 	        dTotalTime += dTimeStep;
@@ -145,19 +143,17 @@ void vAufgabe_2()
 	        for (auto& fzg : vehicles)
 	            fzg->vSimulieren(dTimeStep);
 
-	        // After exactly 3 hours: refuel cars
 	        if (std::fabs(dTotalTime - 3.0) < epsilon)
 	        {
 	            for (auto& fzg : vehicles)
-	                fzg->dTanken(); // only PKWs do something
+	                fzg->dTanken();
 	        }
 
-	        // Output after each step
 	        std::cout << "\nAfter " << dTotalTime << " hours:\n";
 	        Fahrzeug::vKopf();
 	        for (auto& fzg : vehicles)
 	        {
-	            std::cout << *fzg << std::endl;  // polymorphic call
+	            std::cout << *fzg << std::endl;
 	        }
 	    }
 }
@@ -167,8 +163,8 @@ void vAufgabe_3()
     Fahrzeug car1("Audi", 150.0);
     Fahrzeug car2("BMW", 130.0);
 
-    car1.vSimulieren(2.0);  // 2 hours
-    car2.vSimulieren(1.0);  // 1 hour
+    car1.vSimulieren(2.0);
+    car2.vSimulieren(1.0);
 
     std::cout << "\n--- Current Vehicle States ---\n";
     Fahrzeug::vKopf();
@@ -236,7 +232,7 @@ void vAufgabe_3()
 //    }
 //}
 
-void vAufgabe4() // testing << operator to print out a street
+void vAufgabe4()
 {
 	std::unique_ptr<Fahrzeug> car1 = std::make_unique<Fahrzeug>("BMW", 210);
 	std::unique_ptr<Weg> boxgraben = std::make_unique<Weg>("Boxgraben", 24, Tempolimit::Innerorts);
@@ -327,7 +323,6 @@ void vTest()
     bool ok = bZeichneStrasse("W1", "W2", 500, 2, koordinaten);
     std::cout << "Draw result = " << ok << std::endl;
 
-    // Add a vehicle so the road must render:
     bZeichnePKW("Auto1", "W1", 0.0, 40.0, 20.0);
 
     vSetzeZeit(5.0);
@@ -336,7 +331,7 @@ void vTest()
     vBeendeGrafik();
 }
 
-void vAufgabe_6a() // to test the new vListe by generating random numbers
+void vAufgabe_6a()
 {
 	static std::mt19937 device(0);
 	std::uniform_int_distribution<int> dist(1, 10);
@@ -386,29 +381,6 @@ void vAufgabe_6a() // to test the new vListe by generating random numbers
 	std::cout << std::endl;
 }
 
-void weird()
-{
-	std::list<int> list(2,3);
-	int i = 0;
-	list.push_back(1);
-	list.remove(1);
-
-	for (auto it = list.begin(); it != list.end() ; it++)
-	{
-		list.push_front(i++);
-	}
-
-	list.push_back(2);
-	list.remove(1);
-	auto itl = list.end();
-	list.erase(--itl);
-
-	for (auto it = list.begin(); it != list.end() ; it++)
-	{
-		std::cout << *it << std::endl;
-	}
-}
-
 int main()
 {
 //	vAufgabe1();
@@ -419,10 +391,9 @@ int main()
 //	vAufgabe_AB1();
 //	vAufgabe4();
 //	vAufgabe_5();
-//	vAufgabe_6();
+	vAufgabe_6();
 //	vTest();
 //	vAufgabe_6a();
-	weird();
 	std::cout << "Sucess" << std::endl;
 	return 0;
 }

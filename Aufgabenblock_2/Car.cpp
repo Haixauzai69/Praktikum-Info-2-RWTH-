@@ -15,7 +15,7 @@
 #include <ios>
 #include <algorithm>
 
-Car::Car(double verbrauch, double tankvolumen) : Fahrzeug("Auto", 217) // must change
+Car::Car(double verbrauch, double tankvolumen) : Fahrzeug("Auto", 217)
 {
 	p_dVerbrauch = verbrauch;
 	p_dTankvolumen = tankvolumen;
@@ -36,7 +36,7 @@ double Car::dTanken(double dMenge)
 	return p_dTankinhalt - vorher;
 }
 
-void Car::vSimulieren(double dTimeStep) // next task: adding Fahren::dStrecke into vSimulieren for fahrzeuge, car and fahrrad
+void Car::vSimulieren(double dTimeStep)
 {
 	double dS = p_pVerhalten->dStrecke(*this, dTimeStep);
 
@@ -46,7 +46,7 @@ void Car::vSimulieren(double dTimeStep) // next task: adding Fahren::dStrecke in
 		return;
 	}
 
-	double dVerbrauch = (dS / 100.0) * p_dVerbrauch; // pro 100 Km in liters
+	double dVerbrauch = (dS / 100.0) * p_dVerbrauch; // liters pro 100km
 
 	if (p_dTankinhalt > dVerbrauch)
 	{
