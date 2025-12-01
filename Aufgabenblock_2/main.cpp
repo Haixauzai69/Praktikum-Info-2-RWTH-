@@ -160,27 +160,29 @@ void vAufgabe_2()
 
 void vAufgabe_3()
 {
-    Fahrzeug car1("Audi", 150.0);
-    Fahrzeug car2("BMW", 130.0);
+	auto car1 = std::make_unique<Fahrzeug>("Audi", 15.0);
+	auto car2 = std::make_unique<Fahrzeug>("BMW", 13.0);
 
-    car1.vSimulieren(2.0);
-    car2.vSimulieren(1.0);
+    Weg weg1("Weg1", 300, Tempolimit::Autobahn);
 
-    std::cout << "\n--- Current Vehicle States ---\n";
-    Fahrzeug::vKopf();
-    std::cout << car1 << std::endl;
-    std::cout << car2 << std::endl;
+    weg1.vAnnahme(std::move(car1));
+    weg1.vAnnahme(std::move(car2));
+
+    weg1.vSimulieren(2.0);
+
+    std::cout << *car1 << std::endl;
+    std::cout << *car2 << std::endl;
 
     if (car1 < car2)
-        std::cout << car1.sGetName() << " has driven less than " << car2.sGetName() << "\n";
+        std::cout << car1->sGetName() << " has driven less than " << car2->sGetName() << std::endl;
     else
-        std::cout << car1.sGetName() << " has driven more than or equal to " << car2.sGetName() << "\n";
+        std::cout << car1->sGetName() << " has driven more than or equal to " << car2->sGetName() << std::endl;
 
 
     Fahrzeug car3("Mercedes", 200.0);
-    std::cout << "\nBefore assignment:\n" << car3 << std::endl;
-    car3 = car1;
-    std::cout << "After assignment (car3 = car1):\n" << car3 << std::endl;
+    std::cout << "Before assignment: " << car3 << std::endl;
+    car3 = *car1;
+    std::cout << "After assignment (car3 = car1): " << car3 << std::endl;
 }
 
 //double dEpsilon = 0.001;
@@ -386,12 +388,12 @@ int main()
 //	vAufgabe1();
 //	vAufgabe1a();
 //	vAufgabe_2();
-//	vAufgabe_3();
+	vAufgabe_3();
 //	vAufgabe_Probe();
 //	vAufgabe_AB1();
 //	vAufgabe4();
 //	vAufgabe_5();
-	vAufgabe_6();
+//	vAufgabe_6();
 //	vTest();
 //	vAufgabe_6a();
 	std::cout << "Sucess" << std::endl;
