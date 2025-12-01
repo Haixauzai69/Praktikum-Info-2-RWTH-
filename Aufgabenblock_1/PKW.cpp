@@ -14,7 +14,7 @@
 #include <ios>
 #include <algorithm>
 
-Car::Car(double verbrauch, double tankvolumen) : Fahrzeug("Auto", 217) // must change
+Car::Car(double verbrauch, double tankvolumen) : Fahrzeug("Auto", 217)
 {
 	p_dVerbrauch = verbrauch;
 	p_dTankvolumen = tankvolumen;
@@ -40,7 +40,7 @@ double Car::dTanken(double dMenge)
 	return p_dTankinhalt - vorher;
 }
 
-void Car::vSimulieren(double dTimeStep) // how to make the car be fueled after being empty
+void Car::vSimulieren(double dTimeStep)
 {
 	if (p_bEmpty == true)
 	{

@@ -95,16 +95,16 @@ void vAufgabe1a()
 		  dGlobaleZeit++;
 		  for (auto& i : vehicles)
 		  {
-			  i->vSimulieren(0.5); // time step of one hour for each step
-		  } // this loop iteration is 0.5 hour step for 1 hours. simulation runs for 1 hours
+			  i->vSimulieren(0.5);
+		  }
 	}
-// time step and number of hour for simulation are adjustable. Time step of 0.5 for 16 hours will be a simulation of 8 hours
+
 	std::cout << " " << std::endl;
 //	vAusgabe(vehicles);
 	Fahrzeug::vKopf();
 	for (auto& fzg : vehicles)
 		{
-			    std::cout << *fzg << std::endl;  // polymorphic call
+			    std::cout << *fzg << std::endl;
 		}
 }
 
@@ -119,16 +119,16 @@ void vAufgabe_2()
 
 	    std::vector<std::unique_ptr<Fahrzeug>> vehicles;
 
-	    // Create PKWs
+
 	    for (int i = 0; i < numCars; ++i)
 	    {
 	        std::string name = "Car_" + std::to_string(i + 1);
-	        double verbrauch = 5 + i;          // example consumption
-	        double tankvolumen = 55;           // default tank size
+	        double verbrauch = 5 + i;
+	        double tankvolumen = 55;
 	        vehicles.push_back(std::make_unique<Car>(verbrauch, tankvolumen));
 	    }
 
-	    // Create Fahrräder
+
 	    for (int i = 0; i < numBikes; ++i)
 	    {
 	        std::string name = "Bike_" + std::to_string(i + 1);
@@ -136,12 +136,12 @@ void vAufgabe_2()
 	        vehicles.push_back(std::make_unique<Fahrrad>(name, maxSpeed));
 	    }
 
-	    // Simulation loop
-	    double dTimeStep = 0.5; // 0.5 hours
+
+	    double dTimeStep = 0.5;
 	    double dTotalTime = 0.0;
 	    double epsilon = 1e-6;
 
-	    while (dTotalTime < 6.0) // simulate 6 hours
+	    while (dTotalTime < 6.0)
 	    {
 	        dGlobaleZeit += dTimeStep;
 	        dTotalTime += dTimeStep;
@@ -149,11 +149,11 @@ void vAufgabe_2()
 	        for (auto& fzg : vehicles)
 	            fzg->vSimulieren(dTimeStep);
 
-	        // After exactly 3 hours: refuel cars
+
 	        if (std::fabs(dTotalTime - 3.0) < epsilon)
 	        {
 	            for (auto& fzg : vehicles)
-	                fzg->dTanken(); // only PKWs do something
+	                fzg->dTanken();
 	        }
 
 	        // Output after each step
@@ -161,44 +161,35 @@ void vAufgabe_2()
 	        Fahrzeug::vKopf();
 	        for (auto& fzg : vehicles)
 	        {
-	            std::cout << *fzg << std::endl;  // polymorphic call
+	            std::cout << *fzg << std::endl;
 	        }
 	    }
 }
 
 void vAufgabe_3()
 {
-    std::cout << "\n===== Aufgabe 3: Operator Tests =====\n";
-
-    // 1️ Create some vehicles
     Fahrzeug car1("Audi", 150.0);
     Fahrzeug car2("BMW", 130.0);
 
-    // 2️ Simulate for different times
-    car1.vSimulieren(2.0);  // 2 hours
-    car2.vSimulieren(1.0);  // 1 hour
 
-    // 3️ Test the output operator <<
-    std::cout << "\n--- Current Vehicle States ---\n";
+    car1.vSimulieren(2.0);
+    car2.vSimulieren(1.0);
+
     Fahrzeug::vKopf();
     std::cout << car1 << std::endl;
     std::cout << car2 << std::endl;
 
-    // 4️ Test operator<
+
     if (car1 < car2)
         std::cout << car1.getName() << " has driven less than " << car2.getName() << "\n";
     else
         std::cout << car1.getName() << " has driven more than or equal to " << car2.getName() << "\n";
 
 
-
-    // 6️ Test assignment operator
     Fahrzeug car3("Mercedes", 200.0);
     std::cout << "\nBefore assignment:\n" << car3 << std::endl;
-    car3 = car1; // uses operator=
+    car3 = car1;
     std::cout << "After assignment (car3 = car1):\n" << car3 << std::endl;
-
-    std::cout << "\n===== End of Aufgabe 3 =====\n";
 }
 
 //double dEpsilon = 0.001;

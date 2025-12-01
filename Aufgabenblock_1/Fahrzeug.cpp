@@ -93,14 +93,7 @@ Fahrzeug& Fahrzeug::operator=(const Fahrzeug& other)
 {
     if (this != &other)
     {
-        // Copy only “static” or initial attributes — not runtime values.
-        // ID should NOT be copied!
-        // The name might be allowed or not, depending on your design.
-
-        // Example: don’t copy ID or current total distance
-        // You can copy p_sName if it’s not const (if const, skip it)
         this->p_dMaxGeschwindigkeit = other.p_dMaxGeschwindigkeit;
-        // Maybe reset some runtime stats here
         this->p_dGesamtStrecke = 0.0;
         this->p_dGesamtZeit = 0.0;
     }
