@@ -395,7 +395,6 @@ int main()
 //	vTest();
 //	vAufgabe_6a();
 	std::cout << "Sucess" << std::endl;
-	std::cout << "Sucess" << std::endl;
 	return 0;
 }
 
