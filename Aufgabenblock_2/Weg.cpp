@@ -68,6 +68,8 @@ void Weg::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug)
 	fahrzeug->vNeueStrecke(*this);
 
 	p_pFahrzeuge.push_back(std::move(fahrzeug));
+
+	p_pFahrzeuge.vAktualisieren();
 }
 
 void Weg::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug, double start)

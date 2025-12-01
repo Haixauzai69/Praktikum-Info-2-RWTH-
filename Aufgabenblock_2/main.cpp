@@ -241,6 +241,7 @@ void vAufgabe4()
 
 	std::unique_ptr<Fahrzeug> car2 = std::make_unique<Fahrzeug>("Audi", 240);
 	boxgraben->vAnnahme(std::move(car2));
+	boxgraben->vAnnahme(std::move(car1));
 	boxgraben->vKopf();
 	std::cout << *boxgraben << std::endl;
 	std::cout << std::endl;
@@ -388,10 +389,10 @@ int main()
 //	vAufgabe1();
 //	vAufgabe1a();
 //	vAufgabe_2();
-	vAufgabe_3();
+//	vAufgabe_3();
 //	vAufgabe_Probe();
 //	vAufgabe_AB1();
-//	vAufgabe4();
+	vAufgabe4();
 //	vAufgabe_5();
 //	vAufgabe_6();
 //	vTest();
