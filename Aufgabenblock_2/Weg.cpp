@@ -16,6 +16,9 @@
 #include "Simulationsobjekt.h"
 #include "Fahrzeug.h"
 #include "Car.h"
+#include "Losfahren.h"
+#include "Fahrausnahme.h"
+#include "Streckenende.h"
 
 Weg::Weg(std::string name, double laenge, Tempolimit tempolimit)
 {
@@ -33,7 +36,15 @@ void Weg::vSimulieren(double dTimeStep)
 {
 	for (auto& i : p_pFahrzeuge)
 	{
-		i->vSimulieren(dTimeStep);
+		try
+		{
+			i->vSimulieren(dTimeStep);
+		}
+
+		catch(Fahrausnahme& error)
+			{
+				error.vBearbeiten(); // fixen
+			}
 	}
 	p_pFahrzeuge.vAktualisieren();
 }
@@ -79,6 +90,8 @@ void Weg::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug, double start)
 	fahrzeug->vNeueStrecke(*this, start);
 
 	p_pFahrzeuge.push_front(std::move(fahrzeug));
+
+	p_pFahrzeuge.vAktualisieren();
 }
 
 double Weg::dGetLaenge() const

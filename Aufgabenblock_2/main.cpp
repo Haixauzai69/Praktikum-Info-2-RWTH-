@@ -255,22 +255,22 @@ void vAufgabe_5()
 	std::unique_ptr<Fahrrad> bike1 = std::make_unique<Fahrrad>("Mountain bike", 30);
 	std::unique_ptr<Fahrzeug> tram16 = std::make_unique<Fahrzeug>("Tram 16", 70);
 
-	theaterstr->vAnnahme(std::move(car1), 5.0); // startzeit hinzufügen bedeutet parken
+	theaterstr->vAnnahme(std::move(car1), 1.0); // startzeit hinzufügen bedeutet parken
 	theaterstr->vAnnahme(std::move(bike1));
 	theaterstr->vAnnahme(std::move(tram16));
 
 	theaterstr->vKopf();
 	std::cout << *theaterstr << std::endl;
 
-	try
-	{
+//	try
+//	{
 		theaterstr->vSimulieren(2.0);
-	}
+//	}
 
-	catch(Fahrausnahme& error)
-	{
-		error.vBearbeiten();
-	}
+//	catch(Fahrausnahme& error)
+//	{
+//		error.vBearbeiten();
+//	}
 
 	theaterstr->vKopf();
 	std::cout << *theaterstr << std::endl;
@@ -392,9 +392,9 @@ int main()
 //	vAufgabe_3();
 //	vAufgabe_Probe();
 //	vAufgabe_AB1();
-	vAufgabe4();
+//	vAufgabe4();
 //	vAufgabe_5();
-//	vAufgabe_6();
+	vAufgabe_6();
 //	vTest();
 //	vAufgabe_6a();
 	std::cout << "Sucess" << std::endl;
