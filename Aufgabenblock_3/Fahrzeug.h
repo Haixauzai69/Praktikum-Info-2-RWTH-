@@ -28,6 +28,8 @@ class Fahrzeug : public Simulationsobjekt
 		std::shared_ptr<Verhalten> p_pVerhalten;
 		double p_dAbschnittStrecke = 0; // strecke on one street
 
+		double p_dStartZeit = 0;
+
 	public:
 		Fahrzeug(const std::string name, double max_geschwindigkeit);
 		virtual ~Fahrzeug();
@@ -35,6 +37,7 @@ class Fahrzeug : public Simulationsobjekt
 		double getMaxGeschwindigkeit() const;
 		double getGesamtStrecke() const;
 		double getStreckenabschn();
+		double getStartZeit();
 
 		void vAddStrecke(double strecke);
 

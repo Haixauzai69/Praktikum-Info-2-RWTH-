@@ -99,6 +99,7 @@ void Fahrzeug::vNeueStrecke(Weg& weg, double start)
 {
 	p_pVerhalten = std::make_shared<Parken>(weg, start);
 	p_dAbschnittStrecke = 0.0;
+	p_dStartZeit = start;
 }
 
 double Fahrzeug::getStreckenabschn()
@@ -114,6 +115,11 @@ void Fahrzeug::vAddStrecke(double strecke)
 void Fahrzeug::vZeichen(const Weg& weg)
 {
 
+}
+
+double Fahrzeug::getStartZeit()
+{
+	return p_dStartZeit;
 }
 
 

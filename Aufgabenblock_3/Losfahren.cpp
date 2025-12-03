@@ -24,6 +24,7 @@ void Losfahren::vBearbeiten()
 {
 	std::cout << "Parkendes Fahrzeug fährt ab" << std::endl;
 	std::cout << "Fahrzeug: " << p_rFahrzeug.sGetName() << " Strasse: " << p_rWeg.sGetName() << std::endl;
+	std::cout << "Abfahrt: " << p_rFahrzeug.getStartZeit() << std::endl;
 
 	std::unique_ptr<Fahrzeug> lokal = p_rWeg.pAbgabe(p_rFahrzeug);
 	if(lokal == nullptr)

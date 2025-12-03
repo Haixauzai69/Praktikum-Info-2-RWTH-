@@ -80,7 +80,7 @@ void Weg::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug)
 
 	p_pFahrzeuge.push_back(std::move(fahrzeug));
 
-	p_pFahrzeuge.vAktualisieren();
+//	p_pFahrzeuge.vAktualisieren();
 }
 
 void Weg::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug, double start)
@@ -91,7 +91,7 @@ void Weg::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug, double start)
 
 	p_pFahrzeuge.push_front(std::move(fahrzeug));
 
-	p_pFahrzeuge.vAktualisieren();
+//	p_pFahrzeuge.vAktualisieren();
 }
 
 double Weg::dGetLaenge() const

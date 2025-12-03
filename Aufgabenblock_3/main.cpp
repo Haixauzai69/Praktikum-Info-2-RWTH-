@@ -295,7 +295,13 @@ void vAufgabe_6()
 
 		vSetzeZeit(dGlobaleZeit);
 
-		dGlobaleZeit += 0.4; // from now on global zeit must be updated in the loop in main
+		dGlobaleZeit += 0.4;  // from now on global zeit must be updated in the loop in main
+
+		if (i == 20/2)
+		{
+			std::unique_ptr<Car> car2 = std::make_unique<Car>(5, 55);
+			junkerstrasse->vAnnahme(std::move(car2), dGlobaleZeit + 3.0);
+		}
 
 		for (auto& i : junkerstrasse->getFahrzeuge())
 		{
@@ -303,7 +309,7 @@ void vAufgabe_6()
 		}
 		vSleep(600);
 	}
-	vSleep(10000);
+	vSleep(1000);
 	vBeendeGrafik();
 }
 
@@ -385,8 +391,8 @@ int main()
 //	vAufgabe_Probe();
 //	vAufgabe_AB1();
 //	vAufgabe4();
-	vAufgabe_5();
-//	vAufgabe_6();
+//	vAufgabe_5();
+	vAufgabe_6();
 //	vTest();
 //	vAufgabe_6a();
 	std::cout << "Sucess" << std::endl;
