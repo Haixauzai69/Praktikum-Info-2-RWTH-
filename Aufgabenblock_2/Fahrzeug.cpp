@@ -41,7 +41,6 @@ void Fahrzeug::vSimulieren(double dTimeStep)
 
 	p_dAbschnittStrecke += dS;
 	p_dGesamtStrecke += dS;
-	dGlobaleZeit += dTimeStep;
 }
 
 double Fahrzeug::dGeschwindigkeit() const

@@ -253,24 +253,18 @@ void vAufgabe_5()
 
 	std::unique_ptr<Car> car1 = std::make_unique<Car>(8, 55);
 	std::unique_ptr<Fahrrad> bike1 = std::make_unique<Fahrrad>("Mountain bike", 30);
-	std::unique_ptr<Fahrzeug> tram16 = std::make_unique<Fahrzeug>("Tram 16", 70);
 
 	theaterstr->vAnnahme(std::move(car1), 1.0); // startzeit hinzufügen bedeutet parken
 	theaterstr->vAnnahme(std::move(bike1));
-	theaterstr->vAnnahme(std::move(tram16));
 
 	theaterstr->vKopf();
 	std::cout << *theaterstr << std::endl;
 
-//	try
-//	{
+	for (int i = 0; i < 5; i++)
+	{
 		theaterstr->vSimulieren(2.0);
-//	}
-
-//	catch(Fahrausnahme& error)
-//	{
-//		error.vBearbeiten();
-//	}
+		dGlobaleZeit += 2.0; // from now on global zeit must be updated in the loop in main
+	}
 
 	theaterstr->vKopf();
 	std::cout << *theaterstr << std::endl;
@@ -296,15 +290,13 @@ void vAufgabe_6()
 
 	for(int i = 0; i < 20 ; i++)
 	{
-		try
-		{
-			junkerstrasse->vSimulieren(0.4);
-		}
-		catch(Fahrausnahme& error)
-		{
-		    error.vBearbeiten();
-		}
+
+		junkerstrasse->vSimulieren(0.4);
+
 		vSetzeZeit(dGlobaleZeit);
+
+		dGlobaleZeit += 0.4; // from now on global zeit must be updated in the loop in main
+
 		for (auto& i : junkerstrasse->getFahrzeuge())
 		{
 		     i->vZeichen(*junkerstrasse);
@@ -393,8 +385,8 @@ int main()
 //	vAufgabe_Probe();
 //	vAufgabe_AB1();
 //	vAufgabe4();
-//	vAufgabe_5();
-	vAufgabe_6();
+	vAufgabe_5();
+//	vAufgabe_6();
 //	vTest();
 //	vAufgabe_6a();
 	std::cout << "Sucess" << std::endl;

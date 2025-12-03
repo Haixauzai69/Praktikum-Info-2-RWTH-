@@ -42,9 +42,9 @@ void Weg::vSimulieren(double dTimeStep)
 		}
 
 		catch(Fahrausnahme& error)
-			{
-				error.vBearbeiten(); // fixen
-			}
+		{
+			error.vBearbeiten();
+		}
 	}
 	p_pFahrzeuge.vAktualisieren();
 }
@@ -112,7 +112,6 @@ std::unique_ptr<Fahrzeug> Weg::pAbgabe(const Fahrzeug& fahrzeug)
 		{
 			std::unique_ptr<Fahrzeug> save = std::move(*i);
 			p_pFahrzeuge.erase(i);
-			p_pFahrzeuge.vAktualisieren();
 			return save;
 		}
 	}
