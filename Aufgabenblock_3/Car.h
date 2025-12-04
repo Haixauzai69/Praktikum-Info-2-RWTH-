@@ -19,7 +19,7 @@ class Car : public Fahrzeug
 {
 	public:
 	Car() =  delete;
-	Car(double verbrauch, double tankvolumen);
+	Car(double max_speed, double verbrauch, double tankvolumen);
 	virtual ~Car() = default;
 	double dTanken (double dMenge = std::numeric_limits<double>::infinity()) override;
 	void vSimulieren(double dTimeStep) override;

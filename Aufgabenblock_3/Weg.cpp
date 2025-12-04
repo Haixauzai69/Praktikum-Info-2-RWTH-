@@ -8,6 +8,7 @@
 #include <string>
 #include <memory>
 #include <iomanip>
+#include <algorithm>
 #include <ios>
 #include <list>
 #include <iterator>
@@ -106,7 +107,7 @@ std::unique_ptr<Fahrzeug> Weg::pAbgabe(const Fahrzeug& fahrzeug)
 	{
 		if (*i == nullptr) continue;
 
-		if (i->get() == &fahrzeug)  // if (**i == fahrzeug)
+		if (**i == fahrzeug)  // if (**i == fahrzeug) i->get() == &fahrzeug
 		{
 			std::unique_ptr<Fahrzeug> save = std::move(*i);
 			p_pFahrzeuge.erase(i);

@@ -15,7 +15,7 @@
 #include <ios>
 #include <algorithm>
 
-Car::Car(double verbrauch, double tankvolumen) : Fahrzeug("Auto", 217)
+Car::Car(double max_speed, double verbrauch, double tankvolumen) : Fahrzeug("Auto", max_speed)
 {
 	p_dVerbrauch = verbrauch;
 	p_dTankvolumen = tankvolumen;

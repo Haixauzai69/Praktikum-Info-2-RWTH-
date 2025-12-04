@@ -71,7 +71,7 @@ void vAufgabe1()
 
 void vAufgabe1a()
 {
-	std::unique_ptr<Car> car = std::make_unique<Car>(5, 55);
+	std::unique_ptr<Car> car = std::make_unique<Car>(200, 5, 55);
 	std::unique_ptr<Fahrzeug> bike = std::make_unique<Fahrzeug>("Bike", 20);
 	std::unique_ptr<Fahrzeug> tram = std::make_unique<Fahrzeug>("Tram", 100);
 
@@ -120,7 +120,7 @@ void vAufgabe_2()
 	        std::string name = "Car_" + std::to_string(i + 1);
 	        double verbrauch = 5 + i;
 	        double tankvolumen = 55;
-	        vehicles.push_back(std::make_unique<Car>(verbrauch, tankvolumen));
+	        vehicles.push_back(std::make_unique<Car>(200, verbrauch, tankvolumen));
 	    }
 
 	    for (int i = 0; i < numBikes; ++i)
@@ -251,7 +251,7 @@ void vAufgabe_5()
 {
 	auto theaterstr = std::make_unique<Weg>("Theaterstr.", 50, Tempolimit::Innerorts);
 
-	std::unique_ptr<Car> car1 = std::make_unique<Car>(8, 55);
+	std::unique_ptr<Car> car1 = std::make_unique<Car>(200, 8, 55);
 	std::unique_ptr<Fahrrad> bike1 = std::make_unique<Fahrrad>("Mountain bike", 30);
 
 	theaterstr->vAnnahme(std::move(car1), 1.0); // startzeit hinzufügen bedeutet parken
@@ -274,8 +274,12 @@ void vAufgabe_6()
 {
 	auto junkerstrasse = std::make_unique<Weg>("Weg1", 500, Tempolimit::Innerorts);
 
-	std::unique_ptr<Car> car1 = std::make_unique<Car>(8, 55);
+	std::unique_ptr<Car> car1 = std::make_unique<Car>(200, 8, 55);
 	std::unique_ptr<Fahrrad> bike1 = std::make_unique<Fahrrad>("Mountain_bike", 30);
+
+	std::unique_ptr<Car> car2 = std::make_unique<Car>(150, 5, 55);
+//	std::unique_ptr<Fahrrad> bike2 = std::make_unique<Fahrrad>("City_Bike", 20);
+
 
     int koordinaten[4] = {100, 250, 700, 250};
 
@@ -285,23 +289,25 @@ void vAufgabe_6()
 
     bZeichneStrasse(junkerstrasse->sGetName() + "_hin", junkerstrasse->sGetName() + "_rueck", junkerstrasse->dGetLaenge(), 2, koordinaten);
 
-	junkerstrasse->vAnnahme(std::move(car1), 3.0); // startzeit hinzufügen bedeutet parken
+	junkerstrasse->vAnnahme(std::move(car1), 5.0); // startzeit hinzufügen bedeutet parken
 	junkerstrasse->vAnnahme(std::move(bike1));
+	junkerstrasse->vAnnahme(std::move(car2), 10.0);
+//	junkerstrasse->vAnnahme(std::move(bike2), 2.0);
 
 	for(int i = 0; i < 20 ; i++)
 	{
 
-		junkerstrasse->vSimulieren(0.4);
+		junkerstrasse->vSimulieren(1.0);
 
 		vSetzeZeit(dGlobaleZeit);
 
-		dGlobaleZeit += 0.4;  // from now on global zeit must be updated in the loop in main
+		dGlobaleZeit += 1.0;  // from now on global zeit must be updated in the loop in main
 
-		if (i == 20/2)
-		{
-			std::unique_ptr<Car> car2 = std::make_unique<Car>(5, 55);
-			junkerstrasse->vAnnahme(std::move(car2), dGlobaleZeit + 3.0);
-		}
+//		if (i == 20/2)
+//		{
+//			std::unique_ptr<Car> car2 = std::make_unique<Car>(5, 55);
+//			junkerstrasse->vAnnahme(std::move(car2), dGlobaleZeit + 3.0);
+//		}
 
 		for (auto& i : junkerstrasse->getFahrzeuge())
 		{
