@@ -32,7 +32,6 @@ void Losfahren::vBearbeiten()
 		std::cout << "Losfahren working with nullptr" << std::endl;
 	}
 	p_rWeg.vAnnahme(std::move(lokal));
-//	p_rFahrzeug.vNeueStrecke(p_rWeg);
 }
 
 

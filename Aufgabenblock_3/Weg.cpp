@@ -79,8 +79,6 @@ void Weg::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug)
 	fahrzeug->vNeueStrecke(*this);
 
 	p_pFahrzeuge.push_back(std::move(fahrzeug));
-
-//	p_pFahrzeuge.vAktualisieren();
 }
 
 void Weg::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug, double start)
@@ -90,8 +88,6 @@ void Weg::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug, double start)
 	fahrzeug->vNeueStrecke(*this, start);
 
 	p_pFahrzeuge.push_front(std::move(fahrzeug));
-
-//	p_pFahrzeuge.vAktualisieren();
 }
 
 double Weg::dGetLaenge() const
@@ -108,10 +104,11 @@ std::unique_ptr<Fahrzeug> Weg::pAbgabe(const Fahrzeug& fahrzeug)
 {
 	for(auto i = p_pFahrzeuge.begin(); i != p_pFahrzeuge.end(); ++i)
 	{
+		if (*i == nullptr) continue;
+
 		if (i->get() == &fahrzeug)  // if (**i == fahrzeug)
 		{
 			std::unique_ptr<Fahrzeug> save = std::move(*i);
-			*i = nullptr;
 			p_pFahrzeuge.erase(i);
 			return save;
 		}
