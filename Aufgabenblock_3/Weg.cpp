@@ -108,9 +108,10 @@ std::unique_ptr<Fahrzeug> Weg::pAbgabe(const Fahrzeug& fahrzeug)
 {
 	for(auto i = p_pFahrzeuge.begin(); i != p_pFahrzeuge.end(); ++i)
 	{
-		if (**i == fahrzeug)
+		if (i->get() == &fahrzeug)  // if (**i == fahrzeug)
 		{
 			std::unique_ptr<Fahrzeug> save = std::move(*i);
+			*i = nullptr;
 			p_pFahrzeuge.erase(i);
 			return save;
 		}
