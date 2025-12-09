@@ -21,11 +21,12 @@
 #include "Fahrausnahme.h"
 #include "Streckenende.h"
 
-Weg::Weg(std::string name, double laenge, Tempolimit tempolimit)
+Weg::Weg(std::string name, double laenge, Tempolimit tempolimit, bool ueberholen)
 {
 	Simulationsobjekt::vSetName(name);
 	p_dLaenge = laenge;
 	p_eTempolimit = tempolimit;
+	p_bUeberholverbot = ueberholen;
 }
 
 enum Tempolimit Weg::getTempolimit()
@@ -33,13 +34,26 @@ enum Tempolimit Weg::getTempolimit()
 	return p_eTempolimit;
 }
 
+bool Weg::bGetUeberhol()
+{
+	return p_bUeberholverbot;
+}
+
 void Weg::vSimulieren(double dTimeStep)
 {
+    p_pVorherFzg = nullptr;
+    p_dVirtuelleSchranke = p_dLaenge;
+
 	for (auto& i : p_pFahrzeuge)
 	{
 		try
 		{
+            if (p_pVorherFzg != nullptr)
+            {
+                p_dVirtuelleSchranke = p_pVorherFzg->getStreckenabschn();
+            }
 			i->vSimulieren(dTimeStep);
+			p_pVorherFzg = i.get();
 		}
 
 		catch(Fahrausnahme& error)
@@ -107,7 +121,7 @@ std::unique_ptr<Fahrzeug> Weg::pAbgabe(const Fahrzeug& fahrzeug)
 	{
 		if (*i == nullptr) continue;
 
-		if (**i == fahrzeug)  // if (**i == fahrzeug) i->get() == &fahrzeug
+		if (**i == fahrzeug)
 		{
 			std::unique_ptr<Fahrzeug> save = std::move(*i);
 			p_pFahrzeuge.erase(i);
@@ -117,4 +131,25 @@ std::unique_ptr<Fahrzeug> Weg::pAbgabe(const Fahrzeug& fahrzeug)
 	std::cout << "Weg::pAbgabe returns nullptr" << std::endl;
 	return nullptr;
 }
+
+double Weg::dGetVirtuelleSchranke() const
+{
+    if (p_bUeberholverbot == false)
+    {
+        return p_dLaenge;
+    }
+
+    if (p_pVorherFzg == nullptr)
+    {
+      	return p_dLaenge;
+    }
+
+    if (p_pVorherFzg->dGetTank() <= 0)
+    {
+    	return p_dLaenge;
+    }
+
+    return p_dVirtuelleSchranke;
+}
+
 

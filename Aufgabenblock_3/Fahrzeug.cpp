@@ -48,6 +48,11 @@ double Fahrzeug::dGeschwindigkeit() const
 	return p_dMaxGeschwindigkeit;
 }
 
+double Fahrzeug::dGetTank()
+{
+	return 0.0;
+}
+
 bool Fahrzeug::operator<(const Fahrzeug& other) const
 {
     return this->p_dGesamtStrecke < other.p_dGesamtStrecke;

@@ -163,7 +163,7 @@ void vAufgabe_3()
 	auto car1 = std::make_unique<Fahrzeug>("Audi", 15.0);
 	auto car2 = std::make_unique<Fahrzeug>("BMW", 13.0);
 
-    Weg weg1("Weg1", 300, Tempolimit::Autobahn);
+    Weg weg1("Weg1", 300, Tempolimit::Autobahn, false);
 
     weg1.vAnnahme(std::move(car1));
     weg1.vAnnahme(std::move(car2));
@@ -237,7 +237,7 @@ void vAufgabe_3()
 void vAufgabe4()
 {
 	std::unique_ptr<Fahrzeug> car1 = std::make_unique<Fahrzeug>("BMW", 210);
-	std::unique_ptr<Weg> boxgraben = std::make_unique<Weg>("Boxgraben", 24, Tempolimit::Innerorts);
+	std::unique_ptr<Weg> boxgraben = std::make_unique<Weg>("Boxgraben", 24, Tempolimit::Innerorts, true);
 
 	std::unique_ptr<Fahrzeug> car2 = std::make_unique<Fahrzeug>("Audi", 240);
 	boxgraben->vAnnahme(std::move(car2));
@@ -249,7 +249,7 @@ void vAufgabe4()
 
 void vAufgabe_5()
 {
-	auto theaterstr = std::make_unique<Weg>("Theaterstr.", 50, Tempolimit::Innerorts);
+	auto theaterstr = std::make_unique<Weg>("Theaterstr.", 50, Tempolimit::Innerorts, true);
 
 	std::unique_ptr<Car> car1 = std::make_unique<Car>("Volkswagen", 200, 8, 55);
 	std::unique_ptr<Fahrrad> bike1 = std::make_unique<Fahrrad>("Mountain bike", 30);
@@ -272,7 +272,7 @@ void vAufgabe_5()
 
 void vAufgabe_6()
 {
-	auto junkerstrasse = std::make_unique<Weg>("Weg1", 500, Tempolimit::Innerorts);
+	auto junkerstrasse = std::make_unique<Weg>("Weg1", 500, Tempolimit::Innerorts, false);
 
 	std::unique_ptr<Car> car1 = std::make_unique<Car>("BMW", 200, 8, 55);
 	std::unique_ptr<Fahrrad> bike1 = std::make_unique<Fahrrad>("Mountain_bike", 30);
@@ -288,7 +288,7 @@ void vAufgabe_6()
 	junkerstrasse->vAnnahme(std::move(car1), 5.0); // startzeit hinzufügen bedeutet parken
 	junkerstrasse->vAnnahme(std::move(bike1));
 
-	for(int i = 0; i < 20 ; i++)
+	for(int i = 0; i < 30 ; i++)
 	{
 
 		junkerstrasse->vSimulieren(1.0);
@@ -309,7 +309,7 @@ void vAufgabe_6()
 		}
 		vSleep(600);
 	}
-	vSleep(1000);
+	vSleep(5000);
 	vBeendeGrafik();
 }
 

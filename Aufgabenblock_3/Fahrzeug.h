@@ -38,6 +38,7 @@ class Fahrzeug : public Simulationsobjekt
 		double getGesamtStrecke() const;
 		double getStreckenabschn();
 		double getStartZeit();
+		virtual double dGetTank();
 
 		void vAddStrecke(double strecke);
 

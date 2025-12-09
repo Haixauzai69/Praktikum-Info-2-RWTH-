@@ -24,18 +24,22 @@ class Weg : public Simulationsobjekt
 	protected:
 	double p_dLaenge;
 	enum Tempolimit p_eTempolimit;
-//	std::list<std::unique_ptr<Fahrzeug>> p_pFahrzeuge;
 	vertagt::VListe<std::unique_ptr<Fahrzeug>> p_pFahrzeuge;
+	bool p_bUeberholverbot;
+	double p_dVirtuelleSchranke = p_dLaenge;
+	Fahrzeug* p_pVorherFzg = nullptr;
 
 	public:
 	Weg() = delete;
 	Weg(Weg& weg) = delete;
-	Weg(std::string name, double laenge, enum Tempolimit tempolimit);
+	Weg(std::string name, double laenge, enum Tempolimit tempolimit, bool ueberholen);
 	virtual ~Weg() = default;
 
 	enum Tempolimit getTempolimit();
 	double dGetLaenge() const;
 	const vertagt::VListe<std::unique_ptr<Fahrzeug>>& getFahrzeuge() const;
+	bool bGetUeberhol();
+	double dGetVirtuelleSchranke() const;
 
 	void vSimulieren(double dTimeStep) override;
 	void vKopf() const;

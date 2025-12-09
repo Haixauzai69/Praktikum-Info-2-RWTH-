@@ -25,7 +25,7 @@ class Car : public Fahrzeug
 	void vSimulieren(double dTimeStep) override;
 	void vAusgabe(std::ostream& ausgabe) const override;
 	double dGeschwindigkeit() const override;
-	double dGetTank();
+	double dGetTank() override;
 
 	void vZeichen(const Weg& weg) override;
 
