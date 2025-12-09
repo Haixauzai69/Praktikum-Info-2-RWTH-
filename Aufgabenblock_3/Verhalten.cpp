@@ -18,4 +18,9 @@ Verhalten::Verhalten(Weg& weg) : p_rWeg(weg)
 	std::cout << "new verhalten is defined" << std::endl;
 }
 
+Weg& Verhalten::getWeg() const
+{
+	return p_rWeg;
+}
+
 

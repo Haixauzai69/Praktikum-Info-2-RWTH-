@@ -15,7 +15,7 @@
 #include <ios>
 #include <algorithm>
 
-Car::Car(double max_speed, double verbrauch, double tankvolumen) : Fahrzeug("Auto", max_speed)
+Car::Car(std::string name, double max_speed, double verbrauch, double tankvolumen) : Fahrzeug(name, max_speed)
 {
 	p_dVerbrauch = verbrauch;
 	p_dTankvolumen = tankvolumen;
@@ -68,11 +68,28 @@ void Car::vSimulieren(double dTimeStep)
 
 double Car::dGeschwindigkeit() const
 {
-	if (this->getMaxGeschwindigkeit() > static_cast<double>(Tempolimit::Innerorts))
-	{
-		std::cout << "Strafe wegen zu schnellem Fahren" << std::endl;
-	}
-	return 49.0;
+//	Weg& weg = p_pVerhalten->getWeg();
+//
+//	double limit = static_cast<double>(weg.getTempolimit());
+//
+//	if (this->getMaxGeschwindigkeit() > limit)
+//	{
+//		std::cout << "Strafe wegen zu schnellem Fahren" << std::endl;
+//		return limit;
+//	}
+//	else return this->getMaxGeschwindigkeit();
+
+    // current road
+    Weg& weg = p_pVerhalten->getWeg();
+
+    // tempolimit of the road
+    double limit = static_cast<double>(weg.getTempolimit());
+
+    // your max speed
+    double vmax = this->getMaxGeschwindigkeit();
+
+    // return speed respecting the limit
+    return std::min(vmax, limit);
 }
 
 void Car::vAusgabe(std::ostream& ausgabe) const

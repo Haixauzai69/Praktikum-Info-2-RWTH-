@@ -30,7 +30,7 @@ Weg::Weg(std::string name, double laenge, Tempolimit tempolimit)
 
 enum Tempolimit Weg::getTempolimit()
 {
-	return p_eTempolimit; // problematic because function returns double, but tempolimit is int
+	return p_eTempolimit;
 }
 
 void Weg::vSimulieren(double dTimeStep)

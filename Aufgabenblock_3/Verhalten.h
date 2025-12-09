@@ -23,6 +23,7 @@ class Verhalten
 	virtual ~Verhalten() = default;
 
 	virtual double dStrecke(Fahrzeug& aFzg, double dZeitIntervall) = 0;
+	Weg& getWeg() const;
 
 	protected:
 	Weg& p_rWeg;
