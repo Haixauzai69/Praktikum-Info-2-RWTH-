@@ -20,6 +20,7 @@ Fahrrad::Fahrrad(const std::string& name, double maxSpeed) : Fahrzeug(name, maxS
 {
 
 }
+
 double Fahrrad::dGeschwindigkeit() const
 {
 	int streckenteil = p_dGesamtStrecke / 20.0;

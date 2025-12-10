@@ -68,28 +68,16 @@ void Car::vSimulieren(double dTimeStep)
 
 double Car::dGeschwindigkeit() const
 {
-//	Weg& weg = p_pVerhalten->getWeg();
-//
-//	double limit = static_cast<double>(weg.getTempolimit());
-//
-//	if (this->getMaxGeschwindigkeit() > limit)
-//	{
-//		std::cout << "Strafe wegen zu schnellem Fahren" << std::endl;
-//		return limit;
-//	}
-//	else return this->getMaxGeschwindigkeit();
+	Weg& weg = p_pVerhalten->getWeg();
 
-    // current road
-    Weg& weg = p_pVerhalten->getWeg();
+	double limit = static_cast<double>(weg.getTempolimit());
 
-    // tempolimit of the road
-    double limit = static_cast<double>(weg.getTempolimit());
-
-    // your max speed
-    double vmax = this->getMaxGeschwindigkeit();
-
-    // return speed respecting the limit
-    return std::min(vmax, limit);
+	if (this->getMaxGeschwindigkeit() > limit)
+	{
+		std::cout << "Strafe wegen zu schnellem Fahren" << std::endl;
+		return limit;
+	}
+	else return this->getMaxGeschwindigkeit();
 }
 
 void Car::vAusgabe(std::ostream& ausgabe) const

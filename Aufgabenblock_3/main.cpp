@@ -272,10 +272,11 @@ void vAufgabe_5()
 
 void vAufgabe_6()
 {
-	auto junkerstrasse = std::make_unique<Weg>("Weg1", 500, Tempolimit::Innerorts, false);
+	auto junkerstrasse = std::make_unique<Weg>("Weg1", 500, Tempolimit::Innerorts, true);
 
-	std::unique_ptr<Car> car1 = std::make_unique<Car>("BMW", 200, 8, 55);
+	std::unique_ptr<Car> car1 = std::make_unique<Car>("BMW", 150, 8, 55);
 	std::unique_ptr<Fahrrad> bike1 = std::make_unique<Fahrrad>("Mountain_bike", 30);
+	std::unique_ptr<Fahrrad> bike2 = std::make_unique<Fahrrad>("City_bike", 30);
 
     int koordinaten[4] = {100, 250, 700, 250};
 
@@ -287,6 +288,7 @@ void vAufgabe_6()
 
 	junkerstrasse->vAnnahme(std::move(car1), 5.0); // startzeit hinzufügen bedeutet parken
 	junkerstrasse->vAnnahme(std::move(bike1));
+	junkerstrasse->vAnnahme(std::move(bike2));
 
 	for(int i = 0; i < 30 ; i++)
 	{
@@ -297,9 +299,9 @@ void vAufgabe_6()
 
 		dGlobaleZeit += 1.0;  // from now on global zeit must be updated in the loop in main
 
-		if (i == 20/2)
+		if (i == 10)
 		{
-			std::unique_ptr<Car> car2 = std::make_unique<Car>("Audi", 150, 5, 55); // names must be different
+			std::unique_ptr<Car> car2 = std::make_unique<Car>("Audi", 200, 5, 55); // names must be different
 			junkerstrasse->vAnnahme(std::move(car2), 12.0);
 		}
 

@@ -25,7 +25,7 @@ class Weg : public Simulationsobjekt
 	double p_dLaenge;
 	enum Tempolimit p_eTempolimit;
 	vertagt::VListe<std::unique_ptr<Fahrzeug>> p_pFahrzeuge;
-	bool p_bUeberholverbot;
+	bool p_bUeberholverbot = true;
 	double p_dVirtuelleSchranke = p_dLaenge;
 	Fahrzeug* p_pVorherFzg = nullptr;
 

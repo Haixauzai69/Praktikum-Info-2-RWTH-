@@ -32,7 +32,7 @@ class Car : public Fahrzeug
 	protected:
 	double p_dVerbrauch; // liter pro 100km
 	double p_dTankvolumen;
-	double p_dTankinhalt = 0;  // liter
+	double p_dTankinhalt;  // liter
 };
 
 

@@ -9,6 +9,7 @@
 #include <memory>
 #include <iomanip>
 #include <algorithm>
+#include <vector>
 #include <ios>
 #include <list>
 #include <iterator>
@@ -39,12 +40,24 @@ bool Weg::bGetUeberhol()
 	return p_bUeberholverbot;
 }
 
-void Weg::vSimulieren(double dTimeStep)
+void Weg::vSimulieren(double dTimeStep) // heart of ueberholverbot
 {
+	std::vector<Fahrzeug*> sorted;
+
+	for (auto& i : p_pFahrzeuge)
+	{
+		sorted.push_back(i.get());
+	}
+
+	std::sort(sorted.begin(), sorted.end(), [](Fahrzeug* a, Fahrzeug* b)
+	{
+	    return a->getStreckenabschn() > b->getStreckenabschn();
+	});
+
     p_pVorherFzg = nullptr;
     p_dVirtuelleSchranke = p_dLaenge;
 
-	for (auto& i : p_pFahrzeuge)
+	for (auto* i : sorted)
 	{
 		try
 		{
@@ -53,7 +66,7 @@ void Weg::vSimulieren(double dTimeStep)
                 p_dVirtuelleSchranke = p_pVorherFzg->getStreckenabschn();
             }
 			i->vSimulieren(dTimeStep);
-			p_pVorherFzg = i.get();
+			p_pVorherFzg = i;
 		}
 
 		catch(Fahrausnahme& error)
