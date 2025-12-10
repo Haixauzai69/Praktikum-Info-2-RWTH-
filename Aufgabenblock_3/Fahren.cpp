@@ -24,6 +24,15 @@ Fahren::Fahren(Weg& weg) : Verhalten(weg)
 
 double Fahren::dStrecke(Fahrzeug& aFzg, double dZeitIntervall)
 {
+	double currentPos = aFzg.getStreckenabschn();
+	double virtBarrier = p_rWeg.dGetVirtuelleSchranke();
+	double speed = aFzg.dGeschwindigkeit();
+	std::cout << "  Fahren::dStrecke for '" << aFzg.sGetName()
+	          << "' pos=" << currentPos
+	          << " virtBarrier=" << virtBarrier
+	          << " speed=" << speed
+	          << " dt=" << dZeitIntervall << "\n";
+
 	if((this->getWeg()).bGetUeberhol() == true)
 	{
 		std::cout << "Es gibt einen Ueberholverbot" << std::endl;
@@ -39,6 +48,9 @@ double Fahren::dStrecke(Fahrzeug& aFzg, double dZeitIntervall)
 		strecke = rest;
 		throw Streckenende(p_rWeg, aFzg);
 	}
+
+	std::cout << "   => computed strecke=" << strecke << ", rest=" << (virtBarrier - currentPos) << "\n";
+
 	return strecke;
 }
 

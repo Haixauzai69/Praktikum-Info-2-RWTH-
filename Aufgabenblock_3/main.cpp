@@ -290,7 +290,7 @@ void vAufgabe_6()
 	junkerstrasse->vAnnahme(std::move(bike1));
 	junkerstrasse->vAnnahme(std::move(bike2));
 
-	for(int i = 0; i < 30 ; i++)
+	for(int i = 0; i < 15 ; ++i)
 	{
 
 		junkerstrasse->vSimulieren(1.0);

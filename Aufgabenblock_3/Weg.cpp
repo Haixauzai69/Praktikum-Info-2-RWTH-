@@ -28,6 +28,7 @@ Weg::Weg(std::string name, double laenge, Tempolimit tempolimit, bool ueberholen
 	p_dLaenge = laenge;
 	p_eTempolimit = tempolimit;
 	p_bUeberholverbot = ueberholen;
+	p_dVirtuelleSchranke = p_dLaenge;
 }
 
 enum Tempolimit Weg::getTempolimit()
@@ -53,6 +54,18 @@ void Weg::vSimulieren(double dTimeStep) // heart of ueberholverbot
 	{
 	    return a->getStreckenabschn() > b->getStreckenabschn();
 	});
+
+	std::cout << "=== Weg::vSimulieren START (dTimeStep=" << dTimeStep << ") ===\n";
+	std::cout << "Sorted vehicles (front -> back):\n";
+	for (size_t idx = 0; idx < sorted.size(); ++idx) {
+	    Fahrzeug* f = sorted[idx];
+	    std::cout << " [" << idx << "] Name='" << f->sGetName()
+	              << "' id=" << f->iGetID()
+	              << " abs=" << f->getStreckenabschn()
+	              << " tank=" << f->dGetTank()   // if method name differs use your getter
+	              << "\n";
+	}
+	std::cout << "initial virtual barrier = " << p_dVirtuelleSchranke << "\n";
 
     p_pVorherFzg = nullptr;
     p_dVirtuelleSchranke = p_dLaenge;
