@@ -274,7 +274,7 @@ void vAufgabe_6()
 {
 	auto junkerstrasse = std::make_unique<Weg>("Weg1", 500, Tempolimit::Innerorts, true);
 
-	std::unique_ptr<Car> car1 = std::make_unique<Car>("BMW", 150, 8, 55);
+	std::unique_ptr<Car> car1 = std::make_unique<Car>("BMW", 10, 8, 55);
 	std::unique_ptr<Fahrrad> bike1 = std::make_unique<Fahrrad>("Mountain_bike", 30);
 	std::unique_ptr<Fahrrad> bike2 = std::make_unique<Fahrrad>("City_bike", 30);
 
@@ -290,7 +290,7 @@ void vAufgabe_6()
 	junkerstrasse->vAnnahme(std::move(bike1));
 	junkerstrasse->vAnnahme(std::move(bike2));
 
-	for(int i = 0; i < 15 ; ++i)
+	for(int i = 0; i < 30 ; i++)
 	{
 
 		junkerstrasse->vSimulieren(1.0);
@@ -311,7 +311,7 @@ void vAufgabe_6()
 		}
 		vSleep(600);
 	}
-	vSleep(5000);
+	vSleep(1000);
 	vBeendeGrafik();
 }
 

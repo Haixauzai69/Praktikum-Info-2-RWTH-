@@ -40,6 +40,7 @@ class Weg : public Simulationsobjekt
 	const vertagt::VListe<std::unique_ptr<Fahrzeug>>& getFahrzeuge() const;
 	bool bGetUeberhol();
 	double dGetVirtuelleSchranke() const;
+	void setVirtuelleSchranke(double dPosition);
 
 	void vSimulieren(double dTimeStep) override;
 	void vKopf() const;

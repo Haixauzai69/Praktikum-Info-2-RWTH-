@@ -41,52 +41,83 @@ bool Weg::bGetUeberhol()
 	return p_bUeberholverbot;
 }
 
+double Weg::dGetVirtuelleSchranke() const
+{
+    if (p_bUeberholverbot == false)
+    {
+        return p_dLaenge;
+    }
+
+    if (p_pVorherFzg == nullptr)
+    {
+      	return p_dLaenge;
+    }
+
+    if (p_pVorherFzg->dGetTank() <= 0)
+    {
+    	return p_dLaenge;
+    }
+
+    return p_dVirtuelleSchranke;
+}
+
+void Weg::setVirtuelleSchranke(double dPosition)
+{
+	p_dVirtuelleSchranke = dPosition;
+}
+
 void Weg::vSimulieren(double dTimeStep) // heart of ueberholverbot
 {
-	std::vector<Fahrzeug*> sorted;
+	p_pFahrzeuge.vAktualisieren();
+
+	setVirtuelleSchranke(dGetLaenge());
+
+//	std::vector<Fahrzeug*> sorted;
+//
+//	for (auto& i : p_pFahrzeuge)
+//	{
+//		sorted.push_back(i.get());
+//	}
 
 	for (auto& i : p_pFahrzeuge)
-	{
-		sorted.push_back(i.get());
-	}
-
-	std::sort(sorted.begin(), sorted.end(), [](Fahrzeug* a, Fahrzeug* b)
-	{
-	    return a->getStreckenabschn() > b->getStreckenabschn();
-	});
-
-	std::cout << "=== Weg::vSimulieren START (dTimeStep=" << dTimeStep << ") ===\n";
-	std::cout << "Sorted vehicles (front -> back):\n";
-	for (size_t idx = 0; idx < sorted.size(); ++idx) {
-	    Fahrzeug* f = sorted[idx];
-	    std::cout << " [" << idx << "] Name='" << f->sGetName()
-	              << "' id=" << f->iGetID()
-	              << " abs=" << f->getStreckenabschn()
-	              << " tank=" << f->dGetTank()   // if method name differs use your getter
-	              << "\n";
-	}
-	std::cout << "initial virtual barrier = " << p_dVirtuelleSchranke << "\n";
-
-    p_pVorherFzg = nullptr;
-    p_dVirtuelleSchranke = p_dLaenge;
-
-	for (auto* i : sorted)
-	{
-		try
 		{
-            if (p_pVorherFzg != nullptr)
-            {
-                p_dVirtuelleSchranke = p_pVorherFzg->getStreckenabschn();
-            }
-			i->vSimulieren(dTimeStep);
-			p_pVorherFzg = i;
+			try
+			{
+				i->vSimulieren(dTimeStep);
+				double Schranke = i->dGetSchranke();
+				setVirtuelleSchranke(Schranke);
+				p_pVorherFzg = i.get();
+			}
+
+			catch(Fahrausnahme& error)
+			{
+				error.vBearbeiten();
+			}
 		}
 
-		catch(Fahrausnahme& error)
-		{
-			error.vBearbeiten();
-		}
-	}
+
+//	std::sort(sorted.begin(), sorted.end(), [](Fahrzeug* a, Fahrzeug* b)
+//	{
+//	    return a->getStreckenabschn() > b->getStreckenabschn();
+//	});
+
+//    p_pVorherFzg = nullptr;
+//
+//	for (auto* i : sorted)
+//	{
+//		try
+//		{
+//			i->vSimulieren(dTimeStep);
+//			double Schranke = i->dGetSchranke();
+//			setVirtuelleSchranke(Schranke);
+//			p_pVorherFzg = i;
+//		}
+//
+//		catch(Fahrausnahme& error)
+//		{
+//			error.vBearbeiten();
+//		}
+//	}
 	p_pFahrzeuge.vAktualisieren();
 }
 
@@ -158,24 +189,5 @@ std::unique_ptr<Fahrzeug> Weg::pAbgabe(const Fahrzeug& fahrzeug)
 	return nullptr;
 }
 
-double Weg::dGetVirtuelleSchranke() const
-{
-    if (p_bUeberholverbot == false)
-    {
-        return p_dLaenge;
-    }
-
-    if (p_pVorherFzg == nullptr)
-    {
-      	return p_dLaenge;
-    }
-
-    if (p_pVorherFzg->dGetTank() <= 0)
-    {
-    	return p_dLaenge;
-    }
-
-    return p_dVirtuelleSchranke;
-}
 
 

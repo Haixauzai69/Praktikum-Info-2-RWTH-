@@ -130,4 +130,9 @@ double Fahrzeug::getStartZeit()
 	return p_dStartZeit;
 }
 
+double Fahrzeug::dGetSchranke() const
+{
+	return p_dAbschnittStrecke;
+}
+
 

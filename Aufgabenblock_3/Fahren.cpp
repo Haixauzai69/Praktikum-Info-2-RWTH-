@@ -38,9 +38,9 @@ double Fahren::dStrecke(Fahrzeug& aFzg, double dZeitIntervall)
 		std::cout << "Es gibt einen Ueberholverbot" << std::endl;
 	}
 
-	double rest = p_rWeg.dGetVirtuelleSchranke() - aFzg.getStreckenabschn();
-
 	double strecke = (aFzg.dGeschwindigkeit())*dZeitIntervall;
+
+	double rest = p_rWeg.dGetVirtuelleSchranke() - aFzg.getStreckenabschn();
 
 	if (strecke > rest)
 	{
