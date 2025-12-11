@@ -66,6 +66,11 @@ void Car::vSimulieren(double dTimeStep)
 	}
 }
 
+bool Car::bIstLeer() const
+{
+	return p_dTankinhalt <= 0;
+}
+
 double Car::dGeschwindigkeit() const
 {
 	Weg& weg = p_pVerhalten->getWeg();

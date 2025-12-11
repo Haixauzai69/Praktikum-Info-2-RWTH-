@@ -35,6 +35,11 @@ double Fahrzeug::getGesamtStrecke() const
 	return p_dGesamtStrecke;
 }
 
+bool Fahrzeug::bIstLeer() const
+{
+	return false;
+}
+
 void Fahrzeug::vSimulieren(double dTimeStep)
 {
 	double dS = p_pVerhalten->dStrecke(*this, dTimeStep);

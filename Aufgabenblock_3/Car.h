@@ -26,6 +26,7 @@ class Car : public Fahrzeug
 	void vAusgabe(std::ostream& ausgabe) const override;
 	double dGeschwindigkeit() const override;
 	double dGetTank() override;
+	bool bIstLeer() const override;
 
 	void vZeichen(const Weg& weg) override;
 

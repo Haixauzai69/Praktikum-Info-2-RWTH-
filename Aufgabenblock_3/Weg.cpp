@@ -53,7 +53,7 @@ double Weg::dGetVirtuelleSchranke() const
       	return p_dLaenge;
     }
 
-    if (p_pVorherFzg->dGetTank() <= 0)
+    if (p_pVorherFzg->bIstLeer())
     {
     	return p_dLaenge;
     }
@@ -63,61 +63,61 @@ double Weg::dGetVirtuelleSchranke() const
 
 void Weg::setVirtuelleSchranke(double dPosition)
 {
-	p_dVirtuelleSchranke = dPosition;
+//	if (dPosition != 0)
+//	{
+	    p_dVirtuelleSchranke = dPosition;
+//	}
 }
 
 void Weg::vSimulieren(double dTimeStep) // heart of ueberholverbot
 {
 	p_pFahrzeuge.vAktualisieren();
 
-	setVirtuelleSchranke(dGetLaenge());
-
-//	std::vector<Fahrzeug*> sorted;
-//
-//	for (auto& i : p_pFahrzeuge)
-//	{
-//		sorted.push_back(i.get());
-//	}
+	std::vector<Fahrzeug*> sorted;
 
 	for (auto& i : p_pFahrzeuge)
-		{
-			try
-			{
-				i->vSimulieren(dTimeStep);
-				double Schranke = i->dGetSchranke();
-				setVirtuelleSchranke(Schranke);
-				p_pVorherFzg = i.get();
-			}
+	{
+		sorted.push_back(i.get());
+	}
 
-			catch(Fahrausnahme& error)
-			{
-				error.vBearbeiten();
-			}
+	std::sort(sorted.begin(), sorted.end(), [](Fahrzeug* a, Fahrzeug* b)
+	{
+		return a->getStreckenabschn() > b->getStreckenabschn();
+	});
+
+	p_pVorherFzg = nullptr;
+	p_dVirtuelleSchranke = p_dLaenge;
+
+//	for (auto& i : p_pFahrzeuge)
+//		{
+//			try
+//			{
+//				i->vSimulieren(dTimeStep);
+//				double Schranke = i->dGetSchranke();
+//				setVirtuelleSchranke(Schranke);
+//				p_pVorherFzg = i.get();
+//			}
+//
+//			catch(Fahrausnahme& error)
+//			{
+//				error.vBearbeiten();
+//			}
+//		}
+
+	for (auto* i : sorted)
+	{
+		try
+		{
+			i->vSimulieren(dTimeStep);
+			p_pVorherFzg = i;
+			p_dVirtuelleSchranke = i->getStreckenabschn();
 		}
 
-
-//	std::sort(sorted.begin(), sorted.end(), [](Fahrzeug* a, Fahrzeug* b)
-//	{
-//	    return a->getStreckenabschn() > b->getStreckenabschn();
-//	});
-
-//    p_pVorherFzg = nullptr;
-//
-//	for (auto* i : sorted)
-//	{
-//		try
-//		{
-//			i->vSimulieren(dTimeStep);
-//			double Schranke = i->dGetSchranke();
-//			setVirtuelleSchranke(Schranke);
-//			p_pVorherFzg = i;
-//		}
-//
-//		catch(Fahrausnahme& error)
-//		{
-//			error.vBearbeiten();
-//		}
-//	}
+		catch(Fahrausnahme& error)
+		{
+			error.vBearbeiten();
+		}
+	}
 	p_pFahrzeuge.vAktualisieren();
 }
 

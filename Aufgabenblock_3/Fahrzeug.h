@@ -22,13 +22,13 @@ class Weg;
 class Fahrzeug : public Simulationsobjekt
 {
 	protected:
-		double p_dGesamtStrecke = 0;
+		double p_dGesamtStrecke;
 		double p_dGesamtZeit = 0;
 		double p_dMaxGeschwindigkeit;
 		std::shared_ptr<Verhalten> p_pVerhalten;
-		double p_dAbschnittStrecke = 0; // strecke on one street
+		double p_dAbschnittStrecke; // strecke on one street
 
-		double p_dStartZeit = 0;
+		double p_dStartZeit;
 
 	public:
 		Fahrzeug(const std::string name, double max_geschwindigkeit);
@@ -40,6 +40,7 @@ class Fahrzeug : public Simulationsobjekt
 		double getStartZeit();
 		virtual double dGetTank();
 		double dGetSchranke() const;
+		virtual bool bIstLeer() const;
 
 		void vAddStrecke(double strecke);
 

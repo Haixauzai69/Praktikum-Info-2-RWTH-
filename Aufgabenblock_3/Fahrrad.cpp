@@ -39,6 +39,11 @@ double Fahrrad::dGeschwindigkeit() const
 	return speed;
 }
 
+bool Fahrrad::bIstLeer() const
+{
+	return false;
+}
+
 //void Fahrrad::vSimulieren(double dTimeStep)
 //{
 //	double dCurrentSpeed = dGeschwindigkeit();
