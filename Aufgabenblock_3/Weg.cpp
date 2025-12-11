@@ -71,16 +71,26 @@ void Weg::setVirtuelleSchranke(double dPosition)
 
 void Weg::vSimulieren(double dTimeStep) // heart of ueberholverbot
 {
-	p_pFahrzeuge.vAktualisieren();
+//	std::vector<Fahrzeug*> sorted;
+//
+//	for (auto& i : p_pFahrzeuge)
+//	{
+//		sorted.push_back(i.get());
+//	}
+//
+//	std::sort(sorted.begin(), sorted.end(), [](Fahrzeug* a, Fahrzeug* b)
+//	{
+//		return a->getStreckenabschn() > b->getStreckenabschn();
+//	});
 
-	std::vector<Fahrzeug*> sorted;
+	std::vector<std::unique_ptr<Fahrzeug>> sorted; // idea: create a Maxdistance function that sorts list of vehicles in distance and returns the distance of the furthest, argument of the list of vehicles
 
-	for (auto& i : p_pFahrzeuge)
+	for (auto i : p_pFahrzeuge)
 	{
-		sorted.push_back(i.get());
+		sorted.push_back(std::move(i));
 	}
 
-	std::sort(sorted.begin(), sorted.end(), [](Fahrzeug* a, Fahrzeug* b)
+	std::sort(sorted.begin(), sorted.end(), [](std::unique_ptr<Fahrzeug> a, std::unique_ptr<Fahrzeug> b)
 	{
 		return a->getStreckenabschn() > b->getStreckenabschn();
 	});
