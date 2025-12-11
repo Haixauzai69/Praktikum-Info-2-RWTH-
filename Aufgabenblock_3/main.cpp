@@ -384,6 +384,7 @@ void vAufgabe_6a()
 	std::cout << std::endl;
 }
 
+
 int main()
 {
 //	vAufgabe1();

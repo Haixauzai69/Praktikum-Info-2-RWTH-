@@ -21,8 +21,10 @@ Fahrrad::Fahrrad(const std::string& name, double maxSpeed) : Fahrzeug(name, maxS
 
 }
 
-double Fahrrad::dGeschwindigkeit() const
+double Fahrrad::dGeschwindigkeit() const // add verhalten to bikes
 {
+//	Weg& weg = p_pVerhalten->getWeg();
+
 	int streckenteil = p_dGesamtStrecke / 20.0;
 
 	double speed = p_dMaxGeschwindigkeit;
