@@ -22,12 +22,12 @@
 class Kreuzung : public Simulationsobjekt
 {
 	private:
-	vertagt::VListe<std::unique_ptr<Weg>> p_pWege;
+	vertagt::VListe<Weg&> p_pWege;
 	double p_dTankstelle; // tankreserve an einer kreuzung
 
 	public:
 	Kreuzung() = default;
-	Kreuzung(std::unique_ptr<Weg> weg, double tank);
+	Kreuzung(Weg& weg, double tank);
 	Kreuzung(Kreuzung& kreuzung) = delete;
 	virtual ~Kreuzung() = default;
 	void vVerbinde(std::string hin, std::string ruck, double laenge, enum Tempolimit tempo, bool Ueberhol, Kreuzung& startkreuzung, Kreuzung& zielkreuzung);

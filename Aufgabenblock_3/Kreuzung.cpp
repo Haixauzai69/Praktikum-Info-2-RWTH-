@@ -17,7 +17,7 @@
 #include "Fahrrad.h"
 #include "Kreuzung.h"
 
-Kreuzung::Kreuzung(std::unique_ptr<Weg> weg, double tank)
+Kreuzung::Kreuzung(Weg& weg, double tank)
 {
 	p_pWege.push_back(weg);
 	p_dTankstelle = tank;
