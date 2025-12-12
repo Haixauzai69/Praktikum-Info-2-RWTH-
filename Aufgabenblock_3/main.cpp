@@ -285,7 +285,7 @@ void vAufgabe_6()
 
     bZeichneStrasse(junkerstrasse->sGetName() + "_hin", junkerstrasse->sGetName() + "_rueck", junkerstrasse->dGetLaenge(), 2, koordinaten);
 
-	junkerstrasse->vAnnahme(std::move(car1), 5.0); // startzeit hinzufügen bedeutet parken
+	junkerstrasse->vAnnahme(std::move(car1)); // startzeit hinzufügen bedeutet parken
 	junkerstrasse->vAnnahme(std::move(bike1));
 
 	for(int i = 0; i < 30 ; i++)
