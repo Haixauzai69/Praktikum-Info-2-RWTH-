@@ -18,6 +18,8 @@ class Simulationsobjekt
 	std::string p_sName = " ";
 	static inline int p_iMaxID = 0;
 	const int p_iID = p_iMaxID++;
+//	double p_dZeit = 0;
+//	double p_dLetzteAktualisierung = 0;
 
 	protected:
 	double p_dLokaleZeit = 0.0;

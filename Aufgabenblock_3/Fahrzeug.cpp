@@ -47,7 +47,8 @@ void Fahrzeug::vSimulieren(double dTimeStep)
 	std::cout << " Fahrzeug::vSimulieren '" << sGetName()
 	          << "' dS=" << dS << " (before update abs=" << p_dAbschnittStrecke << ")\n";
 
-	p_dAbschnittStrecke += dS;
+	vAddStrecke(dS);
+//	p_dAbschnittStrecke += dS;
 	p_dGesamtStrecke += dS;
 }
 
