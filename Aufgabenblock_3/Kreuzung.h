@@ -13,6 +13,7 @@
 #include "vertagt_liste.h"
 #include "vertagt_aktion.h"
 #include <memory>
+#include <list>
 #include "Tempolimit.h"
 #include "Weg.h"
 #include "Fahrzeug.h"
@@ -22,15 +23,16 @@
 class Kreuzung : public Simulationsobjekt
 {
 	private:
-	vertagt::VListe<Weg&> p_pWege;
+	vertagt::VListe<std::shared_ptr<Weg>> p_pWege;
 	double p_dTankstelle; // tankreserve an einer kreuzung
 
 	public:
 	Kreuzung() = default;
-	Kreuzung(Weg& weg, double tank);
+	Kreuzung(const std::string name, double tank);
 	Kreuzung(Kreuzung& kreuzung) = delete;
 	virtual ~Kreuzung() = default;
-	void vVerbinde(std::string hin, std::string ruck, double laenge, enum Tempolimit tempo, bool Ueberhol, Kreuzung& startkreuzung, Kreuzung& zielkreuzung);
+	static void vVerbinde(std::string hin, std::string ruck, double laenge, enum Tempolimit tempo, bool Ueberhol, Kreuzung& startkreuzung, Kreuzung& zielkreuzung);
+	void vTanken(Fahrzeug& fzg);
 };
 
 

@@ -393,7 +393,7 @@ int main()
 //	vAufgabe_AB1();
 //	vAufgabe4();
 //	vAufgabe_5();
-	vAufgabe_6();
+//	vAufgabe_6();
 //	vTest();
 //	vAufgabe_6a();
 	std::cout << "Sucess" << std::endl;

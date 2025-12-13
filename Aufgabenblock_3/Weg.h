@@ -28,11 +28,13 @@ class Weg : public Simulationsobjekt
 	bool p_bUeberholverbot = true;
 	double p_dVirtuelleSchranke;
 	Fahrzeug* p_pVorherFzg = nullptr;
+	const std::weak_ptr<Kreuzung> p_pZielkreuzung;
+	std::weak_ptr<Weg> p_pRueckweg;
 
 	public:
 	Weg() = delete;
 	Weg(Weg& weg) = delete;
-	Weg(std::string name, double laenge, enum Tempolimit tempolimit, bool ueberholen);
+	Weg(std::string name, double laenge, enum Tempolimit tempolimit, bool ueberholen, std::weak_ptr<Kreuzung> zielkreuzung = nullptr);
 	virtual ~Weg() = default;
 
 	enum Tempolimit getTempolimit();
@@ -41,6 +43,8 @@ class Weg : public Simulationsobjekt
 	bool bGetUeberhol();
 	double dGetVirtuelleSchranke() const;
 	void setVirtuelleSchranke(double dPosition);
+	std::shared_ptr<Kreuzung> pGetZielKreuzung() const;
+	std::shared_ptr<Weg> pGetRueckweg();
 
 	void vSimulieren(double dTimeStep) override;
 	void vKopf() const;

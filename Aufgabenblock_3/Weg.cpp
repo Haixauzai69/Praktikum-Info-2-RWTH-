@@ -16,19 +16,21 @@
 #include "Weg.h"
 #include "Tempolimit.h"
 #include "Simulationsobjekt.h"
+#include "Kreuzung.h"
 #include "Fahrzeug.h"
 #include "Car.h"
 #include "Losfahren.h"
 #include "Fahrausnahme.h"
 #include "Streckenende.h"
 
-Weg::Weg(std::string name, double laenge, Tempolimit tempolimit, bool ueberholen)
+Weg::Weg(std::string name, double laenge, Tempolimit tempolimit, bool ueberholen, std::weak_ptr<Kreuzung> zielkreuzung = nullptr)
 {
 	Simulationsobjekt::vSetName(name);
 	p_dLaenge = laenge;
 	p_eTempolimit = tempolimit;
 	p_bUeberholverbot = ueberholen;
 	p_dVirtuelleSchranke = p_dLaenge;
+	p_pZielkreuzung = zielkreuzung;
 }
 
 enum Tempolimit Weg::getTempolimit()
@@ -194,6 +196,16 @@ std::unique_ptr<Fahrzeug> Weg::pAbgabe(const Fahrzeug& fahrzeug)
 	}
 	std::cout << "Weg::pAbgabe returns nullptr" << std::endl;
 	return nullptr;
+}
+
+std::shared_ptr<Kreuzung> Weg::pGetZielkreuzung() const
+{
+	return p_pZielkreuzung.lock();
+}
+
+std::shared_ptr<Weg> Weg::pGetRueckweg()
+{
+	return p_pRueckweg.lock();
 }
 
 

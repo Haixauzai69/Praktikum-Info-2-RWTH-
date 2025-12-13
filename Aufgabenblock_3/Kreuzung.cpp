@@ -10,6 +10,7 @@
 #include "vertagt_liste.h"
 #include "vertagt_aktion.h"
 #include <memory>
+#include <list>
 #include "Tempolimit.h"
 #include "Weg.h"
 #include "Fahrzeug.h"
@@ -17,11 +18,20 @@
 #include "Fahrrad.h"
 #include "Kreuzung.h"
 
-Kreuzung::Kreuzung(Weg& weg, double tank)
+Kreuzung::Kreuzung(const std::string name, double tank)
 {
-	p_pWege.push_back(weg);
+	vSetName(name);
 	p_dTankstelle = tank;
 }
 
+void Kreuzung::vVerbinde(std::string hin, std::string ruck, double laenge, enum Tempolimit tempo, bool Ueberhol, Kreuzung& startkreuzung, Kreuzung& zielkreuzung)
+{
+
+}
+
+void Kreuzung::vTanken(Fahrzeug& fzg)
+{
+
+}
 
 
