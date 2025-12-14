@@ -32,6 +32,8 @@ void Kreuzung::vVerbinde(std::string hin, std::string ruck, double laenge, enum 
 void Kreuzung::vTanken(Fahrzeug& fzg)
 {
 //	dtanken for the fahrzeug, minus the tankinhalt of the kreuzung
+	double menge = fzg.dTanken();
+	p_dTankstelle -= menge;
 }
 
 void Kreuzung::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug, double start) // parkend auf anderen weg geben und fahrzeug auftanken
@@ -41,7 +43,10 @@ void Kreuzung::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug, double start) // par
 
 void Kreuzung::vSimulieren(double dTimeStep)
 {
-//	vertagt::VListe<std::shared_ptr<Weg>> p_pWege simulieren
+	for(auto i : p_pWege)
+	{
+		i->vSimulieren(dTimeStep);
+	}
 }
 
 
