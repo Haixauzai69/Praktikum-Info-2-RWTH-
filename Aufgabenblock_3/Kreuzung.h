@@ -31,7 +31,9 @@ class Kreuzung : public Simulationsobjekt
 	Kreuzung(const std::string name, double tank);
 	Kreuzung(Kreuzung& kreuzung) = delete;
 	virtual ~Kreuzung() = default;
-	static void vVerbinde(std::string hin, std::string ruck, double laenge, enum Tempolimit tempo, bool Ueberhol, Kreuzung& startkreuzung, Kreuzung& zielkreuzung);
+	static void vVerbinde(std::string hin, std::string ruck, double laenge, enum Tempolimit tempo, bool Ueberhol,
+							std::shared_ptr<Kreuzung> startkreuzung, std::shared_ptr<Kreuzung> zielkreuzung);
+
 	void vTanken(Fahrzeug& fzg);
 	void vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug, double start);
 	void vSimulieren(double dTimeStep);

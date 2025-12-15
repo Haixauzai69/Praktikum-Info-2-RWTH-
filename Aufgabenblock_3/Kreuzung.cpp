@@ -12,6 +12,7 @@
 #include <memory>
 #include <list>
 #include "Tempolimit.h"
+#include <limits>
 #include "Weg.h"
 #include "Fahrzeug.h"
 #include "Car.h"
@@ -24,29 +25,56 @@ Kreuzung::Kreuzung(const std::string name, double tank)
 	p_dTankstelle = tank;
 }
 
-void Kreuzung::vVerbinde(std::string hin, std::string ruck, double laenge, enum Tempolimit tempo, bool Ueberhol, Kreuzung& startkreuzung, Kreuzung& zielkreuzung)
+void Kreuzung::vVerbinde(std::string hin, std::string ruck, double laenge, enum Tempolimit tempo, bool Ueberhol,
+						std::shared_ptr<Kreuzung> startkreuzung, std::shared_ptr<Kreuzung> zielkreuzung)
 {
+	std::shared_ptr<Weg> weghin = std::make_shared<Weg>(hin, laenge, tempo, Ueberhol, zielkreuzung);
+	std::shared_ptr<Weg> wegrueck = std::make_shared<Weg>(ruck, laenge, tempo, Ueberhol, startkreuzung);
 
+	weghin->setRueckweg(wegrueck);
+	wegrueck->setRueckweg(weghin);
+
+	startkreuzung->p_pWege.push_back(weghin);
+	zielkreuzung->p_pWege.push_back(wegrueck);
+
+	startkreuzung->p_pWege.vAktualisieren();
+	zielkreuzung->p_pWege.vAktualisieren();
 }
 
 void Kreuzung::vTanken(Fahrzeug& fzg)
 {
-//	dtanken for the fahrzeug, minus the tankinhalt of the kreuzung
-	double menge = fzg.dTanken();
-	p_dTankstelle -= menge;
+	if(p_dTankstelle > 0)
+	{
+		double menge = fzg.dTanken(std::numeric_limits<double>::infinity());
+		p_dTankstelle -= menge;
+	}
+	else
+	{
+		std::cout << "Tankstelle ist leer" << std::endl;
+	}
 }
 
 void Kreuzung::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug, double start) // parkend auf anderen weg geben und fahrzeug auftanken
 {
-	// tanken, streckenende, abnahme, annahme auf parkend
+	if (fahrzeug != nullptr && !p_pWege.empty())
+	{
+		this->vTanken(*fahrzeug);
+		(*p_pWege.begin())->vAnnahme(std::move(fahrzeug), start);
+	}
+	else
+	{
+		std::cout << "Kreuzung nicht verbunden" << std::endl;
+	}
 }
 
 void Kreuzung::vSimulieren(double dTimeStep)
 {
-	for(auto i : p_pWege)
+	for(auto& i : p_pWege)
 	{
 		i->vSimulieren(dTimeStep);
 	}
 }
+
+
 
 
