@@ -75,6 +75,11 @@ void Kreuzung::vSimulieren(double dTimeStep)
 	}
 }
 
+std::shared_ptr<Weg> Kreuzung::pZufaelligerWeg(Weg& ankunftsWeg)
+{
+
+}
+
 
 
 

@@ -37,6 +37,7 @@ class Kreuzung : public Simulationsobjekt
 	void vTanken(Fahrzeug& fzg);
 	void vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug, double start);
 	void vSimulieren(double dTimeStep);
+	std::shared_ptr<Weg> pZufaelligerWeg(Weg& ankunftsWeg);
 };
 
 
