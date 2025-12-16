@@ -11,6 +11,7 @@
 #include "vertagt_aktion.h"
 #include <memory>
 #include <list>
+#include <random>
 #include "Tempolimit.h"
 #include <limits>
 #include "Weg.h"
@@ -73,12 +74,39 @@ void Kreuzung::vSimulieren(double dTimeStep)
 	{
 		i->vSimulieren(dTimeStep);
 	}
+	p_pWege.vAktualisieren();
 }
 
 std::shared_ptr<Weg> Kreuzung::pZufaelligerWeg(Weg& ankunftsWeg)
 {
+	if (p_pWege.size() == 1)
+	{
+		return *p_pWege.begin();	// sackgasse bedeutet nur ein rueckweg
+	}
 
+	else if (p_pWege.size() > 1)
+	{
+		int seed = 1;
+		static std::mt19937 device(seed);
+		std::uniform_int_distribution<int> dist(0, p_pWege.size() - 2);
+		int iRanNum = dist(device);
+		int iCounter = 0;
+
+		for (auto it = p_pWege.begin(); it != p_pWege.end(); it++)
+		{
+			if (*it != ankunftsWeg.pGetRueckweg())
+			{
+				if (iCounter == iRanNum)
+				{
+					return *it;
+				}
+				iCounter++;
+			}
+		}
+	}
+	else return nullptr;
 }
+
 
 
 

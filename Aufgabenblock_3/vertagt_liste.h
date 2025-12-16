@@ -41,6 +41,10 @@ namespace vertagt
 		{
 			return p_objekte.end();
 		}
+		int size() // selber implementiert
+		{
+			return p_objekte.size();
+		}
 		iterator begin()
 		{
 			return p_objekte.begin();
