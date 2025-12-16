@@ -12,6 +12,12 @@
 
 double dGlobaleZeit = 0.0;
 
+std::ostream& operator<<(std::ostream& out, const Simulationsobjekt& obj)
+{
+	obj.vAusgabe(out);
+	return out;
+}
+
 std::string Simulationsobjekt::sGetName() const
 {
 	return p_sName;

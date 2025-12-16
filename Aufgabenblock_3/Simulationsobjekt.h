@@ -36,6 +36,8 @@ class Simulationsobjekt
 	void vSetName(std::string something);
 };
 
+std::ostream& operator<<(std::ostream& out, const Simulationsobjekt& obj);
+
 
 
 #endif /* SIMULATIONSOBJEKT_H_ */

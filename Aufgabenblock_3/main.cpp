@@ -32,12 +32,6 @@
 #include "vertagt_liste.h"
 #include "vertagt_aktion.h"
 
-std::ostream& operator<<(std::ostream& out, const Simulationsobjekt& obj)
-{
-	obj.vAusgabe(out);
-	return out;
-}
-
 void vAufgabe1()
 {
 	std::unique_ptr<Fahrzeug> bmw = std::make_unique<Fahrzeug>("BMW", 130.0);
@@ -396,7 +390,6 @@ int main()
 //	vAufgabe_6();
 //	vTest();
 //	vAufgabe_6a();
-	std::cout << "Sucess" << std::endl;
 	return 0;
 }
 

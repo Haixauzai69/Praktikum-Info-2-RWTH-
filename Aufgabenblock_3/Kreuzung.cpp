@@ -81,7 +81,7 @@ std::shared_ptr<Weg> Kreuzung::pZufaelligerWeg(Weg& ankunftsWeg)
 {
 	if (p_pWege.size() == 1)
 	{
-		return *p_pWege.begin();	// sackgasse bedeutet nur ein rueckweg
+		return *p_pWege.begin(); // sackgasse
 	}
 
 	else if (p_pWege.size() > 1)
@@ -105,6 +105,11 @@ std::shared_ptr<Weg> Kreuzung::pZufaelligerWeg(Weg& ankunftsWeg)
 		}
 	}
 	else return nullptr;
+}
+
+double Kreuzung::dGetTank()
+{
+	return p_dTankstelle;
 }
 
 
