@@ -376,6 +376,11 @@ void vAufgabe_6a()
 	std::cout << std::endl;
 }
 
+void vAufgabe_7()
+{
+
+}
+
 
 int main()
 {
