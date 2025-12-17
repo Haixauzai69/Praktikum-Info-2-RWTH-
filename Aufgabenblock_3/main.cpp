@@ -377,7 +377,7 @@ void vAufgabe_6a()
 	std::cout << std::endl;
 }
 
-void vAufgabe_7()
+void vAufgabe_7() // fix compiler error and zeichne fahrzeuge somehow
 {
 	bInitialisiereGrafik(1000, 800);
 
