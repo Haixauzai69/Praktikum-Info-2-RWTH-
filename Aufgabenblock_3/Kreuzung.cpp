@@ -20,10 +20,9 @@
 #include "Fahrrad.h"
 #include "Kreuzung.h"
 
-Kreuzung::Kreuzung(const std::string name, double tank)
+Kreuzung::Kreuzung(const std::string name, double tank = 0) : p_dTankstelle(tank)
 {
 	vSetName(name);
-	p_dTankstelle = tank;
 }
 
 void Kreuzung::vVerbinde(std::string hin, std::string ruck, double laenge, enum Tempolimit tempo, bool Ueberhol,

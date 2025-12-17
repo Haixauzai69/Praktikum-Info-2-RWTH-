@@ -24,7 +24,7 @@ class Kreuzung : public Simulationsobjekt
 {
 	private:
 	vertagt::VListe<std::shared_ptr<Weg>> p_pWege;
-	double p_dTankstelle; // tankreserve an einer kreuzung
+	double p_dTankstelle;  // tankreserve an einer kreuzung
 
 	public:
 	Kreuzung() = default;

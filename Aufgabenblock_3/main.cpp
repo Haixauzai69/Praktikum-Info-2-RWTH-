@@ -27,6 +27,7 @@
 #include "Weg.h"
 #include "Fahrausnahme.h"
 #include "Losfahren.h"
+#include "Kreuzung.h"
 #include "Streckenende.h"
 #include "SimuClient.h"
 #include "vertagt_liste.h"
@@ -378,9 +379,70 @@ void vAufgabe_6a()
 
 void vAufgabe_7()
 {
+	bInitialisiereGrafik(1000, 800);
 
+	std::shared_ptr<Kreuzung> Kr1 = std::make_shared<Kreuzung>("Kr1");
+	std::shared_ptr<Kreuzung> Kr2 = std::make_shared<Kreuzung>("Kr2", 1000);
+	std::shared_ptr<Kreuzung> Kr3 = std::make_shared<Kreuzung>("Kr3");
+	std::shared_ptr<Kreuzung> Kr4 = std::make_shared<Kreuzung>("Kr4");
+
+	Kreuzung::vVerbinde("W12", "W21", 40, Tempolimit::Innerorts, true, Kr1, Kr2); //Straße 1
+	Kreuzung::vVerbinde("W23a", "W32a", 115, Tempolimit::Autobahn, false, Kr2, Kr3); //Straße 2
+	Kreuzung::vVerbinde("W23b", "W32b", 40, Tempolimit::Innerorts, true, Kr2, Kr3); //Straße 3
+	Kreuzung::vVerbinde("W24", "W42", 55, Tempolimit::Innerorts, true, Kr2, Kr4); //Straße 4
+	Kreuzung::vVerbinde("W34", "W43", 85, Tempolimit::Autobahn, false, Kr3, Kr4); //Straße 5
+	Kreuzung::vVerbinde("W44a", "W44b", 130, Tempolimit::Innerorts, false, Kr4, Kr4); //Straße 6
+
+	bZeichneKreuzung(680, 40); //kr1
+	bZeichneKreuzung(680, 300); //kr2
+	bZeichneKreuzung(680, 570); //kr3
+	bZeichneKreuzung(320, 300); //kr4
+
+	int iCoords1[] = { 680, 40, 680, 300 };
+	bZeichneStrasse("W12", "W21", 40, 2, iCoords1); //1
+
+	int iCoords2[] = { 680, 300, 850, 300, 970, 390, 970, 500, 850, 570, 680, 570 };
+	bZeichneStrasse("W23a", "W32a", 115, 6, iCoords2); //2
+
+	int iCoords3[] = { 680, 300, 680, 570 };
+	bZeichneStrasse("W23b", "W32b", 40, 2, iCoords3); //3
+
+	int iCoords4[] = { 680, 300, 320, 300 };
+	bZeichneStrasse("W24", "W42", 55, 2, iCoords4); //4
+
+	int iCoords5[] = { 680, 570, 500, 570, 350, 510, 320, 420, 320, 300 };
+	bZeichneStrasse("W34", "W43", 85, 5, iCoords5); //5
+
+	int iCoords6[] = { 320, 300, 320, 150, 200, 60, 80, 90, 70, 250, 170, 300, 320, 300 };
+	bZeichneStrasse("W44a", "W44b", 130, 7, iCoords6); //6
+
+	std::unique_ptr<Car> bmw = std::make_unique<Car>("BMW", 210, 6, 55);
+	std::unique_ptr<Car> audi = std::make_unique<Car>("Audi", 150, 6, 55);
+
+	Kr1->vAnnahme(std::move(bmw), 3);
+	Kr1->vAnnahme(std::move(audi), 1);
+
+	std::list<std::shared_ptr<Kreuzung>> kreuzungen;
+	kreuzungen.push_back(Kr1);
+	kreuzungen.push_back(Kr2);
+	kreuzungen.push_back(Kr3);
+	kreuzungen.push_back(Kr4);
+
+	for(int i = 0; i < 30 ; i++)
+	{
+		for (auto it = kreuzungen.begin(); it != kreuzungen.end(); it++)
+		{
+			(*it)->vSimulieren(1.0);
+		}
+
+		vSetzeZeit(dGlobaleZeit);
+		dGlobaleZeit += 1.0;
+
+		vSleep(600);
+	}
+	vSleep(1000);
+	vBeendeGrafik();
 }
-
 
 int main()
 {
