@@ -20,7 +20,7 @@
 #include "Fahrrad.h"
 #include "Kreuzung.h"
 
-Kreuzung::Kreuzung(const std::string name, double tank = 0) : p_dTankstelle(tank)
+Kreuzung::Kreuzung(const std::string name, double tank) : p_dTankstelle(tank)
 {
 	vSetName(name);
 }

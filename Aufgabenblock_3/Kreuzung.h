@@ -28,7 +28,7 @@ class Kreuzung : public Simulationsobjekt
 
 	public:
 	Kreuzung() = default;
-	Kreuzung(const std::string name, double tank);
+	Kreuzung(const std::string name, double tank = 0.0);
 	Kreuzung(Kreuzung& kreuzung) = delete;
 	virtual ~Kreuzung() = default;
 	static void vVerbinde(std::string hin, std::string ruck, double laenge, enum Tempolimit tempo, bool Ueberhol,

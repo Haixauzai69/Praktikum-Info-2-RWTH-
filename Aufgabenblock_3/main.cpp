@@ -393,11 +393,6 @@ void vAufgabe_7() // fix compiler error and zeichne fahrzeuge somehow
 	Kreuzung::vVerbinde("W34", "W43", 85, Tempolimit::Autobahn, false, Kr3, Kr4); //Straße 5
 	Kreuzung::vVerbinde("W44a", "W44b", 130, Tempolimit::Innerorts, false, Kr4, Kr4); //Straße 6
 
-	bZeichneKreuzung(680, 40); //kr1
-	bZeichneKreuzung(680, 300); //kr2
-	bZeichneKreuzung(680, 570); //kr3
-	bZeichneKreuzung(320, 300); //kr4
-
 	int iCoords1[] = { 680, 40, 680, 300 };
 	bZeichneStrasse("W12", "W21", 40, 2, iCoords1); //1
 
@@ -418,6 +413,11 @@ void vAufgabe_7() // fix compiler error and zeichne fahrzeuge somehow
 
 	std::unique_ptr<Car> bmw = std::make_unique<Car>("BMW", 210, 6, 55);
 	std::unique_ptr<Car> audi = std::make_unique<Car>("Audi", 150, 6, 55);
+
+	bZeichneKreuzung(680, 40); //kr1
+	bZeichneKreuzung(680, 300); //kr2
+	bZeichneKreuzung(680, 570); //kr3
+	bZeichneKreuzung(320, 300); //kr4
 
 	Kr1->vAnnahme(std::move(bmw), 3);
 	Kr1->vAnnahme(std::move(audi), 1);
@@ -457,6 +457,7 @@ int main()
 //	vAufgabe_6();
 //	vTest();
 //	vAufgabe_6a();
+	vAufgabe_7();
 	return 0;
 }
 
