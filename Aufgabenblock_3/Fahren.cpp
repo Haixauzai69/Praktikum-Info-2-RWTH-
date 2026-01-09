@@ -30,17 +30,16 @@ double Fahren::dStrecke(Fahrzeug& aFzg, double dZeitIntervall)
 	}
 
 	double strecke = (aFzg.dGeschwindigkeit())*dZeitIntervall;
+	double pos = aFzg.getStreckenabschn();
+	double rest = p_rWeg.dGetLaenge() - pos;
 
-	if(strecke + aFzg.getStreckenabschn() > p_rWeg.dGetVirtuelleSchranke()) // woah woah woah wtf magie digga
+	if(strecke + aFzg.getStreckenabschn() > p_rWeg.dGetVirtuelleSchranke())
 	{
 		strecke = p_rWeg.dGetVirtuelleSchranke() - aFzg.getStreckenabschn();
 	}
 
-	double rest = p_rWeg.dGetLaenge() - aFzg.getStreckenabschn();
-
-	if (strecke > rest)
+	if (strecke >= rest)
 	{
-		std::cout << "Das Fahrzeug erreicht das Ende des Weges" << std::endl;
 		strecke = rest;
 		throw Streckenende(p_rWeg, aFzg);
 	}

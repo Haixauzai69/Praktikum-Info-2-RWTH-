@@ -411,8 +411,8 @@ void vAufgabe_7()
 	int iCoords6[] = { 320, 300, 320, 150, 200, 60, 80, 90, 70, 250, 170, 300, 320, 300 };
 	bZeichneStrasse("W44a", "W44b", 130, 7, iCoords6); //6
 
-	std::unique_ptr<Car> bmw = std::make_unique<Car>("BMW", 210, 6, 55);
-	std::unique_ptr<Car> audi = std::make_unique<Car>("Audi", 150, 6, 55);
+	std::unique_ptr<Car> bmw = std::make_unique<Car>("BMW", 10, 6, 55);
+	std::unique_ptr<Car> audi = std::make_unique<Car>("Audi", 10, 6, 55);
 
 	bZeichneKreuzung(680, 40); //kr1
 	bZeichneKreuzung(680, 300); //kr2

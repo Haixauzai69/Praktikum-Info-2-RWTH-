@@ -118,8 +118,12 @@ void Weg::vSimulieren(double dTimeStep) // heart of ueberholverbot
 		try
 		{
 			i->vSimulieren(dTimeStep);
+
+			if (p_pVorherFzg)
+			{
+			     p_dVirtuelleSchranke = p_pVorherFzg->getStreckenabschn();
+			}
 			p_pVorherFzg = i;
-			p_dVirtuelleSchranke = i->getStreckenabschn();
 		}
 
 		catch(Fahrausnahme& error)
