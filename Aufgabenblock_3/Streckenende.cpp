@@ -31,6 +31,9 @@ void Streckenende::vBearbeiten()
 	std::shared_ptr<Weg> pNeuerWeg = p_rWeg.pGetZielKreuzung()->pZufaelligerWeg(p_rWeg);
 	pNeuerWeg->vAnnahme(p_rWeg.pAbgabe(p_rFahrzeug));
 
+//	auto kreuzung = p_rWeg.pGetZielKreuzung();
+//	kreuzung->vAnnahme(p_rWeg.pAbgabe(p_rFahrzeug),p_rWeg);
+
 	std::cout << "ZEIT      :" << dGlobaleZeit << std::endl;
 	std::cout << "KREUZUNG  :" << p_rWeg.pGetZielKreuzung()->sGetName() << " " << p_rWeg.pGetZielKreuzung()->dGetTank() << std::endl;
 	std::cout << "WECHSEL   :" << p_rWeg.sGetName() << " -> " << pNeuerWeg->sGetName() << std::endl;

@@ -160,6 +160,8 @@ void Weg::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug)
 	fahrzeug->vNeueStrecke(*this);
 
 	p_pFahrzeuge.push_back(std::move(fahrzeug));
+
+	p_pFahrzeuge.vAktualisieren();
 }
 
 void Weg::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug, double start)
@@ -169,6 +171,8 @@ void Weg::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug, double start)
 	fahrzeug->vNeueStrecke(*this, start);
 
 	p_pFahrzeuge.push_front(std::move(fahrzeug));
+
+	p_pFahrzeuge.vAktualisieren();
 }
 
 double Weg::dGetLaenge() const
@@ -194,6 +198,7 @@ std::unique_ptr<Fahrzeug> Weg::pAbgabe(const Fahrzeug& fahrzeug)
 			return save;
 		}
 	}
+	p_pFahrzeuge.vAktualisieren();
 	std::cout << "Weg::pAbgabe returns nullptr" << std::endl;
 	return nullptr;
 }

@@ -106,6 +106,6 @@ double Car::dGetTank()
 void Car::vZeichen(const Weg& weg)
 {
 	double relPos = p_dAbschnittStrecke / weg.dGetLaenge();
-	bZeichnePKW(this->sGetName(), weg.sGetName() + "_hin", relPos, dGeschwindigkeit(), p_dTankinhalt);
+	bZeichnePKW(this->sGetName(), weg.sGetName(), relPos, dGeschwindigkeit(), p_dTankinhalt);
 }
 

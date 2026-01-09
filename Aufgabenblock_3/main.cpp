@@ -377,7 +377,7 @@ void vAufgabe_6a()
 	std::cout << std::endl;
 }
 
-void vAufgabe_7() // fix compiler error and zeichne fahrzeuge somehow
+void vAufgabe_7()
 {
 	bInitialisiereGrafik(1000, 800);
 
@@ -419,8 +419,8 @@ void vAufgabe_7() // fix compiler error and zeichne fahrzeuge somehow
 	bZeichneKreuzung(680, 570); //kr3
 	bZeichneKreuzung(320, 300); //kr4
 
-	Kr1->vAnnahme(std::move(bmw), 3);
-	Kr1->vAnnahme(std::move(audi), 1);
+	Kr1->vAnnahme(std::move(bmw), 1);
+	Kr1->vAnnahme(std::move(audi), 5);
 
 	std::list<std::shared_ptr<Kreuzung>> kreuzungen;
 	kreuzungen.push_back(Kr1);
@@ -430,13 +430,24 @@ void vAufgabe_7() // fix compiler error and zeichne fahrzeuge somehow
 
 	for(int i = 0; i < 30 ; i++)
 	{
+		vSetzeZeit(dGlobaleZeit);
+		dGlobaleZeit += 1.0;
+
 		for (auto it = kreuzungen.begin(); it != kreuzungen.end(); it++)
 		{
 			(*it)->vSimulieren(1.0);
 		}
 
-		vSetzeZeit(dGlobaleZeit);
-		dGlobaleZeit += 1.0;
+		for (const auto& kr : kreuzungen)
+		{
+		    for (const auto& weg : kr->getWege())
+		    {
+		        for (const auto& fzg : weg->getFahrzeuge())
+		        {
+		            fzg->vZeichen(*weg);
+		        }
+		    }
+		}
 
 		vSleep(600);
 	}

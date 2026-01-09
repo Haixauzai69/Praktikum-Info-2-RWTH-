@@ -22,7 +22,7 @@ class Weg;
 class Fahrzeug : public Simulationsobjekt
 {
 	protected:
-		double p_dGesamtStrecke;
+		double p_dGesamtStrecke = 0;
 		double p_dGesamtZeit = 0;
 		double p_dMaxGeschwindigkeit;
 		std::shared_ptr<Verhalten> p_pVerhalten;

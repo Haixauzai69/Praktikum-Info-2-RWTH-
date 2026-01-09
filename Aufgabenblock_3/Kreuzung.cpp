@@ -67,6 +67,22 @@ void Kreuzung::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug, double start) // par
 	}
 }
 
+void Kreuzung::vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug, Weg& vonWeg)
+{
+	if (!fahrzeug || p_pWege.empty())
+	{
+		return;
+	}
+	vTanken(*fahrzeug);
+	std::shared_ptr<Weg> ziel = pZufaelligerWeg(vonWeg);
+	ziel->vAnnahme(std::move(fahrzeug));
+}
+
+const vertagt::VListe<std::shared_ptr<Weg>>& Kreuzung::getWege() const
+{
+	return p_pWege;
+}
+
 void Kreuzung::vSimulieren(double dTimeStep)
 {
 	for(auto& i : p_pWege)
