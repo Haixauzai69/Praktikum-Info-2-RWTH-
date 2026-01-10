@@ -119,7 +119,10 @@ std::shared_ptr<Weg> Kreuzung::pZufaelligerWeg(Weg& ankunftsWeg)
 			}
 		}
 	}
-	else return nullptr;
+	else
+	{
+		return nullptr;
+	}
 }
 
 double Kreuzung::dGetTank()
@@ -130,10 +133,7 @@ double Kreuzung::dGetTank()
 void Kreuzung::vEinlesen(std::istream& eingabe)
 {
 	Simulationsobjekt::vEinlesen(eingabe);
-	std::cout << "Volumen der Tankstelle: ";
-	double input;
-	eingabe >> input;
-	p_dTankstelle = input;
+	eingabe >> p_dTankstelle;
 }
 
 

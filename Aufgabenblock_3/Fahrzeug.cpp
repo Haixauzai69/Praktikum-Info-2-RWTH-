@@ -144,10 +144,7 @@ double Fahrzeug::dGetSchranke() const
 void Fahrzeug::vEinlesen(std::istream& eingabe)
 {
 	Simulationsobjekt::vEinlesen(eingabe);
-	double dMax;
-	std::cout << "Maxgeschwindigkeit in kmh: ";
-	eingabe >> dMax;
-	p_dMaxGeschwindigkeit = dMax;
+	eingabe >> p_dMaxGeschwindigkeit;
 }
 
 

@@ -61,13 +61,19 @@ void Simulationsobjekt::vAusgabe(std::ostream& ausgabe) const
 
 void Simulationsobjekt::vEinlesen(std::istream& eingabe)
 {
-	if (p_sName == "")
+	if (p_sName != "")
 	{
-		std::string name;
-		eingabe >> name;
-		p_sName = name;
+		throw std::runtime_error("Runtime error: Simulationsobjekt already initialized");
 	}
-	else throw std::runtime_error("Runtime error: The object already has a name");
+
+	std::string name;
+
+	if (!(eingabe >> name))
+	{
+	    throw std::runtime_error("Runtime error: Failed to read Simulationsobjekt name");
+	}
+
+	p_sName = name;
 }
 
 
