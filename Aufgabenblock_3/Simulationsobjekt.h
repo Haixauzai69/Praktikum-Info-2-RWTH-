@@ -34,10 +34,9 @@ class Simulationsobjekt
 	virtual void vSimulieren(double dTimeStep) = 0;
 	virtual void vAusgabe(std::ostream& ausgabe) const;
 	void vSetName(std::string something);
+	virtual void vEinlesen(std::istream& eingabe) const;
 };
 
 std::ostream& operator<<(std::ostream& out, const Simulationsobjekt& obj);
-
-
 
 #endif /* SIMULATIONSOBJEKT_H_ */

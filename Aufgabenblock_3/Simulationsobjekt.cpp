@@ -49,5 +49,11 @@ void Simulationsobjekt::vAusgabe(std::ostream& ausgabe) const
 	              << std::setw(25) << p_sName;
 }
 
+void Simulationsobjekt::vEinlesen(std::istream& eingabe) const
+{
+	std::cout << "Simulationsobjekt: ";
+
+}
+
 
 
