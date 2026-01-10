@@ -74,3 +74,8 @@ void Fahrrad::vZeichen(const Weg& weg)
 	bZeichneFahrrad(this->sGetName(), weg.sGetName() + "_hin", relPos, dGeschwindigkeit());
 }
 
+void Fahrrad::vEinlesen(std::istream& eingabe)
+{
+	Fahrzeug::vEinlesen(eingabe);
+}
+

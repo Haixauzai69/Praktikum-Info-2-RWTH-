@@ -9,13 +9,17 @@
 #define SIMULATIONSOBJEKT_H_
 #include <iostream>
 #include <string>
+#include <exception>
+#include <memory>
+#include <stdlib.h>
+#include <stdexcept>
 
 extern double dGlobaleZeit;
 
 class Simulationsobjekt
 {
 	private:
-	std::string p_sName = " ";
+	std::string p_sName = "";
 	static inline int p_iMaxID = 0;
 	const int p_iID = p_iMaxID++;
 //	double p_dZeit = 0;
@@ -34,9 +38,10 @@ class Simulationsobjekt
 	virtual void vSimulieren(double dTimeStep) = 0;
 	virtual void vAusgabe(std::ostream& ausgabe) const;
 	void vSetName(std::string something);
-	virtual void vEinlesen(std::istream& eingabe) const;
+	virtual void vEinlesen(std::istream& eingabe);
 };
 
 std::ostream& operator<<(std::ostream& out, const Simulationsobjekt& obj);
+std::istream& operator>>(std::istream& in, Simulationsobjekt& obj);
 
 #endif /* SIMULATIONSOBJEKT_H_ */

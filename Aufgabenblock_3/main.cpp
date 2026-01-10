@@ -455,6 +455,11 @@ void vAufgabe_7()
 	vBeendeGrafik();
 }
 
+void vAufgabe_8()
+{
+
+}
+
 int main()
 {
 //	vAufgabe1();

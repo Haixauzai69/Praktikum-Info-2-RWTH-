@@ -27,6 +27,7 @@ class Fahrrad : public Fahrzeug
 //	double dTanken(double dMenge = std::numeric_limits<double>::infinity()) override;
 	void vAusgabe(std::ostream& ausgabe) const override;
 	bool bIstLeer() const override;
+	void vEinlesen(std::istream& eingabe) override;
 
 	void vZeichen(const Weg& weg) override;
 };

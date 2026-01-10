@@ -109,3 +109,16 @@ void Car::vZeichen(const Weg& weg)
 	bZeichnePKW(this->sGetName(), weg.sGetName(), relPos, dGeschwindigkeit(), p_dTankinhalt);
 }
 
+void Car::vEinlesen(std::istream& eingabe)
+{
+	Fahrzeug::vEinlesen(eingabe);
+	double verbrauch;
+	double volumen;
+	std::cout << "Verbrauch in l/100km: ";
+	eingabe >> verbrauch;
+	verbrauch = p_dVerbrauch;
+	std::cout << "Tankvolumen in l: ";
+	eingabe >> volumen;
+	p_dTankvolumen = volumen;
+}
+

@@ -127,6 +127,15 @@ double Kreuzung::dGetTank()
 	return p_dTankstelle;
 }
 
+void Kreuzung::vEinlesen(std::istream& eingabe)
+{
+	Simulationsobjekt::vEinlesen(eingabe);
+	std::cout << "Volumen der Tankstelle: ";
+	double input;
+	eingabe >> input;
+	p_dTankstelle = input;
+}
+
 
 
 

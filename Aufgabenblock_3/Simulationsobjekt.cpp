@@ -8,6 +8,10 @@
 #include <string>
 #include <iomanip>
 #include <ios>
+#include <exception>
+#include <memory>
+#include <stdlib.h>
+#include <stdexcept>
 #include "Simulationsobjekt.h"
 
 double dGlobaleZeit = 0.0;
@@ -16,6 +20,12 @@ std::ostream& operator<<(std::ostream& out, const Simulationsobjekt& obj)
 {
 	obj.vAusgabe(out);
 	return out;
+}
+
+std::istream& operator>>(std::istream& in, Simulationsobjekt& obj)
+{
+	obj.vEinlesen(in);
+	return in;
 }
 
 std::string Simulationsobjekt::sGetName() const
@@ -49,10 +59,15 @@ void Simulationsobjekt::vAusgabe(std::ostream& ausgabe) const
 	              << std::setw(25) << p_sName;
 }
 
-void Simulationsobjekt::vEinlesen(std::istream& eingabe) const
+void Simulationsobjekt::vEinlesen(std::istream& eingabe)
 {
-	std::cout << "Simulationsobjekt: ";
-
+	if (p_sName == "")
+	{
+		std::string name;
+		std::getline(eingabe, name);
+		p_sName = name;
+	}
+	else throw std::runtime_error("Runtime error: The object already has a name");
 }
 
 
