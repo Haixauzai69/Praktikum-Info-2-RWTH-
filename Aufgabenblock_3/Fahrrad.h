@@ -20,6 +20,7 @@
 class Fahrrad : public Fahrzeug
 {
 	public:
+	Fahrrad();
 	Fahrrad(const std::string& name, double maxSpeed);
 	virtual ~Fahrrad() = default;
 	double dGeschwindigkeit() const override;

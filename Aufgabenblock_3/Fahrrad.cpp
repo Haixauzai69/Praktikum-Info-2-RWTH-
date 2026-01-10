@@ -16,6 +16,11 @@
 #include "Fahrzeug.h"
 #include "Fahrrad.h"
 
+Fahrrad::Fahrrad() : Fahrzeug("", 0.0)
+{
+
+}
+
 Fahrrad::Fahrrad(const std::string& name, double maxSpeed) : Fahrzeug(name, maxSpeed)
 {
 

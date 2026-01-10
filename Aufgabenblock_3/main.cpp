@@ -10,6 +10,7 @@
 #include <vector>
 #include <iomanip>
 #include <list>
+#include <fstream>
 #include <ios>
 #include <algorithm>
 #include <stdlib.h>
@@ -457,7 +458,29 @@ void vAufgabe_7()
 
 void vAufgabe_8()
 {
+	try
+	{
+		std::ifstream f("VO.dat");
+		f.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 
+		Car car1;
+		Fahrrad fahrrad;
+		Kreuzung kreuzung;
+
+		f >> car1;
+		f >> fahrrad;
+		f >> kreuzung;
+
+		std::cout << car1 << std::endl;
+		std::cout << fahrrad << std::endl;
+		std::cout << kreuzung << std::endl;
+	}
+
+	catch (const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+		return;
+	}
 }
 
 int main()
@@ -473,7 +496,8 @@ int main()
 //	vAufgabe_6();
 //	vTest();
 //	vAufgabe_6a();
-	vAufgabe_7();
+//	vAufgabe_7();
+	vAufgabe_8();
 	return 0;
 }
 

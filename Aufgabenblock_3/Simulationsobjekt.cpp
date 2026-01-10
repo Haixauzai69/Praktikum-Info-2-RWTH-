@@ -64,7 +64,7 @@ void Simulationsobjekt::vEinlesen(std::istream& eingabe)
 	if (p_sName == "")
 	{
 		std::string name;
-		std::getline(eingabe, name);
+		eingabe >> name;
 		p_sName = name;
 	}
 	else throw std::runtime_error("Runtime error: The object already has a name");

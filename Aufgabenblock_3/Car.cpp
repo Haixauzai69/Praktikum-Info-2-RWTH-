@@ -15,6 +15,13 @@
 #include <ios>
 #include <algorithm>
 
+Car::Car() : Fahrzeug("", 0.0)
+{
+	p_dVerbrauch = 0;
+	p_dTankvolumen = 0;
+	p_dTankinhalt = 0;
+}
+
 Car::Car(std::string name, double max_speed, double verbrauch, double tankvolumen) : Fahrzeug(name, max_speed)
 {
 	p_dVerbrauch = verbrauch;
