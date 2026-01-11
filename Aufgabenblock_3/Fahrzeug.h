@@ -31,6 +31,7 @@ class Fahrzeug : public Simulationsobjekt
 		double p_dStartZeit;
 
 	public:
+		Fahrzeug() = default;
 		Fahrzeug(const std::string name, double max_geschwindigkeit);
 		virtual ~Fahrzeug();
 
@@ -50,7 +51,7 @@ class Fahrzeug : public Simulationsobjekt
 			return 0.0;
 		}
 		static void vKopf();
-		virtual void vAusgabe(std::ostream& ausgabe) const;
+		virtual void vAusgabe(std::ostream& ausgabe) const override;
 		virtual double dGeschwindigkeit() const;
 		bool operator<(const Fahrzeug& other) const;
 		Fahrzeug& operator=(const Fahrzeug& other);

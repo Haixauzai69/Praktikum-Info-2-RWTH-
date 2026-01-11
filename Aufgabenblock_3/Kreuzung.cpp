@@ -12,6 +12,8 @@
 #include <memory>
 #include <list>
 #include <random>
+#include <iomanip>
+#include <ios>
 #include "Tempolimit.h"
 #include <limits>
 #include "Weg.h"
@@ -39,6 +41,14 @@ void Kreuzung::vVerbinde(std::string hin, std::string ruck, double laenge, enum 
 
 	startkreuzung->p_pWege.vAktualisieren();
 	zielkreuzung->p_pWege.vAktualisieren();
+}
+
+void Kreuzung::vAusgabe(std::ostream& ausgabe) const
+{
+	Simulationsobjekt::vAusgabe(ausgabe);
+	ausgabe << std::setw(25) << p_dTankstelle
+	            << std::resetiosflags(std::ios::left)
+	            << std::endl;
 }
 
 void Kreuzung::vTanken(Fahrzeug& fzg)

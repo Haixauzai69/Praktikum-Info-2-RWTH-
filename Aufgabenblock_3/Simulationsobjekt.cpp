@@ -22,12 +22,6 @@ std::ostream& operator<<(std::ostream& out, const Simulationsobjekt& obj)
 	return out;
 }
 
-std::istream& operator>>(std::istream& in, Simulationsobjekt& obj)
-{
-	obj.vEinlesen(in);
-	return in;
-}
-
 std::string Simulationsobjekt::sGetName() const
 {
 	return p_sName;
@@ -67,13 +61,14 @@ void Simulationsobjekt::vEinlesen(std::istream& eingabe)
 	}
 
 	std::string name;
-
-	if (!(eingabe >> name))
-	{
-	    throw std::runtime_error("Runtime error: Failed to read Simulationsobjekt name");
-	}
-
+	eingabe >> name;
 	p_sName = name;
+}
+
+std::istream& operator>>(std::istream& in, Simulationsobjekt& obj)
+{
+	obj.vEinlesen(in);
+	return in;
 }
 
 

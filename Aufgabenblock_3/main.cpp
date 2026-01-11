@@ -458,29 +458,28 @@ void vAufgabe_7()
 
 void vAufgabe_8()
 {
+
 	try
-	{
-		std::ifstream f("VO.dat");
-		f.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+	    {
+	        std::ifstream f("VO.dat");
+	        f.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 
-		Car car1;
-		Fahrrad fahrrad;
-		Kreuzung kreuzung;
+	        Car car;
+	        Fahrrad fahrrad;
+	        Kreuzung kreuzung;
 
-		f >> car1;
-		f >> fahrrad;
-		f >> kreuzung;
+	        f >> car;
+	        f >> fahrrad;
+	        f >> kreuzung;
 
-		std::cout << car1 << std::endl;
-		std::cout << fahrrad << std::endl;
-		std::cout << kreuzung << std::endl;
-	}
-
-	catch (const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-		return;
-	}
+	        std::cout << car << '\n';
+	        std::cout << fahrrad << '\n';
+	        std::cout << kreuzung << '\n';
+	    }
+	    catch (const std::exception& e)
+	    {
+	        std::cerr << e.what() << '\n';
+	    }
 }
 
 int main()

@@ -120,5 +120,6 @@ void Car::vEinlesen(std::istream& eingabe)
 {
 	Fahrzeug::vEinlesen(eingabe);
 	eingabe >> p_dVerbrauch >> p_dTankvolumen;
+	p_dTankinhalt = p_dTankvolumen;
 }
 
