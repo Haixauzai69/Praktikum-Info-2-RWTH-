@@ -41,7 +41,7 @@ class Kreuzung : public Simulationsobjekt
 	void vAnnahme(std::unique_ptr<Fahrzeug> fahrzeug, Weg& vonWeg);
 	void vSimulieren(double dTimeStep);
 	void vAusgabe(std::ostream& ausgabe) const override;
-	void vEinlesen(std::istream& eingabe) override;
+	virtual void vEinlesen(std::istream& eingabe) override;
 
 	std::shared_ptr<Weg> pZufaelligerWeg(Weg& ankunftsWeg);
 };

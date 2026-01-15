@@ -458,11 +458,14 @@ void vAufgabe_7()
 
 void vAufgabe_8()
 {
-
 	try
-	    {
-	        std::ifstream f("VO.dat");
-	        f.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+	{
+	    std::ifstream f("VO.dat");
+	        if (!f)
+	        {
+	        	throw std::runtime_error("Fehler beim Einlesen der Datei");
+	        	return;
+	        }
 
 	        Car car;
 	        Fahrrad fahrrad;

@@ -60,7 +60,7 @@ class Fahrzeug : public Simulationsobjekt
 		void vNeueStrecke(Weg& weg, double start); // parken
 
 		virtual void vZeichen(const Weg& weg);
-		virtual void vEinlesen(std::istream& eingabe);
+		virtual void vEinlesen(std::istream& eingabe) override;
 };
 
 #endif /* FAHRZEUG_H_ */

@@ -53,23 +53,17 @@ void Simulationsobjekt::vAusgabe(std::ostream& ausgabe) const
 	              << std::setw(25) << p_sName;
 }
 
-void Simulationsobjekt::vEinlesen(std::istream& eingabe)
+void Simulationsobjekt::vEinlesen(std::istream &eingabe)
 {
-	if (p_sName != "")
-	{
-		throw std::runtime_error("Runtime error: Simulationsobjekt already initialized");
-	}
+	if (!p_sName.empty())
+	        throw std::runtime_error("Object already initialized");
 
-	std::string name;
-	eingabe >> name;
-	p_sName = name;
+	eingabe >> p_sName;
 }
 
-std::istream& operator>>(std::istream& in, Simulationsobjekt& obj)
-{
+std::istream& operator>>(std::istream &in, Simulationsobjekt& obj) {
 	obj.vEinlesen(in);
 	return in;
 }
-
 
 

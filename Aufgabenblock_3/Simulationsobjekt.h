@@ -19,7 +19,6 @@ extern double dGlobaleZeit;
 class Simulationsobjekt
 {
 	private:
-	std::string p_sName = "";
 	static inline int p_iMaxID = 0;
 	const int p_iID = p_iMaxID++;
 //	double p_dZeit = 0;
@@ -27,6 +26,7 @@ class Simulationsobjekt
 
 	protected:
 	double p_dLokaleZeit = 0.0;
+	std::string p_sName;
 
 	public:
 	Simulationsobjekt() = default;

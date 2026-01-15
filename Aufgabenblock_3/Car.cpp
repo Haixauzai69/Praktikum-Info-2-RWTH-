@@ -121,5 +121,9 @@ void Car::vEinlesen(std::istream& eingabe)
 	Fahrzeug::vEinlesen(eingabe);
 	eingabe >> p_dVerbrauch >> p_dTankvolumen;
 	p_dTankinhalt = p_dTankvolumen;
+	if (!eingabe)
+	{
+		throw std::runtime_error("Invalid input format");
+	}
 }
 

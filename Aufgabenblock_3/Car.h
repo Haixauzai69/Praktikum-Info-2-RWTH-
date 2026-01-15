@@ -27,7 +27,7 @@ class Car : public Fahrzeug
 	double dGeschwindigkeit() const override;
 	double dGetTank() override;
 	bool bIstLeer() const override;
-	void vEinlesen(std::istream& eingabe) override;
+	virtual void vEinlesen(std::istream& eingabe) override;
 
 	void vZeichen(const Weg& weg) override;
 

@@ -145,6 +145,10 @@ void Fahrzeug::vEinlesen(std::istream& eingabe)
 {
 	Simulationsobjekt::vEinlesen(eingabe);
 	eingabe >> p_dMaxGeschwindigkeit;
+	if (!eingabe)
+	{
+		throw std::runtime_error("Invalid input format");
+	}
 }
 
 
