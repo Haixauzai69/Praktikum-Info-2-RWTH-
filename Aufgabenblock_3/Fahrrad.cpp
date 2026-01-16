@@ -82,9 +82,5 @@ void Fahrrad::vZeichen(const Weg& weg)
 void Fahrrad::vEinlesen(std::istream& eingabe)
 {
 	Fahrzeug::vEinlesen(eingabe);
-	if (!eingabe)
-		{
-			throw std::runtime_error("Invalid input format");
-		}
 }
 

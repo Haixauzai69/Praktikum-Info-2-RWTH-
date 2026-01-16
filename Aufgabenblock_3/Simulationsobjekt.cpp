@@ -56,12 +56,15 @@ void Simulationsobjekt::vAusgabe(std::ostream& ausgabe) const
 void Simulationsobjekt::vEinlesen(std::istream &eingabe)
 {
 	if (!p_sName.empty())
-	        throw std::runtime_error("Object already initialized");
+	{
+		throw std::runtime_error("Object already initialized");
+	}
 
 	eingabe >> p_sName;
 }
 
-std::istream& operator>>(std::istream &in, Simulationsobjekt& obj) {
+std::istream& operator>>(std::istream &in, Simulationsobjekt& obj)
+{
 	obj.vEinlesen(in);
 	return in;
 }

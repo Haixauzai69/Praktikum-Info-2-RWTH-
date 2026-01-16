@@ -144,10 +144,6 @@ void Kreuzung::vEinlesen(std::istream& eingabe)
 {
 	Simulationsobjekt::vEinlesen(eingabe);
 	eingabe >> p_dTankstelle;
-	if (!eingabe)
-	{
-		 throw std::runtime_error("Invalid input format");
-	}
 }
 
 

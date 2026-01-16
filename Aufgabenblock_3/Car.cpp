@@ -80,14 +80,17 @@ bool Car::bIstLeer() const
 
 double Car::dGeschwindigkeit() const
 {
-	Weg& weg = p_pVerhalten->getWeg();
-
-	double limit = static_cast<double>(weg.getTempolimit());
-
-	if (this->getMaxGeschwindigkeit() > limit)
+	if(p_pVerhalten) // voila
 	{
-		std::cout << "Strafe wegen zu schnellem Fahren" << std::endl;
-		return limit;
+		Weg& weg = p_pVerhalten->getWeg();
+
+		double limit = static_cast<double>(weg.getTempolimit());
+
+		if (this->getMaxGeschwindigkeit() > limit)
+		{
+			std::cout << "Strafe wegen zu schnellem Fahren" << std::endl;
+			return limit;
+		}
 	}
 	else return this->getMaxGeschwindigkeit();
 }
@@ -121,9 +124,5 @@ void Car::vEinlesen(std::istream& eingabe)
 	Fahrzeug::vEinlesen(eingabe);
 	eingabe >> p_dVerbrauch >> p_dTankvolumen;
 	p_dTankinhalt = p_dTankvolumen;
-	if (!eingabe)
-	{
-		throw std::runtime_error("Invalid input format");
-	}
 }
 
