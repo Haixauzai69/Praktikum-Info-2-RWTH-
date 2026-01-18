@@ -12,6 +12,8 @@
 #include <list>
 #include <fstream>
 #include <ios>
+#include <map>
+#include "Simulation.h"
 #include <algorithm>
 #include <stdlib.h>
 #include <iterator>
@@ -485,6 +487,43 @@ void vAufgabe_8()
 	    }
 }
 
+void vAufgabe_8a() {
+	Simulation sim;
+	std::ifstream f("VO.dat");
+	if (!f) {
+		throw std::runtime_error("Fehler beim Einlesen der Datei");
+		return;
+	}
+	sim.vEinlesen(f);
+}
+
+void vAufgabe_9() {
+	Simulation sim;
+	std::ifstream f("Simu.dat");
+	if (!f) {
+		throw std::runtime_error("Fehler beim Einlesen der Datei");
+		return;
+	}
+	sim.vEinlesen(f);
+
+}
+
+void vAufgabe_9a() {
+	bInitialisiereGrafik(1500, 1500);
+	Simulation sim;
+	std::ifstream f("SimuDisplay.dat");
+	if (!f) {
+		throw std::runtime_error("Fehler beim Einlesen der Datei");
+	}
+	sim.vEinlesen(f, true);
+
+	sim.vSimulieren(15, 0.1);
+
+	vSleep(10000);
+	vBeendeGrafik();
+}
+
+
 int main()
 {
 //	vAufgabe1();
@@ -499,7 +538,10 @@ int main()
 //	vTest();
 //	vAufgabe_6a();
 //	vAufgabe_7();
-	vAufgabe_8();
+//	vAufgabe_8();
+//	vAufgabe_8a();
+//	vAufgabe_9();
+	vAufgabe_9a();
 	return 0;
 }
 

@@ -9,16 +9,23 @@
 #define SIMULATION_H_
 #include <iostream>
 #include <string>
+#include <memory>
+#include <map>
+#include <list>
 
-class Simulationsobjekt;
+class Kreuzung;
 
 class Simulation
 {
+	protected:
+	std::list<std::shared_ptr<Kreuzung>> p_pKreuzungen;
+	std::map<std::string, std::shared_ptr<Kreuzung>> pMapKreuzungen;
+
 	public:
 	Simulation() = default;
 	virtual ~Simulation() = default;
-	void vEinlesen(std::istream& eingabe);
-	void vSimulieren();
+	void vEinlesen(std::istream& i, bool bMitGrafik = false);
+	void vSimulieren(double dDauer, double dZeitschritt);
 };
 
 
