@@ -17,7 +17,7 @@ class Simulation
 	public:
 	Simulation() = default;
 	virtual ~Simulation() = default;
-	void vEinlesen(std::istream& ein);
+	void vEinlesen(std::istream& eingabe);
 	void vSimulieren();
 };
 
